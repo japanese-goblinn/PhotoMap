@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapViewController" customModule="PhotoMap" customModuleProvider="target">
             <connections>
+                <outlet property="mapView" destination="VlT-Bd-NrT" id="fq0-hY-V8z"/>
                 <outlet property="view" destination="ujZ-16-0Hz" id="7aI-dB-ZZf"/>
             </connections>
         </placeholder>
@@ -17,7 +18,18 @@
         <view contentMode="scaleToFill" id="ujZ-16-0Hz">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="VlT-Bd-NrT">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                </mapView>
+            </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="1VE-TP-ZjZ" firstAttribute="bottom" secondItem="VlT-Bd-NrT" secondAttribute="bottom" id="4sD-zE-ILs"/>
+                <constraint firstItem="VlT-Bd-NrT" firstAttribute="top" secondItem="ujZ-16-0Hz" secondAttribute="top" id="K58-PB-j7K"/>
+                <constraint firstItem="VlT-Bd-NrT" firstAttribute="leading" secondItem="1VE-TP-ZjZ" secondAttribute="leading" id="ZVe-O5-rS1"/>
+                <constraint firstItem="1VE-TP-ZjZ" firstAttribute="trailing" secondItem="VlT-Bd-NrT" secondAttribute="trailing" id="pdk-Pu-Sxm"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="1VE-TP-ZjZ"/>
             <point key="canvasLocation" x="73" y="99"/>
         </view>
