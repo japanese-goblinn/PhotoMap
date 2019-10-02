@@ -12,9 +12,10 @@ import CoreLocation
 
 class MapViewController: UIViewController {
 
-    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet private weak var mapView: MKMapView!
     
-    let locationManager = CLLocationManager()
+    private let locationManager = CLLocationManager()
+    private let scale: CLLocationDistance = 5000
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +33,8 @@ class MapViewController: UIViewController {
         if let location = locationManager.location?.coordinate {
             let region = MKCoordinateRegion.init(
                 center: location,
-                latitudinalMeters: 10000,
-                longitudinalMeters: 10000
+                latitudinalMeters: scale,
+                longitudinalMeters: scale
             )
             mapView.setRegion(region, animated: true)
         }
@@ -43,6 +44,7 @@ class MapViewController: UIViewController {
         switch CLLocationManager.authorizationStatus() {
         case .authorizedWhenInUse:
             mapView.showsUserLocation = true
+            locationManager.startUpdatingLocation()
         case .denied:
             break
         case .notDetermined:
