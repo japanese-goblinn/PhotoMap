@@ -24,10 +24,18 @@ class MapViewController: UIViewController {
     private func checkLocationServices() {
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
             checkLocationAuthorization()
-        } else {
-            //
+        }
+    }
+    
+    private func centerViewOnUserLocation() {
+        if let location = locationManager.location?.coordinate {
+            let region = MKCoordinateRegion.init(
+                center: location,
+                latitudinalMeters: 10000,
+                longitudinalMeters: 10000
+            )
+            mapView.setRegion(region, animated: true)
         }
     }
     
@@ -35,7 +43,6 @@ class MapViewController: UIViewController {
         switch CLLocationManager.authorizationStatus() {
         case .authorizedWhenInUse:
             mapView.showsUserLocation = true
-            break
         case .denied:
             break
         case .notDetermined:
@@ -52,6 +59,10 @@ class MapViewController: UIViewController {
 
 extension MapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        //
+        checkLocationAuthorization()
+    }
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        centerViewOnUserLocation()
     }
 }
