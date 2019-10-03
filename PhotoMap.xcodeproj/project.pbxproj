@@ -3,13 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		77494AF144EB3BF9A161893B /* Pods_PhotoMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F7238D9AFD2794E5404C2BE /* Pods_PhotoMap.framework */; };
 		F31584AC234486E700668288 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F31584AB234486E700668288 /* MapViewController.xib */; };
 		F31584AF2344A4E400668288 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F31584AE2344A4E400668288 /* GoogleService-Info.plist */; };
+		F31A06A92345DB8500275231 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31A06A82345DB8500275231 /* Log.swift */; };
 		F3D8F9162343A17900E0A378 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D8F9152343A17900E0A378 /* AppDelegate.swift */; };
 		F3D8F91A2343A17900E0A378 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D8F9192343A17900E0A378 /* MapViewController.swift */; };
 		F3D8F91F2343A17900E0A378 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3D8F91E2343A17900E0A378 /* Assets.xcassets */; };
@@ -21,6 +22,7 @@
 		7F7238D9AFD2794E5404C2BE /* Pods_PhotoMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F31584AB234486E700668288 /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
 		F31584AE2344A4E400668288 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F31A06A82345DB8500275231 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		F3D8F9122343A17900E0A378 /* PhotoMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3D8F9152343A17900E0A378 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3D8F9192343A17900E0A378 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -46,7 +48,6 @@
 				00C387C8437F2A88271BD3AB /* Pods-PhotoMap.debug.xcconfig */,
 				020AB289E26B09D225EBC8B0 /* Pods-PhotoMap.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -101,6 +102,7 @@
 				F3D8F9152343A17900E0A378 /* AppDelegate.swift */,
 				F31584AE2344A4E400668288 /* GoogleService-Info.plist */,
 				F3D8F9232343A17900E0A378 /* Info.plist */,
+				F31A06A82345DB8500275231 /* Log.swift */,
 			);
 			path = PhotoMap;
 			sourceTree = "<group>";
@@ -222,6 +224,7 @@
 			files = (
 				F3D8F91A2343A17900E0A378 /* MapViewController.swift in Sources */,
 				F3D8F9162343A17900E0A378 /* AppDelegate.swift in Sources */,
+				F31A06A92345DB8500275231 /* Log.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

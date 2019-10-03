@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import os
 import MapKit
 import CoreLocation
 
@@ -25,7 +26,6 @@ class MapViewController: UIViewController {
     private func checkLocationServices() {
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
-            checkLocationAuthorization()
         }
     }
     
@@ -43,18 +43,20 @@ class MapViewController: UIViewController {
     private func checkLocationAuthorization() {
         switch CLLocationManager.authorizationStatus() {
         case .authorizedWhenInUse:
+            os_log("In Use", log: Log.mapAuthorizationStatus)
             mapView.showsUserLocation = true
             locationManager.startUpdatingLocation()
         case .denied:
-            break
+            os_log("Denied", log: Log.mapAuthorizationStatus)
         case .notDetermined:
+            os_log("Not Determined", log: Log.mapAuthorizationStatus)
             locationManager.requestWhenInUseAuthorization()
         case .restricted:
-            break
+            os_log("Restricted", log: Log.mapAuthorizationStatus)
         case .authorizedAlways:
-            break
+            os_log("Authorized Always", log: Log.mapAuthorizationStatus)
         @unknown default:
-            break
+            os_log("Default", log: Log.mapAuthorizationStatus)
         }
     }
 }
