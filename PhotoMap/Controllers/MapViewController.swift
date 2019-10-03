@@ -24,24 +24,53 @@ class MapViewController: UIViewController {
     private let locationManager = CLLocationManager()
     private let scale: CLLocationDistance = 5000
     private var navigationMode: NavigationMode = .follow
+    private let followModeColor = UIColor(hex: "#368EDF")
+    private let discoverModeColor = UIColor(hex: "#5F5C5C")
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        enableMapCenterOnUserPan()
+        navigationModeButton.tintColor = followModeColor
         checkLocationServices()
     }
     
     @IBAction private func locationButtonPressed(_ sender: UIButton) {
         switch navigationMode {
         case .discover:
-            navigationMode = .follow
-            //FIXME: change color
-            navigationModeButton.tintColor = .blue
+            setFollowMode()
             centerViewOnUserLocation()
         case .follow:
-            navigationMode = .discover
-            //FIXME: change color
-            navigationModeButton.tintColor = .black
+            setDiscoverMode()
         }
+    }
+    
+    private func checkNavigationMode() {
+        switch navigationMode {
+        case .follow:
+            centerViewOnUserLocation()
+        case .discover:
+            break
+        }
+    }
+    
+    private func setFollowMode() {
+        navigationMode = .follow
+        navigationModeButton.tintColor = followModeColor
+    }
+    
+    private func setDiscoverMode() {
+        navigationMode = .discover
+        navigationModeButton.tintColor = discoverModeColor
+    }
+}
+
+extension MapViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        checkLocationAuthorization()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        checkNavigationMode()
     }
     
     private func checkLocationServices() {
@@ -66,14 +95,14 @@ class MapViewController: UIViewController {
     private func checkLocationAuthorization() {
         switch CLLocationManager.authorizationStatus() {
         case .authorizedWhenInUse:
-            os_log("In Use", log: Log.mapAuthorizationStatus, type: .debug)
             mapView.showsUserLocation = true
             locationManager.startUpdatingLocation()
+            os_log("In Use", log: Log.mapAuthorizationStatus, type: .debug)
         case .denied:
             os_log("Denied", log: Log.mapAuthorizationStatus, type: .debug)
         case .notDetermined:
-            os_log("Not Determined", log: Log.mapAuthorizationStatus, type: .debug)
             locationManager.requestWhenInUseAuthorization()
+            os_log("Not Determined", log: Log.mapAuthorizationStatus, type: .debug)
         case .restricted:
             os_log("Restricted", log: Log.mapAuthorizationStatus, type: .debug)
         case .authorizedAlways:
@@ -84,17 +113,19 @@ class MapViewController: UIViewController {
     }
 }
 
-extension MapViewController: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        checkLocationAuthorization()
+extension MapViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
-
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        switch navigationMode {
-        case .follow:
-            centerViewOnUserLocation()
-        case .discover:
-            break
-        }
+    
+    private func enableMapCenterOnUserPan() {
+           let panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.didDragMap(_:)))
+           panGesture.delegate = self
+           mapView.addGestureRecognizer(panGesture)
+    }
+    
+    @objc private func didDragMap(_ sender: UIGestureRecognizer) {
+        setDiscoverMode()
+        checkNavigationMode()
     }
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		77494AF144EB3BF9A161893B /* Pods_PhotoMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F7238D9AFD2794E5404C2BE /* Pods_PhotoMap.framework */; };
+		CE8395142346212B004963EC /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8395132346212B004963EC /* UIColorExtension.swift */; };
 		F31584AC234486E700668288 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F31584AB234486E700668288 /* MapViewController.xib */; };
 		F31584AF2344A4E400668288 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F31584AE2344A4E400668288 /* GoogleService-Info.plist */; };
 		F31A06A92345DB8500275231 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31A06A82345DB8500275231 /* Log.swift */; };
@@ -20,6 +21,7 @@
 		00C387C8437F2A88271BD3AB /* Pods-PhotoMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoMap.debug.xcconfig"; path = "Target Support Files/Pods-PhotoMap/Pods-PhotoMap.debug.xcconfig"; sourceTree = "<group>"; };
 		020AB289E26B09D225EBC8B0 /* Pods-PhotoMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoMap.release.xcconfig"; path = "Target Support Files/Pods-PhotoMap/Pods-PhotoMap.release.xcconfig"; sourceTree = "<group>"; };
 		7F7238D9AFD2794E5404C2BE /* Pods_PhotoMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE8395132346212B004963EC /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		F31584AB234486E700668288 /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
 		F31584AE2344A4E400668288 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F31A06A82345DB8500275231 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
@@ -49,6 +51,14 @@
 				020AB289E26B09D225EBC8B0 /* Pods-PhotoMap.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		CE839515234622AC004963EC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CE8395132346212B004963EC /* UIColorExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		E9BF4C78BC81BB47937D4B5E /* Frameworks */ = {
@@ -98,11 +108,12 @@
 			children = (
 				F31584AA2344866100668288 /* Controllers */,
 				F31584AD2344872400668288 /* Interface */,
+				CE839515234622AC004963EC /* Extensions */,
 				F3D8F91E2343A17900E0A378 /* Assets.xcassets */,
 				F3D8F9152343A17900E0A378 /* AppDelegate.swift */,
+				F31A06A82345DB8500275231 /* Log.swift */,
 				F31584AE2344A4E400668288 /* GoogleService-Info.plist */,
 				F3D8F9232343A17900E0A378 /* Info.plist */,
-				F31A06A82345DB8500275231 /* Log.swift */,
 			);
 			path = PhotoMap;
 			sourceTree = "<group>";
@@ -225,6 +236,7 @@
 				F3D8F91A2343A17900E0A378 /* MapViewController.swift in Sources */,
 				F3D8F9162343A17900E0A378 /* AppDelegate.swift in Sources */,
 				F31A06A92345DB8500275231 /* Log.swift in Sources */,
+				CE8395142346212B004963EC /* UIColorExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
