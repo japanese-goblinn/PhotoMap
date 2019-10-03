@@ -11,16 +11,37 @@ import os
 import MapKit
 import CoreLocation
 
+enum NavigationMode {
+    case discover
+    case follow
+}
+
 class MapViewController: UIViewController {
 
     @IBOutlet private weak var mapView: MKMapView!
+    @IBOutlet private weak var navigationModeButton: UIButton!
     
     private let locationManager = CLLocationManager()
     private let scale: CLLocationDistance = 5000
+    private var navigationMode: NavigationMode = .follow
     
     override func viewDidLoad() {
         super.viewDidLoad()
         checkLocationServices()
+    }
+    
+    @IBAction private func locationButtonPressed(_ sender: UIButton) {
+        switch navigationMode {
+        case .discover:
+            navigationMode = .follow
+            //FIXME: change color
+            navigationModeButton.tintColor = .blue
+            centerViewOnUserLocation()
+        case .follow:
+            navigationMode = .discover
+            //FIXME: change color
+            navigationModeButton.tintColor = .black
+        }
     }
     
     private func checkLocationServices() {
@@ -69,6 +90,11 @@ extension MapViewController: CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        centerViewOnUserLocation()
+        switch navigationMode {
+        case .follow:
+            centerViewOnUserLocation()
+        case .discover:
+            break
+        }
     }
 }
