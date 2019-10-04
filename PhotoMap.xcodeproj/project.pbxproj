@@ -12,6 +12,8 @@
 		F31584AC234486E700668288 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F31584AB234486E700668288 /* MapViewController.xib */; };
 		F31584AF2344A4E400668288 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F31584AE2344A4E400668288 /* GoogleService-Info.plist */; };
 		F31A06A92345DB8500275231 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31A06A82345DB8500275231 /* Log.swift */; };
+		F323D36E2347567400AE7E97 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323D36C2347567400AE7E97 /* CategoriesViewController.swift */; };
+		F323D36F2347567400AE7E97 /* CategoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F323D36D2347567400AE7E97 /* CategoriesViewController.xib */; };
 		F3D8F9162343A17900E0A378 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D8F9152343A17900E0A378 /* AppDelegate.swift */; };
 		F3D8F91A2343A17900E0A378 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D8F9192343A17900E0A378 /* MapViewController.swift */; };
 		F3D8F91F2343A17900E0A378 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3D8F91E2343A17900E0A378 /* Assets.xcassets */; };
@@ -25,6 +27,8 @@
 		F31584AB234486E700668288 /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
 		F31584AE2344A4E400668288 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F31A06A82345DB8500275231 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		F323D36C2347567400AE7E97 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
+		F323D36D2347567400AE7E97 /* CategoriesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesViewController.xib; sourceTree = "<group>"; };
 		F3D8F9122343A17900E0A378 /* PhotoMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3D8F9152343A17900E0A378 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3D8F9192343A17900E0A378 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				F3D8F9192343A17900E0A378 /* MapViewController.swift */,
+				F323D36C2347567400AE7E97 /* CategoriesViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -81,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				F31584AB234486E700668288 /* MapViewController.xib */,
+				F323D36D2347567400AE7E97 /* CategoriesViewController.xib */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -180,6 +186,7 @@
 			files = (
 				F31584AC234486E700668288 /* MapViewController.xib in Resources */,
 				F3D8F91F2343A17900E0A378 /* Assets.xcassets in Resources */,
+				F323D36F2347567400AE7E97 /* CategoriesViewController.xib in Resources */,
 				F31584AF2344A4E400668288 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -237,6 +244,7 @@
 				F3D8F9162343A17900E0A378 /* AppDelegate.swift in Sources */,
 				F31A06A92345DB8500275231 /* Log.swift in Sources */,
 				CE8395142346212B004963EC /* UIColorExtension.swift in Sources */,
+				F323D36E2347567400AE7E97 /* CategoriesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

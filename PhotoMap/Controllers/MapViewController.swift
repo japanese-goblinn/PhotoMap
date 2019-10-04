@@ -33,6 +33,11 @@ class MapViewController: UIViewController {
         checkLocationServices()
     }
     
+    @IBAction private func categoriesButtonPressed(_ sender: UIButton) {
+        let categoriesVC = CategoriesViewController()
+        present(categoriesVC, animated: true)
+    }
+    
     @IBAction private func locationButtonPressed(_ sender: UIButton) {
         switch navigationMode {
         case .discover:

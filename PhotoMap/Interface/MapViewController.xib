@@ -20,6 +20,10 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="VlT-Bd-NrT">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                    <gestureRecognizers/>
+                </mapView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eYW-Yv-QYW">
                     <rect key="frame" x="328" y="49" width="36" height="36"/>
                     <constraints>
@@ -36,6 +40,9 @@
                     <rect key="frame" x="20" y="52" width="38" height="30"/>
                     <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                     <state key="normal" image="bullet_list"/>
+                    <connections>
+                        <action selector="categoriesButtonPressed:" destination="-1" eventType="touchUpInside" id="oRf-LN-0nF"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U3F-zn-4X2">
                     <rect key="frame" x="275" y="52" width="38" height="30"/>
@@ -45,11 +52,10 @@
                     </constraints>
                     <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                     <state key="normal" image="camera"/>
+                    <connections>
+                        <action selector="cameraButtonPressed:" destination="-1" eventType="touchUpInside" id="36d-IO-18H"/>
+                    </connections>
                 </button>
-                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="VlT-Bd-NrT">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
-                    <gestureRecognizers/>
-                </mapView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
