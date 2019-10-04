@@ -34,7 +34,6 @@ class MapViewController: UIViewController {
     }
     
     @IBAction private func locationButtonPressed(_ sender: UIButton) {
-        //FIXME: disover mode activation not working on click
         switch navigationMode {
         case .discover:
             setFollowMode()
@@ -55,12 +54,12 @@ class MapViewController: UIViewController {
     
     private func setFollowMode() {
         navigationMode = .follow
-        navigationModeButton.imageView?.image = followColorImage
+        navigationModeButton.setImage(followColorImage, for: .normal)
     }
     
     private func setDiscoverMode() {
         navigationMode = .discover
-        navigationModeButton.imageView?.image = discoverColorImage
+        navigationModeButton.setImage(discoverColorImage, for: .normal)
     }
 }
 

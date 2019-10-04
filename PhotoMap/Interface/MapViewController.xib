@@ -20,10 +20,6 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="VlT-Bd-NrT">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
-                    <gestureRecognizers/>
-                </mapView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eYW-Yv-QYW">
                     <rect key="frame" x="328" y="49" width="36" height="36"/>
                     <constraints>
@@ -50,6 +46,10 @@
                     <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                     <state key="normal" image="camera"/>
                 </button>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="VlT-Bd-NrT">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                    <gestureRecognizers/>
+                </mapView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
