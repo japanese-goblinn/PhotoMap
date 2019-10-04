@@ -25,54 +25,54 @@
                     <gestureRecognizers/>
                 </mapView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eYW-Yv-QYW">
-                    <rect key="frame" x="357.5" y="64" width="36.5" height="35.5"/>
+                    <rect key="frame" x="328" y="49" width="36" height="36"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="36" id="8Um-lc-oCW"/>
+                        <constraint firstAttribute="height" constant="36" id="on5-EH-Xc1"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <state key="normal" image="location.circle" catalog="system">
-                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="25" scale="large"/>
-                    </state>
+                    <state key="normal" image="location_follow"/>
                     <connections>
-                        <action selector="locationButtonPressed:" destination="-1" eventType="touchUpInside" id="0De-39-Kcx"/>
+                        <action selector="locationButtonPressed:" destination="-1" eventType="touchUpInside" id="OLE-rc-aZr"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U3F-zn-4X2">
-                    <rect key="frame" x="301" y="64" width="36.5" height="35.5"/>
-                    <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <state key="normal" image="camera.fill" catalog="system">
-                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="25"/>
-                    </state>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bQ1-qt-HeK">
-                    <rect key="frame" x="20" y="64" width="36.5" height="35.5"/>
+                    <rect key="frame" x="20" y="52" width="38" height="30"/>
                     <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <state key="normal" image="list.bullet" catalog="system">
-                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="25"/>
-                    </state>
+                    <state key="normal" image="bullet_list"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U3F-zn-4X2">
+                    <rect key="frame" x="275" y="52" width="38" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="EII-0K-JjU"/>
+                        <constraint firstAttribute="width" constant="38" id="nA4-cI-rMu"/>
+                    </constraints>
+                    <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <state key="normal" image="camera"/>
                 </button>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
                 <constraint firstItem="1VE-TP-ZjZ" firstAttribute="bottom" secondItem="VlT-Bd-NrT" secondAttribute="bottom" id="4sD-zE-ILs"/>
-                <constraint firstItem="bQ1-qt-HeK" firstAttribute="width" secondItem="eYW-Yv-QYW" secondAttribute="width" id="55u-qV-jQk"/>
-                <constraint firstItem="eYW-Yv-QYW" firstAttribute="top" secondItem="1VE-TP-ZjZ" secondAttribute="top" constant="20" id="AL1-ra-hfL"/>
+                <constraint firstItem="eYW-Yv-QYW" firstAttribute="leading" secondItem="U3F-zn-4X2" secondAttribute="trailing" constant="15" id="HD6-K1-gm9"/>
+                <constraint firstItem="bQ1-qt-HeK" firstAttribute="leading" secondItem="1VE-TP-ZjZ" secondAttribute="leading" constant="20" id="II5-o9-pj5"/>
                 <constraint firstItem="VlT-Bd-NrT" firstAttribute="top" secondItem="ujZ-16-0Hz" secondAttribute="top" id="K58-PB-j7K"/>
-                <constraint firstItem="U3F-zn-4X2" firstAttribute="width" secondItem="eYW-Yv-QYW" secondAttribute="width" id="O7B-GR-kae"/>
-                <constraint firstItem="eYW-Yv-QYW" firstAttribute="leading" secondItem="U3F-zn-4X2" secondAttribute="trailing" constant="20" id="Wpw-uw-C40"/>
-                <constraint firstItem="U3F-zn-4X2" firstAttribute="height" secondItem="eYW-Yv-QYW" secondAttribute="height" id="XJB-uD-7x8"/>
-                <constraint firstItem="bQ1-qt-HeK" firstAttribute="height" secondItem="eYW-Yv-QYW" secondAttribute="height" id="YxO-U8-ZnN"/>
+                <constraint firstItem="1VE-TP-ZjZ" firstAttribute="trailing" secondItem="eYW-Yv-QYW" secondAttribute="trailing" constant="50" id="TUQ-bv-IY4"/>
+                <constraint firstItem="bQ1-qt-HeK" firstAttribute="height" secondItem="U3F-zn-4X2" secondAttribute="height" id="X5m-2X-v55"/>
                 <constraint firstItem="VlT-Bd-NrT" firstAttribute="leading" secondItem="1VE-TP-ZjZ" secondAttribute="leading" id="ZVe-O5-rS1"/>
-                <constraint firstItem="U3F-zn-4X2" firstAttribute="top" secondItem="1VE-TP-ZjZ" secondAttribute="top" constant="20" id="bEb-wg-t9o"/>
-                <constraint firstItem="bQ1-qt-HeK" firstAttribute="top" secondItem="1VE-TP-ZjZ" secondAttribute="top" constant="20" id="cT9-1T-WMA"/>
-                <constraint firstItem="bQ1-qt-HeK" firstAttribute="leading" secondItem="1VE-TP-ZjZ" secondAttribute="leading" constant="20" id="mwx-Ry-nFq"/>
+                <constraint firstItem="bQ1-qt-HeK" firstAttribute="width" secondItem="U3F-zn-4X2" secondAttribute="width" id="hMA-sg-lIp"/>
+                <constraint firstItem="eYW-Yv-QYW" firstAttribute="top" secondItem="1VE-TP-ZjZ" secondAttribute="top" constant="5" id="lVe-2O-gmD"/>
                 <constraint firstItem="1VE-TP-ZjZ" firstAttribute="trailing" secondItem="VlT-Bd-NrT" secondAttribute="trailing" id="pdk-Pu-Sxm"/>
-                <constraint firstItem="1VE-TP-ZjZ" firstAttribute="trailing" secondItem="eYW-Yv-QYW" secondAttribute="trailing" constant="20" id="qBC-j9-4yv"/>
+                <constraint firstItem="U3F-zn-4X2" firstAttribute="centerY" secondItem="eYW-Yv-QYW" secondAttribute="centerY" id="rK6-ui-cbb"/>
+                <constraint firstItem="bQ1-qt-HeK" firstAttribute="centerY" secondItem="eYW-Yv-QYW" secondAttribute="centerY" id="u2h-TI-xIB"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="1VE-TP-ZjZ"/>
-            <point key="canvasLocation" x="72.463768115942031" y="98.4375"/>
+            <point key="canvasLocation" x="-13.125" y="96.126760563380287"/>
         </view>
     </objects>
     <resources>
-        <image name="camera.fill" catalog="system" width="64" height="48"/>
-        <image name="list.bullet" catalog="system" width="64" height="44"/>
-        <image name="location.circle" catalog="system" width="64" height="62"/>
+        <image name="bullet_list" width="49.5" height="36"/>
+        <image name="camera" width="57.5" height="47"/>
+        <image name="location_follow" width="52" height="52"/>
     </resources>
 </document>

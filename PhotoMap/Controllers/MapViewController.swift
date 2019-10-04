@@ -24,21 +24,21 @@ class MapViewController: UIViewController {
     private let locationManager = CLLocationManager()
     private let scale: CLLocationDistance = 5000
     private var navigationMode: NavigationMode = .follow
-    private let followModeColor = UIColor(hex: "#368EDF")
-    private let discoverModeColor = UIColor(hex: "#5F5C5C")
+    private lazy var discoverColorImage = UIImage(named: "location_discover")
+    private lazy var followColorImage = UIImage(named: "location_follow")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         enableMapCenterOnUserPan()
-        navigationModeButton.tintColor = followModeColor
         checkLocationServices()
     }
     
     @IBAction private func locationButtonPressed(_ sender: UIButton) {
+        //FIXME: disover mode activation not working on click
         switch navigationMode {
         case .discover:
             setFollowMode()
-            centerViewOnUserLocation()
+            checkNavigationMode()
         case .follow:
             setDiscoverMode()
         }
@@ -55,12 +55,12 @@ class MapViewController: UIViewController {
     
     private func setFollowMode() {
         navigationMode = .follow
-        navigationModeButton.tintColor = followModeColor
+        navigationModeButton.imageView?.image = followColorImage
     }
     
     private func setDiscoverMode() {
         navigationMode = .discover
-        navigationModeButton.tintColor = discoverModeColor
+        navigationModeButton.imageView?.image = discoverColorImage
     }
 }
 
@@ -125,7 +125,9 @@ extension MapViewController: UIGestureRecognizerDelegate {
     }
     
     @objc private func didDragMap(_ sender: UIGestureRecognizer) {
-        setDiscoverMode()
-        checkNavigationMode()
+        if navigationMode == .follow {
+            setDiscoverMode()
+            checkNavigationMode()
+        }
     }
 }
