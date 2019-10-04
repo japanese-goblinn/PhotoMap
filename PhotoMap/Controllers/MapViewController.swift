@@ -87,6 +87,10 @@ extension MapViewController: CLLocationManagerDelegate {
     
     private func centerViewOnUserLocation() {
         if let location = locationManager.location?.coordinate {
+            
+            let mark = Mark(title: "MARK", coordinate: location)
+            mapView.addAnnotation(mark)
+            
             let region = MKCoordinateRegion.init(
                 center: location,
                 latitudinalMeters: scale,

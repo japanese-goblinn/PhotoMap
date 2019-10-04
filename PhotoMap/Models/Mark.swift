@@ -17,7 +17,7 @@ class Mark: NSObject, MKAnnotation {
     let coordinate: CLLocationCoordinate2D
         
     init(title: String, coordinate: CLLocationCoordinate2D) {
-        self.title = title
         self.coordinate = coordinate
+        self.title = title
     }
 }
