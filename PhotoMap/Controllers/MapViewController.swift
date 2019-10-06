@@ -29,8 +29,21 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        mapView.register(PhotoMarkAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
         enableMapCenterOnUserPan()
         checkLocationServices()
+    }
+    
+    @IBAction private func mapTapped(_ sender: UITapGestureRecognizer) {
+        var location = sender.location(in: mapView)
+        location.y -= 21
+        let coordinate = mapView.convert(location, toCoordinateFrom: mapView)
+        let mark = PhotoMark(
+            title: "MARK",
+            coordinate: coordinate,
+            category: .default
+        )
+        mapView.addAnnotation(mark)
     }
     
     @IBAction private func categoriesButtonPressed(_ sender: UIButton) {
@@ -87,10 +100,6 @@ extension MapViewController: CLLocationManagerDelegate {
     
     private func centerViewOnUserLocation() {
         if let location = locationManager.location?.coordinate {
-            
-            let mark = Mark(title: "MARK", coordinate: location)
-            mapView.addAnnotation(mark)
-            
             let region = MKCoordinateRegion.init(
                 center: location,
                 latitudinalMeters: scale,
