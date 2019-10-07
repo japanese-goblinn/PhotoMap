@@ -13,11 +13,24 @@ import MapKit
 class PhotoMarkAnnotationView: MKAnnotationView {
     override var annotation: MKAnnotation? {
         willSet {
-            guard let photoMark = newValue as? PhotoMark else {
+            guard let photoMark = newValue as? PhotoMarkAnnotation else {
                 return
             }
+            let someImage: UIImage = #imageLiteral(resourceName: "test_image")
+            let imageView = UIImageView(image: someImage)
+            imageView.frame = CGRect(x: 0, y: 0, width: 50, height: 40)
+            leftCalloutAccessoryView = imageView
             canShowCallout = true
-            rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+            let button = UIButton(type: .detailDisclosure)
+            button.tintColor = .gray
+            rightCalloutAccessoryView = button
+            let detailLabel = UILabel()
+            detailLabel.numberOfLines = 0
+            detailLabel.font = detailLabel.font.withSize(12)
+            detailLabel.textColor = .gray
+            detailLabel.text = photoMark.date.asString
+            calloutOffset = CGPoint(x: 0, y: 15)
+            detailCalloutAccessoryView = detailLabel
             if let markImage = photoMark.markerImage {
                 image = markImage
             } else {
