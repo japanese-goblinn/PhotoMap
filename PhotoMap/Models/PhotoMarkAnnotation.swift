@@ -16,20 +16,21 @@ enum Category: String {
     case `default` = "category_default"
 }
 
-class PhotoMark: NSObject, MKAnnotation {
+class PhotoMarkAnnotation: NSObject, MKAnnotation {
     let title: String?
-//    let date: Date
+    let date: Date
 //    let image: UIImage
-    var category: Category
+    let category: Category
     let coordinate: CLLocationCoordinate2D
     
     var markerImage: UIImage? {
        UIImage(named: category.rawValue)
     }
         
-    init(title: String, coordinate: CLLocationCoordinate2D, category: Category) {
-        self.coordinate = coordinate
+    init(title: String, date: Date, coordinate: CLLocationCoordinate2D, category: Category) {
         self.title = title
+        self.date = date
+        self.coordinate = coordinate
         self.category = category
     }
 }
