@@ -10,12 +10,13 @@
 		77494AF144EB3BF9A161893B /* Pods_PhotoMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F7238D9AFD2794E5404C2BE /* Pods_PhotoMap.framework */; };
 		CE8395142346212B004963EC /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8395132346212B004963EC /* UIColorExtension.swift */; };
 		CEF048EC234A45B60020900A /* PhotoMarkAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF048EB234A45B60020900A /* PhotoMarkAnnotationView.swift */; };
-		F3048D6C23475BC30034E9FC /* PhotoMark.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3048D6B23475BC30034E9FC /* PhotoMark.swift */; };
+		F3048D6C23475BC30034E9FC /* PhotoMarkAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3048D6B23475BC30034E9FC /* PhotoMarkAnnotation.swift */; };
 		F31584AC234486E700668288 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F31584AB234486E700668288 /* MapViewController.xib */; };
 		F31584AF2344A4E400668288 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F31584AE2344A4E400668288 /* GoogleService-Info.plist */; };
 		F31A06A92345DB8500275231 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31A06A82345DB8500275231 /* Log.swift */; };
 		F323D36E2347567400AE7E97 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F323D36C2347567400AE7E97 /* CategoriesViewController.swift */; };
 		F323D36F2347567400AE7E97 /* CategoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F323D36D2347567400AE7E97 /* CategoriesViewController.xib */; };
+		F336FFCD234B5387006D2874 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F336FFCC234B5387006D2874 /* DateExtension.swift */; };
 		F3D8F9162343A17900E0A378 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D8F9152343A17900E0A378 /* AppDelegate.swift */; };
 		F3D8F91A2343A17900E0A378 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D8F9192343A17900E0A378 /* MapViewController.swift */; };
 		F3D8F91F2343A17900E0A378 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3D8F91E2343A17900E0A378 /* Assets.xcassets */; };
@@ -27,12 +28,13 @@
 		7F7238D9AFD2794E5404C2BE /* Pods_PhotoMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE8395132346212B004963EC /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		CEF048EB234A45B60020900A /* PhotoMarkAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoMarkAnnotationView.swift; sourceTree = "<group>"; };
-		F3048D6B23475BC30034E9FC /* PhotoMark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoMark.swift; sourceTree = "<group>"; };
+		F3048D6B23475BC30034E9FC /* PhotoMarkAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoMarkAnnotation.swift; sourceTree = "<group>"; };
 		F31584AB234486E700668288 /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
 		F31584AE2344A4E400668288 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F31A06A82345DB8500275231 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		F323D36C2347567400AE7E97 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
 		F323D36D2347567400AE7E97 /* CategoriesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesViewController.xib; sourceTree = "<group>"; };
+		F336FFCC234B5387006D2874 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		F3D8F9122343A17900E0A378 /* PhotoMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3D8F9152343A17900E0A378 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3D8F9192343A17900E0A378 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				CE8395132346212B004963EC /* UIColorExtension.swift */,
+				F336FFCC234B5387006D2874 /* DateExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -88,7 +91,7 @@
 		F3048D6D23475BCB0034E9FC /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				F3048D6B23475BC30034E9FC /* PhotoMark.swift */,
+				F3048D6B23475BC30034E9FC /* PhotoMarkAnnotation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -263,9 +266,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3D8F91A2343A17900E0A378 /* MapViewController.swift in Sources */,
+				F336FFCD234B5387006D2874 /* DateExtension.swift in Sources */,
 				F3D8F9162343A17900E0A378 /* AppDelegate.swift in Sources */,
 				CEF048EC234A45B60020900A /* PhotoMarkAnnotationView.swift in Sources */,
-				F3048D6C23475BC30034E9FC /* PhotoMark.swift in Sources */,
+				F3048D6C23475BC30034E9FC /* PhotoMarkAnnotation.swift in Sources */,
 				F31A06A92345DB8500275231 /* Log.swift in Sources */,
 				CE8395142346212B004963EC /* UIColorExtension.swift in Sources */,
 				F323D36E2347567400AE7E97 /* CategoriesViewController.swift in Sources */,

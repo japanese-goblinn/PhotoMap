@@ -24,7 +24,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
                     <gestureRecognizers/>
                     <connections>
-                        <outletCollection property="gestureRecognizers" destination="K9p-dl-mHh" appends="YES" id="lhN-PP-fhg"/>
+                        <outletCollection property="gestureRecognizers" destination="AZw-dv-xut" appends="YES" id="PKr-Tr-cAw"/>
                     </connections>
                 </mapView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eYW-Yv-QYW">
@@ -80,11 +80,11 @@
             <viewLayoutGuide key="safeArea" id="1VE-TP-ZjZ"/>
             <point key="canvasLocation" x="-14.492753623188406" y="95.758928571428569"/>
         </view>
-        <tapGestureRecognizer id="K9p-dl-mHh">
+        <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="AZw-dv-xut">
             <connections>
-                <action selector="mapTapped:" destination="-1" id="ALp-3O-GeI"/>
+                <action selector="mapLongPressed:" destination="-1" id="Xr4-ZP-W0d"/>
             </connections>
-        </tapGestureRecognizer>
+        </pongPressGestureRecognizer>
     </objects>
     <resources>
         <image name="bullet_list" width="49.5" height="36"/>

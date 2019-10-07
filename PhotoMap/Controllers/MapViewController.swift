@@ -34,16 +34,19 @@ class MapViewController: UIViewController {
         checkLocationServices()
     }
     
-    @IBAction private func mapTapped(_ sender: UITapGestureRecognizer) {
-        var location = sender.location(in: mapView)
-        location.y -= 21
-        let coordinate = mapView.convert(location, toCoordinateFrom: mapView)
-        let mark = PhotoMark(
-            title: "MARK",
-            coordinate: coordinate,
-            category: .default
-        )
-        mapView.addAnnotation(mark)
+    @IBAction func mapLongPressed(_ sender: UILongPressGestureRecognizer) {
+        if sender.state == .began {
+            var location = sender.location(in: mapView)
+            location.y -= 21
+            let coordinate = mapView.convert(location, toCoordinateFrom: mapView)
+            let mark = PhotoMarkAnnotation(
+                title: "Default",
+                date: Date(),
+                coordinate: coordinate,
+                category: .default
+            )
+            mapView.addAnnotation(mark)
+        }
     }
     
     @IBAction private func categoriesButtonPressed(_ sender: UIButton) {
