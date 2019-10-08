@@ -29,6 +29,7 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        mapView.delegate = self
         mapView.register(PhotoMarkAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
         enableMapCenterOnUserPan()
         checkLocationServices()
@@ -103,14 +104,19 @@ extension MapViewController: CLLocationManagerDelegate {
     
     private func centerViewOnUserLocation() {
         if let location = locationManager.location?.coordinate {
-            let region = MKCoordinateRegion.init(
-                center: location,
-                latitudinalMeters: scale,
-                longitudinalMeters: scale
-            )
-            mapView.setRegion(region, animated: true)
+            centerView(on: location)
         }
     }
+    
+    private func centerView(on location: CLLocationCoordinate2D) {
+        let region = MKCoordinateRegion.init(
+            center: location,
+            latitudinalMeters: scale,
+            longitudinalMeters: scale
+        )
+        mapView.setRegion(region, animated: true)
+    }
+
     
     private func checkLocationAuthorization() {
         switch CLLocationManager.authorizationStatus() {
@@ -149,5 +155,12 @@ extension MapViewController: UIGestureRecognizerDelegate {
             setDiscoverMode()
             checkNavigationMode()
         }
+    }
+}
+
+extension MapViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        guard let annotation = view.annotation else { return }
+        centerView(on: annotation.coordinate)
     }
 }
