@@ -21,7 +21,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabBarController = UITabBarController()
         let mapViewController = MapViewController()
         mapViewController.tabBarItem = UITabBarItem(title: "Map", image: #imageLiteral(resourceName: "compass"), tag: 0)
-        tabBarController.viewControllers = [mapViewController]
+        let timelineViewController = TimelineViewController()
+        timelineViewController.tabBarItem = UITabBarItem(title: "Timeline", image: #imageLiteral(resourceName: "timeline"), tag: 1)
+        let moreViewController = MoreViewController()
+        moreViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 2)
+        tabBarController.viewControllers = [
+            mapViewController,
+            timelineViewController,
+            moreViewController
+        ]
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = tabBarController
