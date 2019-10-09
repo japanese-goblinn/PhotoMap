@@ -10,10 +10,32 @@ import Foundation
 import UIKit
 import MapKit
 
-enum Category: String {
-    case friends = "category_friend"
-    case nature = "category_nature"
-    case `default` = "category_default"
+enum Category {
+    case friends
+    case nature
+    case `default`
+    
+    var asString: String {
+        switch self {
+        case .friends:
+            return "friend"
+        case .nature:
+            return "nature"
+        case .default:
+            return "default"
+        }
+    }
+    
+    var color: UIColor {
+        switch self {
+        case .friends:
+            return UIColor(hex: "#F4A523")
+        case .nature:
+            return UIColor(hex: "#578E18")
+        case .default:
+            return UIColor(hex: "#578E18")
+        }
+    }
 }
 
 class PhotoMarkAnnotation: NSObject, MKAnnotation {
@@ -24,7 +46,7 @@ class PhotoMarkAnnotation: NSObject, MKAnnotation {
     let coordinate: CLLocationCoordinate2D
     
     var markerImage: UIImage? {
-       UIImage(named: category.rawValue)
+       UIImage(named: category.asString)
     }
         
     init(title: String, date: Date, coordinate: CLLocationCoordinate2D, category: Category) {
