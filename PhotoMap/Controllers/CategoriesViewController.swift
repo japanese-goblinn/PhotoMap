@@ -12,18 +12,25 @@ class CategoriesViewController: UIViewController {
 
     @IBOutlet private weak var navigationBar: UINavigationBar!
     @IBOutlet private weak var navigationBarItem: UINavigationItem!
+    @IBOutlet private weak var tableView: UITableView!
     
     private lazy var tintColor = UIColor(hex: "#5ca1e1")
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.tableFooterView = UIView()
+        tableView.register(
+            UINib(nibName: "CategoriesTableViewCell", bundle: nil),
+            forCellReuseIdentifier: "categoriesCell"
+        )
         setupNavigationBar()
         
     }
         
     private func setupNavigationBar() {
         navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: tintColor
+            NSAttributedString.Key.foregroundColor: tintColor,
+            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .thin)
         ]
         navigationBarItem.title = "Categories"
         navigationBarItem.rightBarButtonItem = UIBarButtonItem(
@@ -32,6 +39,12 @@ class CategoriesViewController: UIViewController {
             action: #selector(donePressed(_:))
         )
         navigationBarItem.rightBarButtonItem?.tintColor = tintColor
+        navigationBarItem.rightBarButtonItem?.setTitleTextAttributes(
+            [
+                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .thin)
+            ],
+            for: .normal
+        )
     }
     
     @objc private func donePressed(_ sender: UIBarButtonItem) {
@@ -39,14 +52,21 @@ class CategoriesViewController: UIViewController {
     }
 }
 
-extension CategoriesViewController: UITableViewDataSource {
+extension CategoriesViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+        Category.allCases.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 62
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "categoriesCell", for: indexPath) as! CategoriesTableViewCell
+        let category = Category.allCases[indexPath.row]
+        cell.categoryLabel.text = category.asString.uppercased()
+        cell.categoryLabel.textColor = category.color
+        cell.categoryCheckbox.color = category.color
+        return cell
     }
-    
-    
 }

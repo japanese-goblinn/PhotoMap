@@ -8,7 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		77494AF144EB3BF9A161893B /* Pods_PhotoMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F7238D9AFD2794E5404C2BE /* Pods_PhotoMap.framework */; };
+		CE68746C234FC078002C3859 /* CheckboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE68746B234FC077002C3859 /* CheckboxView.swift */; };
 		CE8395142346212B004963EC /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8395132346212B004963EC /* UIColorExtension.swift */; };
+		CED4A936234F2EAA004C9A22 /* CategoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED4A934234F2EAA004C9A22 /* CategoriesTableViewCell.swift */; };
+		CED4A937234F2EAA004C9A22 /* CategoriesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED4A935234F2EAA004C9A22 /* CategoriesTableViewCell.xib */; };
 		CEF048EC234A45B60020900A /* PhotoMarkAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF048EB234A45B60020900A /* PhotoMarkAnnotationView.swift */; };
 		F3048D6C23475BC30034E9FC /* PhotoMarkAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3048D6B23475BC30034E9FC /* PhotoMarkAnnotation.swift */; };
 		F31584AC234486E700668288 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F31584AB234486E700668288 /* MapViewController.xib */; };
@@ -31,7 +34,10 @@
 		00C387C8437F2A88271BD3AB /* Pods-PhotoMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoMap.debug.xcconfig"; path = "Target Support Files/Pods-PhotoMap/Pods-PhotoMap.debug.xcconfig"; sourceTree = "<group>"; };
 		020AB289E26B09D225EBC8B0 /* Pods-PhotoMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoMap.release.xcconfig"; path = "Target Support Files/Pods-PhotoMap/Pods-PhotoMap.release.xcconfig"; sourceTree = "<group>"; };
 		7F7238D9AFD2794E5404C2BE /* Pods_PhotoMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE68746B234FC077002C3859 /* CheckboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxView.swift; sourceTree = "<group>"; };
 		CE8395132346212B004963EC /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		CED4A934234F2EAA004C9A22 /* CategoriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewCell.swift; sourceTree = "<group>"; };
+		CED4A935234F2EAA004C9A22 /* CategoriesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesTableViewCell.xib; sourceTree = "<group>"; };
 		CEF048EB234A45B60020900A /* PhotoMarkAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoMarkAnnotationView.swift; sourceTree = "<group>"; };
 		F3048D6B23475BC30034E9FC /* PhotoMarkAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoMarkAnnotation.swift; sourceTree = "<group>"; };
 		F31584AB234486E700668288 /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
@@ -87,6 +93,7 @@
 			children = (
 				CEF048EB234A45B60020900A /* PhotoMarkAnnotationView.swift */,
 				F3E22C99234DCDBE001216CB /* PhotoMarkCalloutView.swift */,
+				CE68746B234FC077002C3859 /* CheckboxView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -112,6 +119,7 @@
 			children = (
 				F3D8F9192343A17900E0A378 /* MapViewController.swift */,
 				F323D36C2347567400AE7E97 /* CategoriesViewController.swift */,
+				CED4A934234F2EAA004C9A22 /* CategoriesTableViewCell.swift */,
 				F3E22C9D234DCE6E001216CB /* TimelineViewController.swift */,
 				F3E22CA1234DCE8D001216CB /* MoreViewController.swift */,
 			);
@@ -123,6 +131,7 @@
 			children = (
 				F31584AB234486E700668288 /* MapViewController.xib */,
 				F323D36D2347567400AE7E97 /* CategoriesViewController.xib */,
+				CED4A935234F2EAA004C9A22 /* CategoriesTableViewCell.xib */,
 				F3E22C9E234DCE6E001216CB /* TimelineViewController.xib */,
 				F3E22CA2234DCE8D001216CB /* MoreViewController.xib */,
 			);
@@ -225,6 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F31584AC234486E700668288 /* MapViewController.xib in Resources */,
+				CED4A937234F2EAA004C9A22 /* CategoriesTableViewCell.xib in Resources */,
 				F3E22CA4234DCE8D001216CB /* MoreViewController.xib in Resources */,
 				F3D8F91F2343A17900E0A378 /* Assets.xcassets in Resources */,
 				F3E22CA0234DCE6E001216CB /* TimelineViewController.xib in Resources */,
@@ -287,7 +297,9 @@
 				F336FFCD234B5387006D2874 /* DateExtension.swift in Sources */,
 				F3D8F9162343A17900E0A378 /* AppDelegate.swift in Sources */,
 				F3E22CA3234DCE8D001216CB /* MoreViewController.swift in Sources */,
+				CED4A936234F2EAA004C9A22 /* CategoriesTableViewCell.swift in Sources */,
 				CEF048EC234A45B60020900A /* PhotoMarkAnnotationView.swift in Sources */,
+				CE68746C234FC078002C3859 /* CheckboxView.swift in Sources */,
 				F3048D6C23475BC30034E9FC /* PhotoMarkAnnotation.swift in Sources */,
 				F31A06A92345DB8500275231 /* Log.swift in Sources */,
 				CE8395142346212B004963EC /* UIColorExtension.swift in Sources */,
