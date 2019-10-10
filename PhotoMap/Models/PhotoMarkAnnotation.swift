@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import MapKit
 
-enum Category {
+enum Category: CaseIterable {
     case friends
     case nature
     case uncategorized
@@ -18,7 +18,7 @@ enum Category {
     var asString: String {
         switch self {
         case .friends:
-            return "friend"
+            return "friends"
         case .nature:
             return "nature"
         case .uncategorized:
@@ -33,7 +33,7 @@ enum Category {
         case .nature:
             return UIColor(hex: "#578E18")
         case .uncategorized:
-            return UIColor(hex: "#578E18")
+            return UIColor(hex: "#368EDF")
         }
     }
 }
