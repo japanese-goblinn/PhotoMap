@@ -99,7 +99,7 @@ extension MapViewController: CLLocationManagerDelegate {
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
         } else {
-            os_log("Location services not enabled", log: Log.mapAuthorizationStatus, type: .error)
+            print("Location services not enabled")
         }
     }
     
@@ -124,18 +124,16 @@ extension MapViewController: CLLocationManagerDelegate {
         case .authorizedWhenInUse:
             mapView.showsUserLocation = true
             locationManager.startUpdatingLocation()
-            os_log("In Use", log: Log.mapAuthorizationStatus, type: .debug)
         case .denied:
-            os_log("Denied", log: Log.mapAuthorizationStatus, type: .debug)
+            break
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
-            os_log("Not Determined", log: Log.mapAuthorizationStatus, type: .debug)
         case .restricted:
-            os_log("Restricted", log: Log.mapAuthorizationStatus, type: .debug)
+            break
         case .authorizedAlways:
-            os_log("Authorized Always", log: Log.mapAuthorizationStatus, type: .debug)
+            break
         @unknown default:
-            os_log("Default", log: Log.mapAuthorizationStatus, type: .debug)
+            break
         }
     }
 }
