@@ -58,10 +58,10 @@ class MapViewController: UIViewController {
     @IBAction private func locationButtonPressed(_ sender: UIButton) {
         switch navigationMode {
         case .discover:
-            setFollowMode()
+            setNavigation(to: .follow)
             checkNavigationMode()
         case .follow:
-            setDiscoverMode()
+            setNavigation(to: .discover)
         }
     }
     
@@ -74,14 +74,15 @@ class MapViewController: UIViewController {
         }
     }
     
-    private func setFollowMode() {
-        navigationMode = .follow
-        navigationModeButton.setImage(followColorImage, for: .normal)
-    }
-    
-    private func setDiscoverMode() {
-        navigationMode = .discover
-        navigationModeButton.setImage(discoverColorImage, for: .normal)
+    private func setNavigation(to mode: NavigationMode) {
+        switch mode {
+        case .discover:
+            navigationMode = .discover
+            navigationModeButton.setImage(discoverColorImage, for: .normal)
+        case .follow:
+            navigationMode = .follow
+            navigationModeButton.setImage(followColorImage, for: .normal)
+        }
     }
 }
 
@@ -152,7 +153,7 @@ extension MapViewController: UIGestureRecognizerDelegate {
     
     @objc private func didDragMap(_ sender: UIGestureRecognizer) {
         if navigationMode == .follow {
-            setDiscoverMode()
+            setNavigation(to: .discover)
             checkNavigationMode()
         }
     }
