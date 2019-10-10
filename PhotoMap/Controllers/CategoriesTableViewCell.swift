@@ -15,14 +15,14 @@ class CategoriesTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        addTapGesterGecognizer()
+        addTapGesterRecognizer()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
-    private func addTapGesterGecognizer() {
+    private func addTapGesterRecognizer() {
         let checkBoxTouchGester = UITapGestureRecognizer(
             target: self,
             action: #selector(checkBoxPressed(_:))
