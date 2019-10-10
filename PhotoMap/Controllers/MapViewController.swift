@@ -44,7 +44,7 @@ class MapViewController: UIViewController {
                 title: "Default",
                 date: Date(),
                 coordinate: coordinate,
-                category: .default
+                category: .uncategorized
             )
             mapView.addAnnotation(mark)
         }

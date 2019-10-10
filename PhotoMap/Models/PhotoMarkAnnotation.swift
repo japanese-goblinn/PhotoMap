@@ -13,7 +13,7 @@ import MapKit
 enum Category {
     case friends
     case nature
-    case `default`
+    case uncategorized
     
     var asString: String {
         switch self {
@@ -21,7 +21,7 @@ enum Category {
             return "friend"
         case .nature:
             return "nature"
-        case .default:
+        case .uncategorized:
             return "default"
         }
     }
@@ -32,7 +32,7 @@ enum Category {
             return UIColor(hex: "#F4A523")
         case .nature:
             return UIColor(hex: "#578E18")
-        case .default:
+        case .uncategorized:
             return UIColor(hex: "#578E18")
         }
     }
