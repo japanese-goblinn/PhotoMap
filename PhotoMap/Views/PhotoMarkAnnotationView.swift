@@ -11,31 +11,37 @@ import CoreGraphics
 import MapKit
 
 class PhotoMarkAnnotationView: MKAnnotationView {
+    
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        guard let photoMark = annotation as? PhotoMarkAnnotation else {
+            return
+        }
+        let ovalPath = UIBezierPath(ovalIn: CGRect(
+            x: rect.minX,
+            y: rect.minY,
+            width: rect.width,
+            height: rect.width
+        ))
+        photoMark.category.color.setFill()
+        ovalPath.fill()
+//        let bezierPath = UIBezierPath()
+//        bezierPath.move(to: CGPoint(x: rect.width * 0.3, y: rect.minY))
+//        bezierPath.addLine(to: CGPoint(x: rect.width * 0.5, y: rect.height))
+//        bezierPath.addLine(to: CGPoint(x: rect.width * 0.7, y: rect.minY))
+//        bezierPath.addLine(to: CGPoint(x: rect.width * 0.3, y: rect.minY))
+//        bezierPath.close()
+//        photoMark.category.color.setFill()
+//        bezierPath.fill()
+    }
+    
     override var annotation: MKAnnotation? {
         willSet {
-            guard let photoMark = newValue as? PhotoMarkAnnotation else {
-                return
-            }
-            let someImage: UIImage = #imageLiteral(resourceName: "test_image")
-            let imageView = UIImageView(image: someImage)
-            imageView.frame = CGRect(x: 0, y: 0, width: 50, height: 40)
-            leftCalloutAccessoryView = imageView
+            frame.size.height = 50
+            frame.size.width = 50
+            backgroundColor = .clear
             canShowCallout = true
-            let button = UIButton(type: .detailDisclosure)
-            button.tintColor = .gray
-            rightCalloutAccessoryView = button
-            let detailLabel = UILabel()
-            detailLabel.numberOfLines = 0
-            detailLabel.font = detailLabel.font.withSize(12)
-            detailLabel.textColor = .gray
-            detailLabel.text = photoMark.date.asString
-            calloutOffset = CGPoint(x: 0, y: 15)
-            detailCalloutAccessoryView = detailLabel
-            if let markImage = photoMark.markerImage {
-                image = markImage
-            } else {
-                image = nil
-            }
         }
     }
 }
+
