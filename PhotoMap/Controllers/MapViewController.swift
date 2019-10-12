@@ -38,7 +38,7 @@ class MapViewController: UIViewController {
     @IBAction func mapLongPressed(_ sender: UILongPressGestureRecognizer) {
         if sender.state == .began {
             var location = sender.location(in: mapView)
-            location.y -= 21
+            location.y -= 28.5
             let coordinate = mapView.convert(location, toCoordinateFrom: mapView)
             let mark = PhotoMarkAnnotation(
                 title: "Default",
