@@ -30,7 +30,10 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
-        mapView.register(PhotoMarkAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
+        mapView.register(
+            PhotoMarkAnnotationView.self,
+            forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier
+        )
         enableMapCenterOnUserPan()
         checkLocationServices()
     }
@@ -38,7 +41,7 @@ class MapViewController: UIViewController {
     @IBAction func mapLongPressed(_ sender: UILongPressGestureRecognizer) {
         if sender.state == .began {
             var location = sender.location(in: mapView)
-            location.y -= 28.5
+            location.y -= 25
             let coordinate = mapView.convert(location, toCoordinateFrom: mapView)
             let mark = PhotoMarkAnnotation(
                 title: "Default",
@@ -144,9 +147,9 @@ extension MapViewController: UIGestureRecognizerDelegate {
     }
     
     private func enableMapCenterOnUserPan() {
-           let panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.didDragMap(_:)))
-           panGesture.delegate = self
-           mapView.addGestureRecognizer(panGesture)
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.didDragMap(_:)))
+        panGesture.delegate = self
+        mapView.addGestureRecognizer(panGesture)
     }
     
     @objc private func didDragMap(_ sender: UIGestureRecognizer) {

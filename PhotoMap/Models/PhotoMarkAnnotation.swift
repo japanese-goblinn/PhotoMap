@@ -49,7 +49,12 @@ class PhotoMarkAnnotation: NSObject, MKAnnotation {
        UIImage(named: category.asString)
     }
         
-    init(title: String, date: Date, coordinate: CLLocationCoordinate2D, category: Category) {
+    init(
+        title: String,
+        date: Date,
+        coordinate: CLLocationCoordinate2D,
+        category: Category
+    ) {
         self.title = title
         self.date = date
         self.coordinate = coordinate

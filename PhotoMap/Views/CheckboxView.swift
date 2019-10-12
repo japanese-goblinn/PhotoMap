@@ -25,12 +25,14 @@ class CheckboxView: UIView {
     }
     
     override func draw(_ rect: CGRect) {
-        let path = UIBezierPath(ovalIn: CGRect(
-            x: rect.minX + 1,
-            y: rect.minY + 1,
-            width: rect.width - 2,
-            height: rect.height - 2
-        ))
+        let path = UIBezierPath(
+            ovalIn: CGRect(
+                x: rect.minX + 1,
+                y: rect.minY + 1,
+                width: rect.width - 2,
+                height: rect.height - 2
+            )
+        )
         if isChecked {
             color.setStroke()
             path.stroke()

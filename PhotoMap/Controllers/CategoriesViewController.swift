@@ -29,8 +29,8 @@ class CategoriesViewController: UIViewController {
         
     private func setupNavigationBar() {
         navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: tintColor,
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .thin)
+            .foregroundColor: tintColor,
+            .font: UIFont.systemFont(ofSize: 18, weight: .thin)
         ]
         navigationBarItem.title = "Categories"
         navigationBarItem.rightBarButtonItem = UIBarButtonItem(
@@ -41,7 +41,7 @@ class CategoriesViewController: UIViewController {
         navigationBarItem.rightBarButtonItem?.tintColor = tintColor
         navigationBarItem.rightBarButtonItem?.setTitleTextAttributes(
             [
-                NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .thin)
+                .font: UIFont.systemFont(ofSize: 18, weight: .thin)
             ],
             for: .normal
         )
@@ -58,7 +58,7 @@ extension CategoriesViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 62
+        62
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
