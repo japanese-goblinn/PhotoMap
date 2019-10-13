@@ -38,21 +38,6 @@ class MapViewController: UIViewController {
         checkLocationServices()
     }
     
-    @IBAction func mapLongPressed(_ sender: UILongPressGestureRecognizer) {
-        if sender.state == .began {
-            var location = sender.location(in: mapView)
-            location.y -= 25
-            let coordinate = mapView.convert(location, toCoordinateFrom: mapView)
-            let mark = PhotoMarkAnnotation(
-                title: "Default",
-                date: Date(),
-                coordinate: coordinate,
-                category: .uncategorized
-            )
-            mapView.addAnnotation(mark)
-        }
-    }
-    
     @IBAction private func categoriesButtonPressed(_ sender: UIButton) {
         let categoriesVC = CategoriesViewController()
         present(categoriesVC, animated: true)
@@ -89,13 +74,30 @@ class MapViewController: UIViewController {
     }
 }
 
+//MARK: - Location related stuff
 extension MapViewController: CLLocationManagerDelegate {
+    
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         checkLocationAuthorization()
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         checkNavigationMode()
+    }
+    
+    private func centerViewOnUserLocation() {
+        if let location = locationManager.location?.coordinate {
+            centerView(on: location)
+        }
+    }
+       
+    private func centerView(on location: CLLocationCoordinate2D) {
+        let region = MKCoordinateRegion.init(
+            center: location,
+            latitudinalMeters: scale,
+            longitudinalMeters: scale
+        )
+        mapView.setRegion(region, animated: true)
     }
     
     private func checkLocationServices() {
@@ -105,22 +107,6 @@ extension MapViewController: CLLocationManagerDelegate {
             print("Location services not enabled")
         }
     }
-    
-    private func centerViewOnUserLocation() {
-        if let location = locationManager.location?.coordinate {
-            centerView(on: location)
-        }
-    }
-    
-    private func centerView(on location: CLLocationCoordinate2D) {
-        let region = MKCoordinateRegion.init(
-            center: location,
-            latitudinalMeters: scale,
-            longitudinalMeters: scale
-        )
-        mapView.setRegion(region, animated: true)
-    }
-
     
     private func checkLocationAuthorization() {
         switch CLLocationManager.authorizationStatus() {
@@ -141,7 +127,9 @@ extension MapViewController: CLLocationManagerDelegate {
     }
 }
 
+//MARK: - Gestures related
 extension MapViewController: UIGestureRecognizerDelegate {
+    
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
@@ -160,11 +148,37 @@ extension MapViewController: UIGestureRecognizerDelegate {
     }
 }
 
+//MARK: - Map related
 extension MapViewController: MKMapViewDelegate {
+    
+    @IBAction func mapLongPressed(_ sender: UILongPressGestureRecognizer) {
+        if sender.state == .began {
+            var location = sender.location(in: mapView)
+            location.y -= 25
+            let coordinate = mapView.convert(location, toCoordinateFrom: mapView)
+            addAnnotation(at: coordinate)
+        }
+    }
+    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        guard let annotation = view.annotation else { return }
+        guard let annotation = view.annotation else {
+            return
+        }
         centerView(on: annotation.coordinate)
     }
+    
+    private func addAnnotation(at coordinate: CLLocationCoordinate2D, image: UIImage? = nil) {
+        let mark = PhotoMarkAnnotation(
+            title: "Default",
+            date: Date(),
+            image: image,
+            coordinate: coordinate,
+            category: .uncategorized
+        )
+        mapView.addAnnotation(mark)
+    }
+}
+
 //MARK: - Camera button related
 extension MapViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
    
@@ -236,3 +250,4 @@ extension MapViewController: UIImagePickerControllerDelegate, UINavigationContro
     }
     
 }
+

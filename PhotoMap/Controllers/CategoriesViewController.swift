@@ -28,6 +28,7 @@ class CategoriesViewController: UIViewController {
     }
         
     private func setupNavigationBar() {
+        
         navigationBar.titleTextAttributes = [
             .foregroundColor: tintColor,
             .font: UIFont.systemFont(ofSize: 18, weight: .thin)
@@ -53,6 +54,7 @@ class CategoriesViewController: UIViewController {
 }
 
 extension CategoriesViewController: UITableViewDataSource, UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         Category.allCases.count
     }
