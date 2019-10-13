@@ -12,6 +12,18 @@ import MapKit
 
 class PhotoMarkAnnotationView: MKAnnotationView {
     
+    //TODO: Not implemented
+    override var annotation: MKAnnotation? {
+        willSet {
+            guard let photoMark = newValue as? PhotoMarkAnnotation else {
+                return
+            }
+            let imgView = UIImageView(image: photoMark.image)
+            imgView.frame = CGRect(x: 0, y: 0, width: 60, height: 50)
+            leftCalloutAccessoryView = imgView
+        }
+    }
+    
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         frame.size.height = 57

@@ -11,6 +11,7 @@ import UIKit
 import MapKit
 
 enum Category: CaseIterable {
+    
     case friends
     case nature
     case uncategorized
@@ -39,9 +40,10 @@ enum Category: CaseIterable {
 }
 
 class PhotoMarkAnnotation: NSObject, MKAnnotation {
+    
     let title: String?
     let date: Date
-//    let image: UIImage
+    let image: UIImage?
     let category: Category
     let coordinate: CLLocationCoordinate2D
     
@@ -52,11 +54,13 @@ class PhotoMarkAnnotation: NSObject, MKAnnotation {
     init(
         title: String,
         date: Date,
+        image: UIImage?,
         coordinate: CLLocationCoordinate2D,
         category: Category
     ) {
         self.title = title
         self.date = date
+        self.image = image
         self.coordinate = coordinate
         self.category = category
     }

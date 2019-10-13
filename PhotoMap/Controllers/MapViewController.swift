@@ -165,4 +165,74 @@ extension MapViewController: MKMapViewDelegate {
         guard let annotation = view.annotation else { return }
         centerView(on: annotation.coordinate)
     }
+//MARK: - Camera button related
+extension MapViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+   
+    @IBAction private func cameraButtonPressed(_ sender: UIButton) {
+        let actionSheet = UIAlertController(
+            title: nil,
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        actionSheet.addAction(
+            UIAlertAction(
+                title: "Take a Picture",
+                style: .default,
+                handler: { [weak self](_) in
+                    guard let self = self else {
+                        return
+                    }
+                    if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                        let imagePickerController = UIImagePickerController()
+                        imagePickerController.delegate = self;
+                        imagePickerController.sourceType = .camera
+                        self.present(imagePickerController, animated: true)
+                    }
+                }
+            )
+        )
+        actionSheet.addAction(
+            UIAlertAction(
+                title: "Choose From Library",
+                style: .default,
+                handler: { [weak self](_) in
+                    guard let self = self else {
+                        return
+                    }
+                    if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                        let imagePickerController = UIImagePickerController()
+                        imagePickerController.delegate = self;
+                        imagePickerController.sourceType = .photoLibrary
+                        self.present(imagePickerController, animated: true)
+                    }
+                }
+            )
+        )
+        actionSheet.addAction(
+            UIAlertAction(
+                title: "Cancel",
+                style: .cancel,
+                handler: { [weak self] (_) in
+                    guard let self = self else {
+                        return
+                    }
+                    self.dismiss(animated: true)
+                }
+            )
+        )
+        present(actionSheet, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        guard
+            let image = info[.originalImage] as? UIImage,
+            let coordinate = locationManager.location?.coordinate
+        else {
+            return
+        }
+        addAnnotation(at: coordinate, image: image)
+        dismiss(animated: true)
+    }
+    
 }
