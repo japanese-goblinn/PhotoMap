@@ -192,7 +192,7 @@ extension MapViewController: UIImagePickerControllerDelegate, UINavigationContro
             UIAlertAction(
                 title: "Take a Picture",
                 style: .default,
-                handler: { [weak self](_) in
+                handler: { [weak self] _ in
                     guard let self = self else {
                         return
                     }
@@ -209,7 +209,7 @@ extension MapViewController: UIImagePickerControllerDelegate, UINavigationContro
             UIAlertAction(
                 title: "Choose From Library",
                 style: .default,
-                handler: { [weak self](_) in
+                handler: { [weak self] _ in
                     guard let self = self else {
                         return
                     }
@@ -226,7 +226,7 @@ extension MapViewController: UIImagePickerControllerDelegate, UINavigationContro
             UIAlertAction(
                 title: "Cancel",
                 style: .cancel,
-                handler: { [weak self] (_) in
+                handler: { [weak self] _ in
                     guard let self = self else {
                         return
                     }
