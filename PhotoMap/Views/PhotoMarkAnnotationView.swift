@@ -12,28 +12,66 @@ import MapKit
 
 class PhotoMarkAnnotationView: MKAnnotationView {
     
-    //TODO: Not implemented
-    override var annotation: MKAnnotation? {
-        willSet {
-            guard let photoMark = newValue as? PhotoMarkAnnotation else {
-                return
-            }
-            let imgView = UIImageView(image: photoMark.image)
-            imgView.frame = CGRect(x: 0, y: 0, width: 60, height: 50)
-            leftCalloutAccessoryView = imgView
-        }
-    }
+    weak var customCalloutView: UIView?
     
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         frame.size.height = 57
         frame.size.width = 50
         backgroundColor = .clear
-        canShowCallout = true
+        canShowCallout = false
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        canShowCallout = false
+    }
+    
+    override var annotation: MKAnnotation? {
+        willSet {
+            canShowCallout = false
+            customCalloutView?.removeFromSuperview()
+        }
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        if selected {
+            customCalloutView?.removeFromSuperview()
+            guard let newCalloutView = loadPhotoMarkCalloutView() else {
+                return
+            }
+            newCalloutView.frame.origin.x -= newCalloutView.frame.width / 2.0 - (frame.width / 2.0)
+            newCalloutView.frame.origin.y -= newCalloutView.frame.height
+            addSubview(newCalloutView)
+            customCalloutView = newCalloutView
+            if animated {
+                customCalloutView?.alpha = 0
+                UIView.animate(withDuration: 0.3) {
+                    self.customCalloutView?.alpha = 1
+                }
+            }
+        } else {
+            if let customCalloutView = customCalloutView {
+                if animated {
+                    UIView.animate(
+                        withDuration: 0.3,
+                        animations: {
+                            customCalloutView.alpha = 0
+                        }, completion: { _ in
+                            customCalloutView.removeFromSuperview()
+                        }
+                    )
+                } else {
+                    customCalloutView.removeFromSuperview()
+                }
+            }
+        }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        customCalloutView?.removeFromSuperview()
     }
     
     override func draw(_ rect: CGRect) {
@@ -45,6 +83,14 @@ class PhotoMarkAnnotationView: MKAnnotationView {
         let strokeColor: UIColor = .black
         drawFillLayer(with: fillColor)
         drawBorderLayer(with: strokeColor, borderWidth: 1.5)
+    }
+    
+    private func loadPhotoMarkCalloutView() -> PhotoMarkCalloutView? {
+        if let views = Bundle.main.loadNibNamed("PhotoMarkCalloutView", owner: self, options: nil) as? [PhotoMarkCalloutView] {
+            let photoMapView = views.first!
+            return photoMapView
+        }
+        return nil
     }
     
     private func drawFillLayer(with color: UIColor) {
