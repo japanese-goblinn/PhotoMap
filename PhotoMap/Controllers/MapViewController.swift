@@ -160,10 +160,18 @@ extension MapViewController: MKMapViewDelegate {
         }
     }
     
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+        guard let userLocationView = mapView.view(for: userLocation) else {
+            return
+        }
+        userLocationView.canShowCallout = false
+    }
+    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         guard let annotation = view.annotation else {
             return
         }
+        setNavigation(to: .discover)
         centerView(on: annotation.coordinate)
     }
     

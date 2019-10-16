@@ -10,29 +10,113 @@ import UIKit
 
 class PhotoMarkCalloutView: UIView {
         
+    @IBOutlet weak var imageView: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        backgroundColor = .green
+        backgroundColor = .clear
+        drawShadow(on: imageView)
     }
     
     override func draw(_ rect: CGRect) {
-        super.draw(rect)
-        let path = UIBezierPath(
-            rect: CGRect(
-                x: rect.minX,
-                y: rect.minY,
-                width: rect.width,
-                height: rect.height - 15
-            )
-        )
-        path.move(to: CGPoint(x: rect.midX - 30, y: rect.maxY - 15))
-        path.addQuadCurve(
-            to: CGPoint(x: rect.midX + 30, y: rect.maxY - 15),
-            controlPoint: CGPoint(x: rect.midX, y: rect.maxY + 13)
-        )
-        UIColor.red.setFill()
-        path.fill()
+       let context = UIGraphicsGetCurrentContext()!
+        
+       let strokeColor = UIColor(red: 0.592, green: 0.592, blue: 0.592, alpha: 0.420)
+        let fillColor2: UIColor = .white
+
+       let bezier2Path = UIBezierPath()
+       UIColor.black.setStroke()
+       bezier2Path.lineWidth = 1
+       bezier2Path.stroke()
+
+       context.saveGState()
+       context.beginTransparencyLayer(auxiliaryInfo: nil)
+
+       let clipPath = UIBezierPath()
+       clipPath.move(to: CGPoint(x: 27.2, y: 0.01))
+       clipPath.addLine(to: CGPoint(x: 192.8, y: 0.01))
+       clipPath.addCurve(to: CGPoint(x: 220, y: 25.27), controlPoint1: CGPoint(x: 207.82, y: 0.01), controlPoint2: CGPoint(x: 220, y: 11.32))
+       clipPath.addLine(to: CGPoint(x: 220, y: 55.29))
+       clipPath.addCurve(to: CGPoint(x: 192.8, y: 80.54), controlPoint1: CGPoint(x: 220, y: 69.23), controlPoint2: CGPoint(x: 207.82, y: 80.54))
+       clipPath.addCurve(to: CGPoint(x: 138.15, y: 80.54), controlPoint1: CGPoint(x: 161.99, y: 80.54), controlPoint2: CGPoint(x: 143.77, y: 80.54))
+       clipPath.addCurve(to: CGPoint(x: 110, y: 100.9), controlPoint1: CGPoint(x: 127.47, y: 80.54), controlPoint2: CGPoint(x: 121.42, y: 100.9))
+       clipPath.addCurve(to: CGPoint(x: 82, y: 80.54), controlPoint1: CGPoint(x: 99.19, y: 100.9), controlPoint2: CGPoint(x: 93.4, y: 80.54))
+       clipPath.addCurve(to: CGPoint(x: 27.2, y: 80.54), controlPoint1: CGPoint(x: 63.74, y: 80.54), controlPoint2: CGPoint(x: 45.47, y: 80.54))
+       clipPath.addCurve(to: CGPoint(x: 0, y: 55.29), controlPoint1: CGPoint(x: 12.18, y: 80.54), controlPoint2: CGPoint(x: 0, y: 69.23))
+       clipPath.addLine(to: CGPoint(x: 0, y: 25.27))
+       clipPath.addCurve(to: CGPoint(x: 27.2, y: 0.01), controlPoint1: CGPoint(x: 0, y: 11.32), controlPoint2: CGPoint(x: 12.18, y: 0.01))
+       clipPath.close()
+       clipPath.usesEvenOddFillRule = true
+       clipPath.addClip()
+
+       let bezierPath = UIBezierPath()
+       bezierPath.move(to: CGPoint(x: 27.2, y: 0.01))
+       bezierPath.addLine(to: CGPoint(x: 192.8, y: 0.01))
+       bezierPath.addCurve(to: CGPoint(x: 220, y: 25.27), controlPoint1: CGPoint(x: 207.82, y: 0.01), controlPoint2: CGPoint(x: 220, y: 11.32))
+       bezierPath.addLine(to: CGPoint(x: 220, y: 55.29))
+       bezierPath.addCurve(to: CGPoint(x: 192.8, y: 80.54), controlPoint1: CGPoint(x: 220, y: 69.23), controlPoint2: CGPoint(x: 207.82, y: 80.54))
+       bezierPath.addCurve(to: CGPoint(x: 138.15, y: 80.54), controlPoint1: CGPoint(x: 161.99, y: 80.54), controlPoint2: CGPoint(x: 143.77, y: 80.54))
+       bezierPath.addCurve(to: CGPoint(x: 110, y: 100.9), controlPoint1: CGPoint(x: 127.47, y: 80.54), controlPoint2: CGPoint(x: 121.42, y: 100.9))
+       bezierPath.addCurve(to: CGPoint(x: 82, y: 80.54), controlPoint1: CGPoint(x: 99.19, y: 100.9), controlPoint2: CGPoint(x: 93.4, y: 80.54))
+       bezierPath.addCurve(to: CGPoint(x: 27.2, y: 80.54), controlPoint1: CGPoint(x: 63.74, y: 80.54), controlPoint2: CGPoint(x: 45.47, y: 80.54))
+       bezierPath.addCurve(to: CGPoint(x: 0, y: 55.29), controlPoint1: CGPoint(x: 12.18, y: 80.54), controlPoint2: CGPoint(x: 0, y: 69.23))
+       bezierPath.addLine(to: CGPoint(x: 0, y: 25.27))
+       bezierPath.addCurve(to: CGPoint(x: 27.2, y: 0.01), controlPoint1: CGPoint(x: 0, y: 11.32), controlPoint2: CGPoint(x: 12.18, y: 0.01))
+       bezierPath.close()
+       fillColor2.setFill()
+       bezierPath.fill()
+
+       context.endTransparencyLayer()
+       context.restoreGState()
+
+       context.saveGState()
+       context.beginTransparencyLayer(auxiliaryInfo: nil)
+
+       let clip2Path = UIBezierPath()
+       clip2Path.move(to: CGPoint(x: 27.2, y: 0.01))
+       clip2Path.addLine(to: CGPoint(x: 192.8, y: 0.01))
+       clip2Path.addCurve(to: CGPoint(x: 220, y: 25.27), controlPoint1: CGPoint(x: 207.82, y: 0.01), controlPoint2: CGPoint(x: 220, y: 11.32))
+       clip2Path.addLine(to: CGPoint(x: 220, y: 55.29))
+       clip2Path.addCurve(to: CGPoint(x: 192.8, y: 80.54), controlPoint1: CGPoint(x: 220, y: 69.23), controlPoint2: CGPoint(x: 207.82, y: 80.54))
+       clip2Path.addCurve(to: CGPoint(x: 138.15, y: 80.54), controlPoint1: CGPoint(x: 161.99, y: 80.54), controlPoint2: CGPoint(x: 143.77, y: 80.54))
+       clip2Path.addCurve(to: CGPoint(x: 110, y: 100.9), controlPoint1: CGPoint(x: 127.47, y: 80.54), controlPoint2: CGPoint(x: 121.42, y: 100.9))
+       clip2Path.addCurve(to: CGPoint(x: 82, y: 80.54), controlPoint1: CGPoint(x: 99.19, y: 100.9), controlPoint2: CGPoint(x: 93.4, y: 80.54))
+       clip2Path.addCurve(to: CGPoint(x: 27.2, y: 80.54), controlPoint1: CGPoint(x: 63.74, y: 80.54), controlPoint2: CGPoint(x: 45.47, y: 80.54))
+       clip2Path.addCurve(to: CGPoint(x: 0, y: 55.29), controlPoint1: CGPoint(x: 12.18, y: 80.54), controlPoint2: CGPoint(x: 0, y: 69.23))
+       clip2Path.addLine(to: CGPoint(x: 0, y: 25.27))
+       clip2Path.addCurve(to: CGPoint(x: 27.2, y: 0.01), controlPoint1: CGPoint(x: 0, y: 11.32), controlPoint2: CGPoint(x: 12.18, y: 0.01))
+       clip2Path.close()
+       clip2Path.usesEvenOddFillRule = true
+       clip2Path.addClip()
+
+       let bezier4Path = UIBezierPath()
+       bezier4Path.move(to: CGPoint(x: 27.2, y: 0.01))
+       bezier4Path.addLine(to: CGPoint(x: 192.8, y: 0.01))
+       bezier4Path.addCurve(to: CGPoint(x: 220, y: 25.27), controlPoint1: CGPoint(x: 207.82, y: 0.01), controlPoint2: CGPoint(x: 220, y: 11.32))
+       bezier4Path.addLine(to: CGPoint(x: 220, y: 55.29))
+       bezier4Path.addCurve(to: CGPoint(x: 192.8, y: 80.54), controlPoint1: CGPoint(x: 220, y: 69.23), controlPoint2: CGPoint(x: 207.82, y: 80.54))
+       bezier4Path.addCurve(to: CGPoint(x: 138.15, y: 80.54), controlPoint1: CGPoint(x: 161.99, y: 80.54), controlPoint2: CGPoint(x: 143.77, y: 80.54))
+       bezier4Path.addCurve(to: CGPoint(x: 110, y: 100.9), controlPoint1: CGPoint(x: 127.47, y: 80.54), controlPoint2: CGPoint(x: 121.42, y: 100.9))
+       bezier4Path.addCurve(to: CGPoint(x: 82, y: 80.54), controlPoint1: CGPoint(x: 99.19, y: 100.9), controlPoint2: CGPoint(x: 93.4, y: 80.54))
+       bezier4Path.addCurve(to: CGPoint(x: 27.2, y: 80.54), controlPoint1: CGPoint(x: 63.74, y: 80.54), controlPoint2: CGPoint(x: 45.47, y: 80.54))
+       bezier4Path.addCurve(to: CGPoint(x: 0, y: 55.29), controlPoint1: CGPoint(x: 12.18, y: 80.54), controlPoint2: CGPoint(x: 0, y: 69.23))
+       bezier4Path.addLine(to: CGPoint(x: 0, y: 25.27))
+       bezier4Path.addCurve(to: CGPoint(x: 27.2, y: 0.01), controlPoint1: CGPoint(x: 0, y: 11.32), controlPoint2: CGPoint(x: 12.18, y: 0.01))
+       bezier4Path.close()
+       strokeColor.setStroke()
+       bezier4Path.lineWidth = 2
+       bezier4Path.stroke()
+
+       context.endTransparencyLayer()
+       context.restoreGState()
     }
+    
+    private func drawShadow(on imageView: UIImageView) {
+        imageView.layer.shadowColor = UIColor.black.cgColor
+        imageView.layer.shadowOffset = CGSize(width: 0, height: 1)
+        imageView.layer.shadowOpacity = 0.2
+        imageView.layer.shadowRadius = 1.0
+        imageView.clipsToBounds = false
+    }
+    
 }
-
-

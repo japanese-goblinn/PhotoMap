@@ -12,7 +12,7 @@ import MapKit
 
 class PhotoMarkAnnotationView: MKAnnotationView {
     
-    weak var customCalloutView: UIView?
+    weak var customCalloutView: PhotoMarkCalloutView?
     
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
@@ -42,7 +42,7 @@ class PhotoMarkAnnotationView: MKAnnotationView {
                 return
             }
             newCalloutView.frame.origin.x -= newCalloutView.frame.width / 2.0 - (frame.width / 2.0)
-            newCalloutView.frame.origin.y -= newCalloutView.frame.height
+            newCalloutView.frame.origin.y -= newCalloutView.frame.height - 24
             addSubview(newCalloutView)
             customCalloutView = newCalloutView
             if animated {
