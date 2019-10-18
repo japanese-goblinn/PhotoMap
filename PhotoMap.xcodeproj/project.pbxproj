@@ -134,9 +134,9 @@
 				F31584AB234486E700668288 /* MapViewController.xib */,
 				F323D36D2347567400AE7E97 /* CategoriesViewController.xib */,
 				CED4A935234F2EAA004C9A22 /* CategoriesTableViewCell.xib */,
+				F33377AE2354A105002D01D7 /* PhotoMarkCalloutView.xib */,
 				F3E22C9E234DCE6E001216CB /* TimelineViewController.xib */,
 				F3E22CA2234DCE8D001216CB /* MoreViewController.xib */,
-				F33377AE2354A105002D01D7 /* PhotoMarkCalloutView.xib */,
 			);
 			path = Interface;
 			sourceTree = "<group>";

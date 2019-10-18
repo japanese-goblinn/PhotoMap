@@ -19,45 +19,46 @@ extension UIColor {
            }
            
            if hex.count < 3 {
-               hex = "\(hex)\(hex)\(hex)"
+                hex = "\(hex)\(hex)\(hex)"
            }
            
            if hex.range(of: "(^[0-9A-Fa-f]{6}$)|(^[0-9A-Fa-f]{3}$)", options: .regularExpression) != nil {
-               if hex.count == 3 {
+                if hex.count == 3 {
+                    let startIndex = hex.index(hex.startIndex, offsetBy: 1)
+                    let endIndex = hex.index(hex.startIndex, offsetBy: 2)
+                    let redHex = String(hex[..<startIndex])
+                    let greenHex = String(hex[startIndex..<endIndex])
+                    let blueHex = String(hex[endIndex...])
+                    hex = redHex + redHex + greenHex + greenHex + blueHex + blueHex
+                }
+            
+                let startIndex = hex.index(hex.startIndex, offsetBy: 2)
+                let endIndex = hex.index(hex.startIndex, offsetBy: 4)
+                let redHex = String(hex[..<startIndex])
+                let greenHex = String(hex[startIndex..<endIndex])
+                let blueHex = String(hex[endIndex...])
                    
-                   let startIndex = hex.index(hex.startIndex, offsetBy: 1)
-                   let endIndex = hex.index(hex.startIndex, offsetBy: 2)
-                   
-                   let redHex = String(hex[..<startIndex])
-                   let greenHex = String(hex[startIndex..<endIndex])
-                   let blueHex = String(hex[endIndex...])
-                   
-                   hex = redHex + redHex + greenHex + greenHex + blueHex + blueHex
-               }
+                var redInt: CUnsignedInt = 0
+                var greenInt: CUnsignedInt = 0
+                var blueInt: CUnsignedInt = 0
                
-               let startIndex = hex.index(hex.startIndex, offsetBy: 2)
-               let endIndex = hex.index(hex.startIndex, offsetBy: 4)
-               let redHex = String(hex[..<startIndex])
-               let greenHex = String(hex[startIndex..<endIndex])
-               let blueHex = String(hex[endIndex...])
+                Scanner(string: redHex).scanHexInt32(&redInt)
+                Scanner(string: greenHex).scanHexInt32(&greenInt)
+                Scanner(string: blueHex).scanHexInt32(&blueInt)
                
-               var redInt: CUnsignedInt = 0
-               var greenInt: CUnsignedInt = 0
-               var blueInt: CUnsignedInt = 0
-               
-               Scanner(string: redHex).scanHexInt32(&redInt)
-               Scanner(string: greenHex).scanHexInt32(&greenInt)
-               Scanner(string: blueHex).scanHexInt32(&blueInt)
-               
-               self.init(
+                self.init(
                     red: CGFloat(redInt) / 255.0,
                     green: CGFloat(greenInt) / 255.0,
                     blue: CGFloat(blueInt) / 255.0,
                     alpha: CGFloat(alpha)
                 )
-           }
-           else {
-               self.init(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.0)
+           } else {
+                self.init(
+                    red: 0.0,
+                    green: 0.0,
+                    blue: 0.0,
+                    alpha: 0.0
+                )
            }
        }
 }

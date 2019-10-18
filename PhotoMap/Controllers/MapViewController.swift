@@ -201,14 +201,8 @@ extension MapViewController: UIImagePickerControllerDelegate, UINavigationContro
                 title: "Take a Picture",
                 style: .default,
                 handler: { [weak self] _ in
-                    guard let self = self else {
-                        return
-                    }
                     if UIImagePickerController.isSourceTypeAvailable(.camera) {
-                        let imagePickerController = UIImagePickerController()
-                        imagePickerController.delegate = self;
-                        imagePickerController.sourceType = .camera
-                        self.present(imagePickerController, animated: true)
+                        self?.showImagePickerController(for: .camera)
                     }
                 }
             )
@@ -218,14 +212,8 @@ extension MapViewController: UIImagePickerControllerDelegate, UINavigationContro
                 title: "Choose From Library",
                 style: .default,
                 handler: { [weak self] _ in
-                    guard let self = self else {
-                        return
-                    }
                     if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-                        let imagePickerController = UIImagePickerController()
-                        imagePickerController.delegate = self;
-                        imagePickerController.sourceType = .photoLibrary
-                        self.present(imagePickerController, animated: true)
+                        self?.showImagePickerController(for: .photoLibrary)
                     }
                 }
             )
@@ -235,10 +223,7 @@ extension MapViewController: UIImagePickerControllerDelegate, UINavigationContro
                 title: "Cancel",
                 style: .cancel,
                 handler: { [weak self] _ in
-                    guard let self = self else {
-                        return
-                    }
-                    self.dismiss(animated: true)
+                    self?.dismiss(animated: true)
                 }
             )
         )
@@ -246,7 +231,6 @@ extension MapViewController: UIImagePickerControllerDelegate, UINavigationContro
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
         guard
             let image = info[.originalImage] as? UIImage,
             let coordinate = locationManager.location?.coordinate
@@ -257,5 +241,11 @@ extension MapViewController: UIImagePickerControllerDelegate, UINavigationContro
         dismiss(animated: true)
     }
     
+    private func showImagePickerController(for sourceType: UIImagePickerController.SourceType) {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self;
+        imagePickerController.sourceType = sourceType
+        self.present(imagePickerController, animated: true)
+    }
 }
 
