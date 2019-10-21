@@ -27,6 +27,17 @@ class PhotoMarkAnnotationView: MKAnnotationView {
         canShowCallout = false
     }
     
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        if let parentHitView = super.hitTest(point, with: event) {
+            return parentHitView
+        } else {
+            return customCalloutView?.hitTest(
+                convert(point, to: customCalloutView!),
+                with: event
+            )
+        }
+    }
+    
     override var annotation: MKAnnotation? {
         willSet {
             canShowCallout = false
@@ -92,8 +103,8 @@ class PhotoMarkAnnotationView: MKAnnotationView {
             options: nil
         ) as? [PhotoMarkCalloutView] {
             
-            let photoMapView = views.first!
-            return photoMapView
+            let calloutView = views.first!
+            return calloutView
         }
         return nil
     }

@@ -11,11 +11,27 @@ import UIKit
 class PhotoMarkCalloutView: UIView {
         
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var detailsButton: UIButton!
+    
+    @IBAction func seeDetailsButton(_ sender: UIButton) {
+        print("pressed")
+        
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = .clear
         drawShadow(on: imageView)
+    }
+    
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        if let detailsButtonPressed = detailsButton.hitTest(
+            convert(point, to: detailsButton),
+            with: event
+        ) {
+            return detailsButtonPressed
+        }
+        return super.hitTest(point, with: event)
     }
     
     override func draw(_ rect: CGRect) {
