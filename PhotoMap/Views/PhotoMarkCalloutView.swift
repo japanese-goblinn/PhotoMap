@@ -7,15 +7,21 @@
 //
 
 import UIKit
+import MapKit
 
 class PhotoMarkCalloutView: UIView {
         
+    weak var delegate: PhotoMarkAnnotationDelegate?
+    var annotation: PhotoMarkAnnotation?
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var detailsButton: UIButton!
+    @IBOutlet weak var backgroundView: UIView!
     
     @IBAction func seeDetailsButton(_ sender: UIButton) {
-        print("pressed")
-        
+        delegate?.pass(annotation: annotation)
     }
     
     override func awakeFromNib() {
@@ -25,16 +31,18 @@ class PhotoMarkCalloutView: UIView {
     }
     
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        if let detailsButtonPressed = detailsButton.hitTest(
-            convert(point, to: detailsButton),
+        if let backgroundPressed = backgroundView.hitTest(
+            convert(point, to: backgroundView),
             with: event
         ) {
-            return detailsButtonPressed
+            seeDetailsButton(detailsButton)
+            return backgroundPressed
         }
         return super.hitTest(point, with: event)
     }
     
     override func draw(_ rect: CGRect) {
+        setupView()
         let context = UIGraphicsGetCurrentContext()!
         let strokeColor = UIColor(
             red: 0.592,
@@ -104,6 +112,14 @@ class PhotoMarkCalloutView: UIView {
         imageView.layer.shadowOpacity = 0.2
         imageView.layer.shadowRadius = 1.0
         imageView.clipsToBounds = false
+    }
+    
+    private func setupView() {
+        if let annotation = annotation {
+            imageView.image = annotation.image
+            titleLabel.text = annotation.title
+            dateLabel.text = annotation.date.asString
+        }
     }
     
 }

@@ -13,6 +13,7 @@ import MapKit
 class PhotoMarkAnnotationView: MKAnnotationView {
     
     weak var customCalloutView: PhotoMarkCalloutView?
+    weak var controllerDelegate: PhotoMarkAnnotationDelegate?
     
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
@@ -49,13 +50,7 @@ class PhotoMarkAnnotationView: MKAnnotationView {
         super.setSelected(selected, animated: animated)
         if selected {
             customCalloutView?.removeFromSuperview()
-            guard let newCalloutView = loadPhotoMarkCalloutView() else {
-                return
-            }
-            newCalloutView.frame.origin.x -= newCalloutView.frame.width / 2.0 - (frame.width / 2.0)
-            newCalloutView.frame.origin.y -= newCalloutView.frame.height - 24
-            addSubview(newCalloutView)
-            customCalloutView = newCalloutView
+            configureCalloutView()
             if animated {
                 customCalloutView?.alpha = 0
                 UIView.animate(withDuration: 0.3) {
@@ -95,6 +90,21 @@ class PhotoMarkAnnotationView: MKAnnotationView {
         drawFillLayer(with: fillColor)
         drawBorderLayer(with: strokeColor, borderWidth: 1.5)
     }
+        
+    private func configureCalloutView() {
+        guard
+            let newCalloutView = loadPhotoMarkCalloutView(),
+            let newAnnotation = annotation as? PhotoMarkAnnotation
+        else {
+            return
+        }
+        newCalloutView.delegate = controllerDelegate
+        newCalloutView.annotation = newAnnotation
+        newCalloutView.frame.origin.x -= newCalloutView.frame.width / 2.0 - (frame.width / 2.0)
+        newCalloutView.frame.origin.y -= newCalloutView.frame.height - 24
+        addSubview(newCalloutView)
+        customCalloutView = newCalloutView
+    }
     
     private func loadPhotoMarkCalloutView() -> PhotoMarkCalloutView? {
         if let views = Bundle.main.loadNibNamed(
@@ -102,7 +112,6 @@ class PhotoMarkAnnotationView: MKAnnotationView {
             owner: self,
             options: nil
         ) as? [PhotoMarkCalloutView] {
-            
             let calloutView = views.first!
             return calloutView
         }

@@ -263,3 +263,12 @@ extension MapViewController: UIImagePickerControllerDelegate, UINavigationContro
     }
 }
 
+//MARK: - PhotoMark delegate
+extension MapViewController: PhotoMarkAnnotationDelegate {
+    func pass(annotation: PhotoMarkAnnotation?) {
+        let popup = PopupViewController()
+        popup.modalPresentationStyle = .overCurrentContext
+        popup.modalTransitionStyle = .crossDissolve
+        present(popup, animated: true)
+    }
+}
