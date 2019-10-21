@@ -30,10 +30,6 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
-        mapView.register(
-            PhotoMarkAnnotationView.self,
-            forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier
-        )
         enableMapCenterOnUserPan()
         checkLocationServices()
     }
@@ -158,6 +154,24 @@ extension MapViewController: MKMapViewDelegate {
             let coordinate = mapView.convert(location, toCoordinateFrom: mapView)
             addAnnotation(at: coordinate)
         }
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard annotation is PhotoMarkAnnotation else {
+            return nil
+        }
+        guard let annotationView = mapView.dequeueReusableAnnotationView(
+            withIdentifier: String(describing: PhotoMarkAnnotation.self)
+        ) else {
+            let newAnnotationView = PhotoMarkAnnotationView(
+                annotation: annotation,
+                reuseIdentifier: String(describing: PhotoMarkAnnotation.self)
+            )
+            newAnnotationView.controllerDelegate = self
+            return newAnnotationView
+        }
+        annotationView.annotation = annotation
+        return annotationView
     }
     
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
