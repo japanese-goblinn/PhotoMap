@@ -14,36 +14,50 @@
             <rect key="frame" x="0.0" y="0.0" width="220" height="101"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Custom " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v1t-hF-gBN">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Custom " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v1t-hF-gBN">
                     <rect key="frame" x="101" y="15" width="68" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hu8-FK-hsh">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hu8-FK-hsh">
                     <rect key="frame" x="101" y="42" width="42" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="test_image" translatesAutoresizingMaskIntoConstraints="NO" id="qTn-FL-ZC2">
-                    <rect key="frame" x="5" y="6" width="99" height="69"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test_image" translatesAutoresizingMaskIntoConstraints="NO" id="qTn-FL-ZC2">
+                    <rect key="frame" x="5" y="5" width="88" height="69"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="88" id="6bK-oS-8W0"/>
+                        <constraint firstAttribute="height" constant="69" id="kgf-0T-Ar9"/>
+                    </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HRI-PT-ube">
-                    <rect key="frame" x="186" y="20" width="25" height="40"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HRI-PT-ube">
+                    <rect key="frame" x="195.5" y="26.5" width="15.5" height="26.5"/>
                     <state key="normal" image="arrow"/>
+                    <connections>
+                        <action selector="seeDetailsButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="Gvh-Er-uwg"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="HRI-PT-ube" firstAttribute="centerY" secondItem="qTn-FL-ZC2" secondAttribute="centerY" id="2WU-Bg-NEr"/>
+                <constraint firstItem="hu8-FK-hsh" firstAttribute="top" secondItem="v1t-hF-gBN" secondAttribute="bottom" constant="6" id="FRX-h0-fyX"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="HRI-PT-ube" secondAttribute="trailing" constant="9" id="NAr-oJ-A2x"/>
+                <constraint firstItem="qTn-FL-ZC2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="QJy-AI-Keu"/>
+                <constraint firstItem="v1t-hF-gBN" firstAttribute="leading" secondItem="qTn-FL-ZC2" secondAttribute="trailing" constant="8" id="UZm-pu-KdG"/>
+                <constraint firstItem="hu8-FK-hsh" firstAttribute="leading" secondItem="v1t-hF-gBN" secondAttribute="leading" id="WGz-u3-qYl"/>
+                <constraint firstItem="v1t-hF-gBN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="r3M-Fm-VU8"/>
+                <constraint firstItem="qTn-FL-ZC2" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="5" id="xNm-hP-WQN"/>
+            </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
+                <outlet property="detailsButton" destination="HRI-PT-ube" id="qEE-4z-ab3"/>
                 <outlet property="imageView" destination="qTn-FL-ZC2" id="tMs-Yu-saU"/>
             </connections>
             <point key="canvasLocation" x="-207.24637681159422" y="-345.20089285714283"/>
