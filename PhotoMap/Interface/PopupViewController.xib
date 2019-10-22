@@ -10,6 +10,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PopupViewController" customModule="PhotoMap" customModuleProvider="target">
             <connections>
+                <outlet property="contentTextView" destination="hSO-Ua-vm3" id="qOw-w6-8gg"/>
+                <outlet property="imageView" destination="jIk-rs-jk6" id="4Au-CD-NX3"/>
+                <outlet property="pickerView" destination="qbq-1R-bWE" id="j8K-4d-oPv"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,51 +21,71 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BQP-sc-1h8">
-                    <rect key="frame" x="29" y="124" width="317" height="333"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BQP-sc-1h8">
+                    <rect key="frame" x="47" y="110" width="281" height="324"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jIk-rs-jk6">
-                            <rect key="frame" x="25" y="8" width="266" height="93"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jIk-rs-jk6">
+                            <rect key="frame" x="8" y="8" width="265" height="81"/>
                         </imageView>
-                        <pickerView contentMode="scaleToFill" ambiguous="YES" id="qbq-1R-bWE">
-                            <rect key="frame" x="25" y="109" width="266" height="81"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                        </pickerView>
-                        <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your photo description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aQg-FN-NUP">
-                            <rect key="frame" x="18" y="198" width="291" height="34"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
-                        </textField>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FdE-ee-0m5">
-                            <rect key="frame" x="243" y="284" width="48" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FdE-ee-0m5">
+                            <rect key="frame" x="173" y="284" width="48" height="30"/>
                             <state key="normal" title="Cancel">
                                 <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
+                            <connections>
+                                <action selector="cancelButtonPressed:" destination="-1" eventType="touchUpInside" id="VYg-NU-Zg2"/>
+                            </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EOK-nv-S46">
-                            <rect key="frame" x="18" y="284" width="37" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EOK-nv-S46">
+                            <rect key="frame" x="66" y="284" width="37" height="30"/>
                             <state key="normal" title="Done"/>
+                            <connections>
+                                <action selector="doneButtonPressed:" destination="-1" eventType="touchUpInside" id="4Iz-Rh-urz"/>
+                            </connections>
                         </button>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hSO-Ua-vm3">
+                            <rect key="frame" x="8" y="186" width="265" height="81"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                            <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                        <pickerView contentMode="scaleToFill" id="qbq-1R-bWE">
+                            <rect key="frame" x="8" y="99" width="265" height="81"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                        </pickerView>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstItem="qbq-1R-bWE" firstAttribute="height" secondItem="jIk-rs-jk6" secondAttribute="height" id="0Ar-Cy-f8D"/>
+                        <constraint firstItem="FdE-ee-0m5" firstAttribute="leading" secondItem="EOK-nv-S46" secondAttribute="trailing" constant="70" id="6GO-HK-z98"/>
+                        <constraint firstItem="jIk-rs-jk6" firstAttribute="top" secondItem="BQP-sc-1h8" secondAttribute="top" constant="8" id="FG8-8Y-meF"/>
+                        <constraint firstItem="hSO-Ua-vm3" firstAttribute="top" secondItem="qbq-1R-bWE" secondAttribute="bottom" constant="6" id="K5R-NN-sKV"/>
+                        <constraint firstItem="jIk-rs-jk6" firstAttribute="leading" secondItem="BQP-sc-1h8" secondAttribute="leading" constant="8" id="SB2-Wr-Ukm"/>
+                        <constraint firstItem="hSO-Ua-vm3" firstAttribute="height" secondItem="jIk-rs-jk6" secondAttribute="height" id="ZzO-v0-6nu"/>
+                        <constraint firstItem="EOK-nv-S46" firstAttribute="top" secondItem="hSO-Ua-vm3" secondAttribute="bottom" constant="17" id="fTV-bZ-lRk"/>
+                        <constraint firstItem="qbq-1R-bWE" firstAttribute="width" secondItem="jIk-rs-jk6" secondAttribute="width" id="g2k-E4-cFY"/>
+                        <constraint firstItem="FdE-ee-0m5" firstAttribute="centerY" secondItem="EOK-nv-S46" secondAttribute="centerY" id="gWO-1g-LSy"/>
+                        <constraint firstItem="qbq-1R-bWE" firstAttribute="top" secondItem="jIk-rs-jk6" secondAttribute="bottom" constant="10" id="nmX-VF-yko"/>
+                        <constraint firstItem="jIk-rs-jk6" firstAttribute="height" secondItem="BQP-sc-1h8" secondAttribute="height" multiplier="0.25" id="p6b-LL-GEK"/>
+                        <constraint firstItem="hSO-Ua-vm3" firstAttribute="width" secondItem="jIk-rs-jk6" secondAttribute="width" id="rP6-vO-Ytz"/>
+                        <constraint firstItem="EOK-nv-S46" firstAttribute="leading" secondItem="BQP-sc-1h8" secondAttribute="leading" constant="66" id="s0i-U7-LQd"/>
+                        <constraint firstAttribute="trailing" secondItem="jIk-rs-jk6" secondAttribute="trailing" constant="8" id="wLh-0y-fRT"/>
+                        <constraint firstItem="hSO-Ua-vm3" firstAttribute="leading" secondItem="jIk-rs-jk6" secondAttribute="leading" id="yZh-3Q-rj9"/>
+                    </constraints>
                 </view>
             </subviews>
             <gestureRecognizers/>
+            <constraints>
+                <constraint firstItem="BQP-sc-1h8" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.5" id="N1u-UY-M1V"/>
+                <constraint firstItem="BQP-sc-1h8" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.75" id="Sib-xG-PGU"/>
+                <constraint firstItem="BQP-sc-1h8" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="110" id="Z2w-PJ-EYj"/>
+                <constraint firstItem="BQP-sc-1h8" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="lr7-dM-KiP"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <connections>
-                <outletCollection property="gestureRecognizers" destination="4mU-HD-CTg" appends="YES" id="Kvr-e6-7IE"/>
-            </connections>
             <point key="canvasLocation" x="136.80000000000001" y="107.49625187406298"/>
         </view>
-        <tapGestureRecognizer id="4mU-HD-CTg">
-            <connections>
-                <action selector="tappedOutside:" destination="-1" id="A2y-xX-wh6"/>
-            </connections>
-        </tapGestureRecognizer>
+        <tapGestureRecognizer id="4mU-HD-CTg"/>
     </objects>
 </document>

@@ -269,6 +269,7 @@ extension MapViewController: PhotoMarkAnnotationDelegate {
         let popup = PopupViewController()
         popup.modalPresentationStyle = .overCurrentContext
         popup.modalTransitionStyle = .crossDissolve
+        popup.annotation = annotation
         present(popup, animated: true)
     }
 }

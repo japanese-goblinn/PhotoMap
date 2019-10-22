@@ -10,13 +10,30 @@ import UIKit
 
 class PopupViewController: UIViewController {
 
-    @IBAction func tappedOutside(_ sender: UITapGestureRecognizer) {
+    var annotation: PhotoMarkAnnotation?
+    
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var pickerView: UIPickerView!
+    @IBOutlet weak var contentTextView: UITextView!
+    
+    @IBAction func doneButtonPressed(_ sender: UIButton) {
+        dismiss(animated: true)
+    }
+    
+    @IBAction func cancelButtonPressed(_ sender: UIButton) {
         dismiss(animated: true)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setOutletsData()
+    }
+    
+    private func setOutletsData() {
+        if let annotation = annotation {
+            imageView.image = annotation.image
+            contentTextView.text = annotation.title
+        }
     }
     
 }
