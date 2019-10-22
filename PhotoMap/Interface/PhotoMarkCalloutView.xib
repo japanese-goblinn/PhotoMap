@@ -30,14 +30,14 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test_image" translatesAutoresizingMaskIntoConstraints="NO" id="qTn-FL-ZC2">
-                    <rect key="frame" x="5" y="5" width="70" height="69"/>
+                    <rect key="frame" x="5" y="7" width="70" height="67"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="70" id="6bK-oS-8W0"/>
-                        <constraint firstAttribute="height" constant="69" id="kgf-0T-Ar9"/>
+                        <constraint firstAttribute="height" constant="67" id="kgf-0T-Ar9"/>
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HRI-PT-ube">
-                    <rect key="frame" x="195.5" y="26.5" width="15.5" height="26.5"/>
+                    <rect key="frame" x="195.5" y="27.5" width="15.5" height="26.5"/>
                     <state key="normal" image="arrow"/>
                     <connections>
                         <action selector="seeDetailsButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="Gvh-Er-uwg"/>
@@ -49,7 +49,7 @@
                 <constraint firstItem="HRI-PT-ube" firstAttribute="centerY" secondItem="qTn-FL-ZC2" secondAttribute="centerY" id="2WU-Bg-NEr"/>
                 <constraint firstItem="hu8-FK-hsh" firstAttribute="top" secondItem="v1t-hF-gBN" secondAttribute="bottom" constant="6" id="FRX-h0-fyX"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="HRI-PT-ube" secondAttribute="trailing" constant="9" id="NAr-oJ-A2x"/>
-                <constraint firstItem="qTn-FL-ZC2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="5" id="QJy-AI-Keu"/>
+                <constraint firstItem="qTn-FL-ZC2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="7" id="QJy-AI-Keu"/>
                 <constraint firstItem="v1t-hF-gBN" firstAttribute="leading" secondItem="qTn-FL-ZC2" secondAttribute="trailing" constant="15" id="UZm-pu-KdG"/>
                 <constraint firstItem="hu8-FK-hsh" firstAttribute="leading" secondItem="v1t-hF-gBN" secondAttribute="leading" id="WGz-u3-qYl"/>
                 <constraint firstItem="RWX-D7-Vsw" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="bvW-1g-MEl"/>
