@@ -29,6 +29,7 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        definesPresentationContext = true
         mapView.delegate = self
         enableMapCenterOnUserPan()
         checkLocationServices()

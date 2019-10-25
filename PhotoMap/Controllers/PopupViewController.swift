@@ -13,8 +13,10 @@ class PopupViewController: UIViewController {
     var annotation: PhotoMarkAnnotation?
     
     @IBOutlet weak var scrollView: UIScrollView!
-//    @IBOutlet weak var imageView: UIImageView!
-//    @IBOutlet weak var pickerView: UIPickerView!
+    @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var pickerView: PickerCategoryView!
+    @IBOutlet weak var dateLabel: UILabel!    
     @IBOutlet weak var contentTextView: UITextView!
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {
@@ -25,14 +27,24 @@ class PopupViewController: UIViewController {
         dismiss(animated: true)
     }
     
+    @IBAction func pickerPressed(_ sender: UITapGestureRecognizer) {
+        let picker = PickerViewController()
+        picker.modalPresentationStyle = .custom
+        picker.modalTransitionStyle = .crossDissolve
+        picker.choosedCategory = annotation?.category ?? .uncategorized
+        picker.delegate = self
+        present(picker, animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         activateKeyboardHandler()
         setOutletsData()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+        setupPicker()
+        setupTextField()
+        contentView.layer.cornerRadius = 4
+        view.drawShadow()
+        imageView.drawShadow()
     }
     
     deinit {
@@ -41,9 +53,27 @@ class PopupViewController: UIViewController {
     
     private func setOutletsData() {
         if let annotation = annotation {
-//            imageView.image = annotation.image
+            imageView.image = annotation.image
             contentTextView.text = annotation.title
+            dateLabel.text = annotation.date.toString(format: .withTime)
+            updatePickerView(with: annotation)
         }
+    }
+    
+    private func setupTextField() {
+        contentTextView.layer.borderWidth = 1
+        contentTextView.layer.borderColor = UIColor.gray.cgColor
+    }
+    
+    private func setupPicker() {
+        pickerView.contentView.backgroundColor = .clear
+        pickerView.layer.addBorder(edge: .top, color: .gray, thickness: 1)
+        pickerView.layer.addBorder(edge: .bottom, color: .gray, thickness: 1)
+    }
+    
+    private func updatePickerView(with annotation: PhotoMarkAnnotation) {
+        pickerView.annotationView.fillColor = annotation.category.color
+        pickerView.categorieLabel.text = annotation.category.asString.uppercased()
     }
 }
 
@@ -86,5 +116,15 @@ extension PopupViewController: UITextViewDelegate {
     private func setContentInsets(_ insets: UIEdgeInsets) {
         scrollView.contentInset = insets
         scrollView.scrollIndicatorInsets = insets
+    }
+}
+
+extension PopupViewController: Categoriable {
+    func pass(category: Category) {
+        guard let annoation = annotation else {
+            return
+        }
+        annoation.category = category
+        updatePickerView(with: annoation)
     }
 }

@@ -27,7 +27,7 @@ class PhotoMarkCalloutView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = .clear
-        drawShadow(on: imageView)
+        drawShadow()
     }
     
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
@@ -106,19 +106,11 @@ class PhotoMarkCalloutView: UIView {
         return bezierPath
     }
     
-    private func drawShadow(on imageView: UIImageView) {
-        imageView.layer.shadowColor = UIColor.black.cgColor
-        imageView.layer.shadowOffset = CGSize(width: 0, height: 1)
-        imageView.layer.shadowOpacity = 0.2
-        imageView.layer.shadowRadius = 1.0
-        imageView.clipsToBounds = false
-    }
-    
     private func setupView() {
         if let annotation = annotation {
             imageView.image = annotation.image
             titleLabel.text = annotation.title
-            dateLabel.text = annotation.date.asString
+            dateLabel.text = annotation.date.toString(format: .standart)
         }
     }
     

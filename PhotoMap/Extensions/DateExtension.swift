@@ -8,11 +8,22 @@
 
 import Foundation
 
+enum Format {
+    case standart
+    case withTime
+}
+
 extension Date {
-    
-    var asString: String {
-        let format = DateFormatter()
-        format.dateFormat = "MM-dd-yyyy"
-        return format.string(from: self)
+    func toString(format: Format) -> String {
+        let dateFormater = DateFormatter()
+        switch format {
+        case .standart:
+            dateFormater.dateFormat = "MM-dd-yyyy"
+        case .withTime:
+            dateFormater.amSymbol = "am"
+            dateFormater.pmSymbol = "pm"
+            dateFormater.dateFormat = "MMMM d'th', yyyy - h:mm a"
+        }
+        return dateFormater.string(from: self)
     }
 }
