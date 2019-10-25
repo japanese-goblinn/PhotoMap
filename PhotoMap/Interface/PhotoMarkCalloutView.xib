@@ -18,19 +18,19 @@
                     <rect key="frame" x="0.0" y="0.0" width="220" height="81"/>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Custom " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v1t-hF-gBN">
-                    <rect key="frame" x="90" y="15" width="68" height="21"/>
+                    <rect key="frame" x="97" y="15" width="68" height="21"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hu8-FK-hsh">
-                    <rect key="frame" x="90" y="42" width="42" height="21"/>
+                    <rect key="frame" x="97" y="42" width="42" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test_image" translatesAutoresizingMaskIntoConstraints="NO" id="qTn-FL-ZC2">
-                    <rect key="frame" x="5" y="7" width="70" height="67"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test_image" translatesAutoresizingMaskIntoConstraints="NO" id="qTn-FL-ZC2">
+                    <rect key="frame" x="12" y="7" width="70" height="67"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="70" id="6bK-oS-8W0"/>
                         <constraint firstAttribute="height" constant="67" id="kgf-0T-Ar9"/>
@@ -56,7 +56,7 @@
                 <constraint firstItem="RWX-D7-Vsw" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="cdG-Ur-gnT"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="RWX-D7-Vsw" secondAttribute="bottom" constant="20" id="ntc-m7-f3m"/>
                 <constraint firstItem="v1t-hF-gBN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="r3M-Fm-VU8"/>
-                <constraint firstItem="qTn-FL-ZC2" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="5" id="xNm-hP-WQN"/>
+                <constraint firstItem="qTn-FL-ZC2" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="12" id="xNm-hP-WQN"/>
                 <constraint firstItem="RWX-D7-Vsw" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="z10-Oo-JUY"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>

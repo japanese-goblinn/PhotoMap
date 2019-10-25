@@ -194,7 +194,7 @@ extension MapViewController: MKMapViewDelegate {
         let mark = PhotoMarkAnnotation(
             title: "Default",
             date: Date(),
-            image: image,
+            image: #imageLiteral(resourceName: "test_image"),
             coordinate: coordinate,
             category: .uncategorized
         )

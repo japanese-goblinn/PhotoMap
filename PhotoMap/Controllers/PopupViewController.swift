@@ -14,6 +14,7 @@ class PopupViewController: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var imageContainerView: UIView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var pickerView: PickerCategoryView!
     @IBOutlet weak var dateLabel: UILabel!    
@@ -42,9 +43,9 @@ class PopupViewController: UIViewController {
         setOutletsData()
         setupPicker()
         setupTextField()
-        contentView.layer.cornerRadius = 4
+        contentView.layer.cornerRadius = 6
         view.drawShadow()
-        imageView.drawShadow()
+        imageContainerView.drawShadow()
     }
     
     deinit {
