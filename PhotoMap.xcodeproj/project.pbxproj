@@ -8,13 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		77494AF144EB3BF9A161893B /* Pods_PhotoMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F7238D9AFD2794E5404C2BE /* Pods_PhotoMap.framework */; };
+		CE11CC7D23618BBA007DA712 /* PickerCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE11CC7C23618BBA007DA712 /* PickerCategoryView.swift */; };
+		CE11CC7F23618BDE007DA712 /* PickerCategoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE11CC7E23618BDE007DA712 /* PickerCategoryView.xib */; };
+		CE1E7775236196F0006BAE84 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E7774236196F0006BAE84 /* UIViewExtension.swift */; };
+		CE1E777723619E14006BAE84 /* MapPinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E777623619E14006BAE84 /* MapPinView.swift */; };
 		CE30C710235DFC5600A82CC7 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE30C70E235DFC5600A82CC7 /* PopupViewController.swift */; };
 		CE30C711235DFC5600A82CC7 /* PopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE30C70F235DFC5600A82CC7 /* PopupViewController.xib */; };
 		CE30C713235E0CE500A82CC7 /* PhotoMarkAnnotationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE30C712235E0CE500A82CC7 /* PhotoMarkAnnotationDelegate.swift */; };
+		CE4C9FFD2362466200BEE776 /* Catigoriable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C9FFC2362466200BEE776 /* Catigoriable.swift */; };
+		CE4C9FFF2363734F00BEE776 /* CALayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C9FFE2363734F00BEE776 /* CALayerExtension.swift */; };
 		CE68746C234FC078002C3859 /* CheckboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE68746B234FC077002C3859 /* CheckboxView.swift */; };
+		CE72B31A2361D41F00FBDF03 /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE72B3182361D41F00FBDF03 /* PickerViewController.swift */; };
+		CE72B31B2361D41F00FBDF03 /* PickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE72B3192361D41F00FBDF03 /* PickerViewController.xib */; };
 		CE8395142346212B004963EC /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8395132346212B004963EC /* UIColorExtension.swift */; };
 		CED4A936234F2EAA004C9A22 /* CategoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED4A934234F2EAA004C9A22 /* CategoriesTableViewCell.swift */; };
 		CED4A937234F2EAA004C9A22 /* CategoriesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED4A935234F2EAA004C9A22 /* CategoriesTableViewCell.xib */; };
+		CEEBB4C923604B580033410C /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEBB4C723604B580033410C /* ImageViewController.swift */; };
+		CEEBB4CA23604B580033410C /* ImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEEBB4C823604B580033410C /* ImageViewController.xib */; };
 		CEF048EC234A45B60020900A /* PhotoMarkAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF048EB234A45B60020900A /* PhotoMarkAnnotationView.swift */; };
 		F3048D6C23475BC30034E9FC /* PhotoMarkAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3048D6B23475BC30034E9FC /* PhotoMarkAnnotation.swift */; };
 		F31584AC234486E700668288 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F31584AB234486E700668288 /* MapViewController.xib */; };
@@ -38,13 +48,23 @@
 		00C387C8437F2A88271BD3AB /* Pods-PhotoMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoMap.debug.xcconfig"; path = "Target Support Files/Pods-PhotoMap/Pods-PhotoMap.debug.xcconfig"; sourceTree = "<group>"; };
 		020AB289E26B09D225EBC8B0 /* Pods-PhotoMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoMap.release.xcconfig"; path = "Target Support Files/Pods-PhotoMap/Pods-PhotoMap.release.xcconfig"; sourceTree = "<group>"; };
 		7F7238D9AFD2794E5404C2BE /* Pods_PhotoMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE11CC7C23618BBA007DA712 /* PickerCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerCategoryView.swift; sourceTree = "<group>"; };
+		CE11CC7E23618BDE007DA712 /* PickerCategoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickerCategoryView.xib; sourceTree = "<group>"; };
+		CE1E7774236196F0006BAE84 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		CE1E777623619E14006BAE84 /* MapPinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPinView.swift; sourceTree = "<group>"; };
 		CE30C70E235DFC5600A82CC7 /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
 		CE30C70F235DFC5600A82CC7 /* PopupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupViewController.xib; sourceTree = "<group>"; };
 		CE30C712235E0CE500A82CC7 /* PhotoMarkAnnotationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoMarkAnnotationDelegate.swift; sourceTree = "<group>"; };
+		CE4C9FFC2362466200BEE776 /* Catigoriable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Catigoriable.swift; sourceTree = "<group>"; };
+		CE4C9FFE2363734F00BEE776 /* CALayerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayerExtension.swift; sourceTree = "<group>"; };
 		CE68746B234FC077002C3859 /* CheckboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxView.swift; sourceTree = "<group>"; };
+		CE72B3182361D41F00FBDF03 /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
+		CE72B3192361D41F00FBDF03 /* PickerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickerViewController.xib; sourceTree = "<group>"; };
 		CE8395132346212B004963EC /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		CED4A934234F2EAA004C9A22 /* CategoriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewCell.swift; sourceTree = "<group>"; };
 		CED4A935234F2EAA004C9A22 /* CategoriesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesTableViewCell.xib; sourceTree = "<group>"; };
+		CEEBB4C723604B580033410C /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
+		CEEBB4C823604B580033410C /* ImageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageViewController.xib; sourceTree = "<group>"; };
 		CEF048EB234A45B60020900A /* PhotoMarkAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoMarkAnnotationView.swift; sourceTree = "<group>"; };
 		F3048D6B23475BC30034E9FC /* PhotoMarkAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoMarkAnnotation.swift; sourceTree = "<group>"; };
 		F31584AB234486E700668288 /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
@@ -91,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				CE30C712235E0CE500A82CC7 /* PhotoMarkAnnotationDelegate.swift */,
+				CE4C9FFC2362466200BEE776 /* Catigoriable.swift */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -100,6 +121,8 @@
 			children = (
 				CE8395132346212B004963EC /* UIColorExtension.swift */,
 				F336FFCC234B5387006D2874 /* DateExtension.swift */,
+				CE1E7774236196F0006BAE84 /* UIViewExtension.swift */,
+				CE4C9FFE2363734F00BEE776 /* CALayerExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -110,6 +133,8 @@
 				CEF048EB234A45B60020900A /* PhotoMarkAnnotationView.swift */,
 				F3E22C99234DCDBE001216CB /* PhotoMarkCalloutView.swift */,
 				CE68746B234FC077002C3859 /* CheckboxView.swift */,
+				CE11CC7C23618BBA007DA712 /* PickerCategoryView.swift */,
+				CE1E777623619E14006BAE84 /* MapPinView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -139,6 +164,8 @@
 				F3E22C9D234DCE6E001216CB /* TimelineViewController.swift */,
 				F3E22CA1234DCE8D001216CB /* MoreViewController.swift */,
 				CE30C70E235DFC5600A82CC7 /* PopupViewController.swift */,
+				CEEBB4C723604B580033410C /* ImageViewController.swift */,
+				CE72B3182361D41F00FBDF03 /* PickerViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -150,9 +177,12 @@
 				F323D36D2347567400AE7E97 /* CategoriesViewController.xib */,
 				CED4A935234F2EAA004C9A22 /* CategoriesTableViewCell.xib */,
 				F33377AE2354A105002D01D7 /* PhotoMarkCalloutView.xib */,
+				CE30C70F235DFC5600A82CC7 /* PopupViewController.xib */,
+				CE11CC7E23618BDE007DA712 /* PickerCategoryView.xib */,
+				CE72B3192361D41F00FBDF03 /* PickerViewController.xib */,
 				F3E22C9E234DCE6E001216CB /* TimelineViewController.xib */,
 				F3E22CA2234DCE8D001216CB /* MoreViewController.xib */,
-				CE30C70F235DFC5600A82CC7 /* PopupViewController.xib */,
+				CEEBB4C823604B580033410C /* ImageViewController.xib */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -253,14 +283,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEEBB4CA23604B580033410C /* ImageViewController.xib in Resources */,
 				F31584AC234486E700668288 /* MapViewController.xib in Resources */,
 				CED4A937234F2EAA004C9A22 /* CategoriesTableViewCell.xib in Resources */,
 				F3E22CA4234DCE8D001216CB /* MoreViewController.xib in Resources */,
 				F3D8F91F2343A17900E0A378 /* Assets.xcassets in Resources */,
 				F3E22CA0234DCE6E001216CB /* TimelineViewController.xib in Resources */,
 				F33377AF2354A105002D01D7 /* PhotoMarkCalloutView.xib in Resources */,
+				CE11CC7F23618BDE007DA712 /* PickerCategoryView.xib in Resources */,
 				CE30C711235DFC5600A82CC7 /* PopupViewController.xib in Resources */,
 				F323D36F2347567400AE7E97 /* CategoriesViewController.xib in Resources */,
+				CE72B31B2361D41F00FBDF03 /* PickerViewController.xib in Resources */,
 				F31584AF2344A4E400668288 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -317,18 +350,25 @@
 				F3D8F91A2343A17900E0A378 /* MapViewController.swift in Sources */,
 				F3E22C9A234DCDBE001216CB /* PhotoMarkCalloutView.swift in Sources */,
 				F336FFCD234B5387006D2874 /* DateExtension.swift in Sources */,
+				CE11CC7D23618BBA007DA712 /* PickerCategoryView.swift in Sources */,
 				F3D8F9162343A17900E0A378 /* AppDelegate.swift in Sources */,
 				F3E22CA3234DCE8D001216CB /* MoreViewController.swift in Sources */,
+				CE1E7775236196F0006BAE84 /* UIViewExtension.swift in Sources */,
 				CE30C713235E0CE500A82CC7 /* PhotoMarkAnnotationDelegate.swift in Sources */,
+				CEEBB4C923604B580033410C /* ImageViewController.swift in Sources */,
 				CE30C710235DFC5600A82CC7 /* PopupViewController.swift in Sources */,
+				CE72B31A2361D41F00FBDF03 /* PickerViewController.swift in Sources */,
 				CED4A936234F2EAA004C9A22 /* CategoriesTableViewCell.swift in Sources */,
 				CEF048EC234A45B60020900A /* PhotoMarkAnnotationView.swift in Sources */,
 				CE68746C234FC078002C3859 /* CheckboxView.swift in Sources */,
 				F3048D6C23475BC30034E9FC /* PhotoMarkAnnotation.swift in Sources */,
 				F31A06A92345DB8500275231 /* Log.swift in Sources */,
 				CE8395142346212B004963EC /* UIColorExtension.swift in Sources */,
+				CE1E777723619E14006BAE84 /* MapPinView.swift in Sources */,
 				F323D36E2347567400AE7E97 /* CategoriesViewController.swift in Sources */,
 				F3E22C9F234DCE6E001216CB /* TimelineViewController.swift in Sources */,
+				CE4C9FFD2362466200BEE776 /* Catigoriable.swift in Sources */,
+				CE4C9FFF2363734F00BEE776 /* CALayerExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
