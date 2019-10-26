@@ -10,6 +10,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ImageViewController" customModule="PhotoMap" customModuleProvider="target">
             <connections>
+                <outlet property="contentLabel" destination="UPn-K8-x8v" id="MJf-ol-fXR"/>
+                <outlet property="dateLabel" destination="7qz-vw-uUU" id="qsq-eR-qZR"/>
+                <outlet property="footerView" destination="PMA-Xz-1Di" id="FeP-hY-gra"/>
+                <outlet property="imageView" destination="4CT-bk-Dbm" id="Efd-Wh-lx3"/>
+                <outlet property="imageViewBottomConstraint" destination="Kak-Zb-3vp" id="a1b-i0-Pyk"/>
+                <outlet property="imageViewLeadingConstraint" destination="aq5-X1-2Xk" id="Hj1-za-Ntp"/>
+                <outlet property="imageViewTopConstraint" destination="ceg-y6-ptR" id="Alo-Ah-ejg"/>
+                <outlet property="imageViewTrailingConstraint" destination="4SN-ve-eEX" id="fEr-t2-7uU"/>
+                <outlet property="scrollView" destination="NGd-aM-IMY" id="3c9-9T-iba"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,19 +27,74 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="koF-B6-MbN">
-                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NGd-aM-IMY">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test_image" translatesAutoresizingMaskIntoConstraints="NO" id="4CT-bk-Dbm">
+                            <rect key="frame" x="0.0" y="0.0" width="1313" height="1313"/>
+                            <gestureRecognizers/>
+                        </imageView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="4CT-bk-Dbm" secondAttribute="trailing" id="4SN-ve-eEX"/>
+                        <constraint firstAttribute="bottom" secondItem="4CT-bk-Dbm" secondAttribute="bottom" id="Kak-Zb-3vp"/>
+                        <constraint firstItem="4CT-bk-Dbm" firstAttribute="leading" secondItem="NGd-aM-IMY" secondAttribute="leading" id="aq5-X1-2Xk"/>
+                        <constraint firstItem="4CT-bk-Dbm" firstAttribute="top" secondItem="NGd-aM-IMY" secondAttribute="top" id="ceg-y6-ptR"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="JVO-Rj-cAi"/>
+                    </connections>
                 </scrollView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PMA-Xz-1Di">
+                    <rect key="frame" x="0.0" y="768" width="414" height="128"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UPn-K8-x8v">
+                            <rect key="frame" x="16" y="8" width="40" height="21"/>
+                            <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
+                            <color key="textColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7qz-vw-uUU">
+                            <rect key="frame" x="16" y="37" width="42" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.14509803921568626" green="0.14509803921568626" blue="0.14509803921568626" alpha="0.98656892123287676" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="128" id="02c-Pz-Ebw"/>
+                        <constraint firstItem="UPn-K8-x8v" firstAttribute="leading" secondItem="PMA-Xz-1Di" secondAttribute="leading" constant="16" id="Br0-3V-EsX"/>
+                        <constraint firstItem="7qz-vw-uUU" firstAttribute="leading" secondItem="UPn-K8-x8v" secondAttribute="leading" id="J1f-Ws-LmW"/>
+                        <constraint firstItem="UPn-K8-x8v" firstAttribute="top" secondItem="PMA-Xz-1Di" secondAttribute="top" constant="8" id="No1-W6-Jri"/>
+                        <constraint firstItem="7qz-vw-uUU" firstAttribute="top" secondItem="UPn-K8-x8v" secondAttribute="bottom" constant="8" id="a4b-dz-rfs"/>
+                    </constraints>
+                </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <gestureRecognizers/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="koF-B6-MbN" secondAttribute="bottom" id="MST-po-6uw"/>
-                <constraint firstItem="koF-B6-MbN" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="UZT-ol-s0N"/>
-                <constraint firstItem="koF-B6-MbN" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="ute-1s-SCd"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="koF-B6-MbN" secondAttribute="trailing" id="vVf-vo-bAW"/>
+                <constraint firstItem="NGd-aM-IMY" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ORP-8v-aDb"/>
+                <constraint firstItem="NGd-aM-IMY" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Xbn-0I-IJS"/>
+                <constraint firstItem="PMA-Xz-1Di" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="bDq-Zw-Tpe"/>
+                <constraint firstItem="NGd-aM-IMY" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="iP2-R8-el3"/>
+                <constraint firstAttribute="bottom" secondItem="PMA-Xz-1Di" secondAttribute="bottom" id="j6H-Le-1Iy"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="PMA-Xz-1Di" secondAttribute="trailing" id="mkw-6f-Luf"/>
+                <constraint firstAttribute="bottom" secondItem="NGd-aM-IMY" secondAttribute="bottom" id="oDC-qE-Cho"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="139" y="103"/>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="Mph-H8-8Pe" appends="YES" id="Fj3-V8-UEG"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="102.45535714285714"/>
         </view>
+        <tapGestureRecognizer id="Mph-H8-8Pe">
+            <connections>
+                <action selector="tapped:" destination="-1" id="Kcs-Km-8DP"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
+    <resources>
+        <image name="test_image" width="1313" height="1313"/>
+    </resources>
 </document>

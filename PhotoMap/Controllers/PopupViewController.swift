@@ -37,6 +37,12 @@ class PopupViewController: UIViewController {
         present(picker, animated: true)
     }
     
+    @IBAction func imagePressed(_ sender: UITapGestureRecognizer) {
+        let imageVC = ImageViewController()
+        imageVC.annoation = annotation
+        navigationController?.pushViewController(imageVC, animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         activateKeyboardHandler()

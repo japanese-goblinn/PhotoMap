@@ -268,9 +268,10 @@ extension MapViewController: UIImagePickerControllerDelegate, UINavigationContro
 extension MapViewController: PhotoMarkAnnotationDelegate {
     func pass(annotation: PhotoMarkAnnotation?) {
         let popup = PopupViewController()
-        popup.modalPresentationStyle = .overCurrentContext
-        popup.modalTransitionStyle = .crossDissolve
         popup.annotation = annotation
-        present(popup, animated: true)
+        let nav = UINavigationController(rootViewController: popup)
+        nav.isNavigationBarHidden = true
+        nav.modalPresentationStyle = .overFullScreen
+        present(nav, animated: true)
     }
 }
