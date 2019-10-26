@@ -16,6 +16,7 @@ class PhotoMarkCalloutView: UIView {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var imageContainerView: UIView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var detailsButton: UIButton!
     @IBOutlet weak var backgroundView: UIView!
@@ -27,7 +28,7 @@ class PhotoMarkCalloutView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = .clear
-        drawShadow()
+        imageContainerView.drawShadow()
     }
     
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {

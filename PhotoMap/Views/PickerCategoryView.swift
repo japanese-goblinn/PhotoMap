@@ -10,7 +10,7 @@ import UIKit
 
 class PickerCategoryView: UIView {
 
-    @IBOutlet var contentView: UIView!
+    @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var annotationView: MapPinView!
     @IBOutlet weak var categorieLabel: UILabel!
     

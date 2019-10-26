@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PhotoMarkCalloutView" customModule="PhotoMap" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PhotoMarkCalloutView" customModule="PhotoMap" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="220" height="101"/>
@@ -16,6 +16,29 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RWX-D7-Vsw">
                     <rect key="frame" x="0.0" y="0.0" width="220" height="81"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="edl-IP-4j3">
+                            <rect key="frame" x="12" y="9" width="68" height="63"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2iQ-Zd-Xmc">
+                                    <rect key="frame" x="0.0" y="0.0" width="68" height="63"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="68" id="3vd-ch-iXh"/>
+                                <constraint firstAttribute="bottom" secondItem="2iQ-Zd-Xmc" secondAttribute="bottom" id="7GP-9C-KMN"/>
+                                <constraint firstItem="2iQ-Zd-Xmc" firstAttribute="leading" secondItem="edl-IP-4j3" secondAttribute="leading" id="anU-L6-zHt"/>
+                                <constraint firstItem="2iQ-Zd-Xmc" firstAttribute="top" secondItem="edl-IP-4j3" secondAttribute="top" id="bic-mG-KoW"/>
+                                <constraint firstAttribute="trailing" secondItem="2iQ-Zd-Xmc" secondAttribute="trailing" id="wak-Qw-u96"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="edl-IP-4j3" firstAttribute="leading" secondItem="RWX-D7-Vsw" secondAttribute="leading" constant="12" id="grd-C5-e4g"/>
+                        <constraint firstItem="edl-IP-4j3" firstAttribute="top" secondItem="RWX-D7-Vsw" secondAttribute="top" constant="9" id="tD6-B9-u95"/>
+                        <constraint firstItem="edl-IP-4j3" firstAttribute="centerY" secondItem="RWX-D7-Vsw" secondAttribute="centerY" id="uDZ-6n-FbG"/>
+                    </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Custom " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v1t-hF-gBN">
                     <rect key="frame" x="97" y="15" width="68" height="21"/>
@@ -29,13 +52,6 @@
                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test_image" translatesAutoresizingMaskIntoConstraints="NO" id="qTn-FL-ZC2">
-                    <rect key="frame" x="12" y="7" width="70" height="67"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="70" id="6bK-oS-8W0"/>
-                        <constraint firstAttribute="height" constant="67" id="kgf-0T-Ar9"/>
-                    </constraints>
-                </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HRI-PT-ube">
                     <rect key="frame" x="195.5" y="27.5" width="15.5" height="26.5"/>
                     <state key="normal" image="arrow"/>
@@ -46,17 +62,15 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="HRI-PT-ube" firstAttribute="centerY" secondItem="qTn-FL-ZC2" secondAttribute="centerY" id="2WU-Bg-NEr"/>
                 <constraint firstItem="hu8-FK-hsh" firstAttribute="top" secondItem="v1t-hF-gBN" secondAttribute="bottom" constant="6" id="FRX-h0-fyX"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="HRI-PT-ube" secondAttribute="trailing" constant="9" id="NAr-oJ-A2x"/>
-                <constraint firstItem="qTn-FL-ZC2" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="7" id="QJy-AI-Keu"/>
-                <constraint firstItem="v1t-hF-gBN" firstAttribute="leading" secondItem="qTn-FL-ZC2" secondAttribute="trailing" constant="15" id="UZm-pu-KdG"/>
                 <constraint firstItem="hu8-FK-hsh" firstAttribute="leading" secondItem="v1t-hF-gBN" secondAttribute="leading" id="WGz-u3-qYl"/>
                 <constraint firstItem="RWX-D7-Vsw" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="bvW-1g-MEl"/>
                 <constraint firstItem="RWX-D7-Vsw" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="cdG-Ur-gnT"/>
+                <constraint firstItem="HRI-PT-ube" firstAttribute="centerY" secondItem="edl-IP-4j3" secondAttribute="centerY" id="k2b-Lk-PsS"/>
+                <constraint firstItem="v1t-hF-gBN" firstAttribute="leading" secondItem="edl-IP-4j3" secondAttribute="trailing" constant="17" id="k8a-77-czn"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="RWX-D7-Vsw" secondAttribute="bottom" constant="20" id="ntc-m7-f3m"/>
                 <constraint firstItem="v1t-hF-gBN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="r3M-Fm-VU8"/>
-                <constraint firstItem="qTn-FL-ZC2" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="12" id="xNm-hP-WQN"/>
                 <constraint firstItem="RWX-D7-Vsw" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="z10-Oo-JUY"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
@@ -67,7 +81,8 @@
                 <outlet property="backgroundView" destination="RWX-D7-Vsw" id="2vv-eb-kNo"/>
                 <outlet property="dateLabel" destination="hu8-FK-hsh" id="3qp-CB-OOy"/>
                 <outlet property="detailsButton" destination="HRI-PT-ube" id="qEE-4z-ab3"/>
-                <outlet property="imageView" destination="qTn-FL-ZC2" id="tMs-Yu-saU"/>
+                <outlet property="imageContainerView" destination="edl-IP-4j3" id="lcF-bi-F6D"/>
+                <outlet property="imageView" destination="2iQ-Zd-Xmc" id="kJp-3c-YZV"/>
                 <outlet property="titleLabel" destination="v1t-hF-gBN" id="RAZ-sD-gZO"/>
             </connections>
             <point key="canvasLocation" x="-207.24637681159422" y="-345.20089285714283"/>
@@ -75,6 +90,5 @@
     </objects>
     <resources>
         <image name="arrow" width="15.5" height="26.5"/>
-        <image name="test_image" width="1313" height="1313"/>
     </resources>
 </document>
