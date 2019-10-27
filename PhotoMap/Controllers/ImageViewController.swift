@@ -24,7 +24,7 @@ class ImageViewController: UIViewController {
     
     @IBAction func tapped(_ sender: UITapGestureRecognizer) {
         navigationController?.isNavigationBarHidden.toggle()
-        footerView.isHidden = !footerView.isHidden
+        footerView.isHidden.toggle()
     }
     
     override func viewDidLoad() {
@@ -32,7 +32,7 @@ class ImageViewController: UIViewController {
         setupNavigationbar()
         setupOutletsData()
         addDoubleTapGesterRecognizer()
-         scrollView.maximumZoomScale = 4
+        scrollView.maximumZoomScale = 4
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -72,49 +72,47 @@ class ImageViewController: UIViewController {
             to: CGRect(
                 x: point.x,
                 y: point.y,
-                width: scrollView.minimumZoomScale * 2,
-                height: scrollView.minimumZoomScale * 2
+                width: scrollView.maximumZoomScale,
+                height: scrollView.maximumZoomScale
             ),
             animated: true
         )
     }
-    
 }
 
 extension ImageViewController: UIScrollViewDelegate {
     
     override func viewWillLayoutSubviews() {
-      super.viewWillLayoutSubviews()
-      updateMinZoomScaleForSize(view.bounds.size)
+        super.viewWillLayoutSubviews()
+        updateMinZoomScaleForSize(view.bounds.size)
     }
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-      return imageView
+        return imageView
     }
 
-    fileprivate func updateMinZoomScaleForSize(_ size: CGSize) {
-      let widthScale = size.width / imageView.bounds.width
-      let heightScale = size.height / imageView.bounds.height
-      let minScale = min(widthScale, heightScale)
-        
-      scrollView.minimumZoomScale = minScale
-      scrollView.zoomScale = minScale
+    func scrollViewDidZoom(_ scrollView: UIScrollView) {
+        updateConstraintsForSize(view.bounds.size)
+    }
+
+    private func updateMinZoomScaleForSize(_ size: CGSize) {
+        let widthScale = size.width / imageView.bounds.width
+        let heightScale = size.height / imageView.bounds.height
+        let minScale = min(widthScale, heightScale)
+        scrollView.minimumZoomScale = minScale
+        scrollView.zoomScale = minScale
     }
     
-    func scrollViewDidZoom(_ scrollView: UIScrollView) {
-      updateConstraintsForSize(view.bounds.size)
-    }
-
-    fileprivate func updateConstraintsForSize(_ size: CGSize) {
+    private func updateConstraintsForSize(_ size: CGSize) {
+        let yOffset = max(0, (size.height - imageView.frame.height) / 2)
+        scrollView.contentOffset.y = yOffset
+        imageViewTopConstraint.constant = yOffset
+        imageViewBottomConstraint.constant = yOffset
         
-      let yOffset = max(0, (size.height - imageView.frame.height) / 2)
-      imageViewTopConstraint.constant = yOffset
-      imageViewBottomConstraint.constant = yOffset
+        let xOffset = max(0, (size.width - imageView.frame.width) / 2)
+        imageViewLeadingConstraint.constant = xOffset
+        imageViewTrailingConstraint.constant = xOffset
         
-      let xOffset = max(0, (size.width - imageView.frame.width) / 2)
-      imageViewLeadingConstraint.constant = xOffset
-      imageViewTrailingConstraint.constant = xOffset
-        
-      view.layoutIfNeeded()
+        view.layoutIfNeeded()
     }
 }
