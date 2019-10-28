@@ -1,21 +1,15 @@
 //
-//  DateExtension.swift
+//  StringExtension.swift
 //  PhotoMap
 //
-//  Created by Kiryl Harbachonak on 10/7/19.
+//  Created by Kirill Gorbachyonok on 10/28/19.
 //  Copyright © 2019 Kiryl Harbachonak. All rights reserved.
 //
 
 import Foundation
 
-enum Format {
-    case standart
-    case monthAndYear
-    case full
-}
-
-extension Date {
-    func toString(with format: Format) -> String {
+extension String {
+    func toDate(with format: Format) -> Date? {
         let dateFormater = DateFormatter()
         switch format {
         case .standart:
@@ -27,6 +21,6 @@ extension Date {
         case .monthAndYear:
             dateFormater.dateFormat = "MMMM yyyy"
         }
-        return dateFormater.string(from: self)
+        return dateFormater.date(from: self)
     }
 }

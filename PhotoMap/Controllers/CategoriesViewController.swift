@@ -15,16 +15,21 @@ class CategoriesViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     
     private lazy var tintColor = UIColor(hex: "#5ca1e1")
+    lazy var categories = [Category]()
+    weak var delegate: Filterable?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTableView()
+        setupNavigationBar()
+    }
+    
+    private func setupTableView() {
         tableView.tableFooterView = UIView()
         tableView.register(
             UINib(nibName: "CategoriesTableViewCell", bundle: nil),
             forCellReuseIdentifier: "categoriesCell"
         )
-        setupNavigationBar()
-        
     }
         
     private func setupNavigationBar() {
@@ -49,7 +54,29 @@ class CategoriesViewController: UIViewController {
     }
     
     @objc private func donePressed(_ sender: UIBarButtonItem) {
+        delegate?.filter(by: categories)
         dismiss(animated: true)
+    }
+    
+    private func addTapGesterRecognizer(for cell: CategoriesTableViewCell) {
+        let checkBoxTouchGester = UITapGestureRecognizer(
+            target: self,
+            action: #selector(checkBoxPressed(_:))
+        )
+        cell.categoryCheckbox.addGestureRecognizer(checkBoxTouchGester)
+    }
+    
+    @objc func checkBoxPressed(_ sender: UITapGestureRecognizer) {
+        guard let checkbox = sender.view as? CheckboxView else {
+            return
+        }
+        checkbox.isChecked.toggle()
+        if !categories.contains(checkbox.categorie) {
+            categories.append(checkbox.categorie)
+        } else {
+            let index = categories.firstIndex(of: checkbox.categorie)!
+            categories.remove(at: index)
+        }
     }
 }
 
@@ -64,11 +91,22 @@ extension CategoriesViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "categoriesCell", for: indexPath) as! CategoriesTableViewCell
+        
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: "categoriesCell",
+            for: indexPath
+        ) as! CategoriesTableViewCell
+        
+        addTapGesterRecognizer(for: cell)
         let category = Category.allCases[indexPath.row]
         cell.categoryLabel.text = category.asString.uppercased()
         cell.categoryLabel.textColor = category.color
-        cell.categoryCheckbox.color = category.color
+        cell.categoryCheckbox.categorie = category
+        if categories.contains(category) {
+            cell.categoryCheckbox.isChecked = true
+        } else {
+            cell.categoryCheckbox.isChecked = false
+        }
         return cell
     }
 }

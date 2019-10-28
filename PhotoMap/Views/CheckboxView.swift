@@ -12,17 +12,20 @@ import CoreGraphics
 @IBDesignable
 class CheckboxView: UIView {
     
-    @IBInspectable var color: UIColor = .white {
+    var categorie: Category = .uncategorized {
+        willSet {
+            color = newValue.color
+            setNeedsDisplay()
+        }
+    }
+    
+    @IBInspectable var isChecked: Bool = false {
         didSet {
             setNeedsDisplay()
         }
     }
     
-    @IBInspectable var isChecked: Bool = true {
-        didSet {
-            setNeedsDisplay()
-        }
-    }
+    @IBInspectable var color: UIColor = .white
     
     override func draw(_ rect: CGRect) {
         let path = UIBezierPath(
@@ -34,11 +37,11 @@ class CheckboxView: UIView {
             )
         )
         if isChecked {
-            color.setStroke()
-            path.stroke()
-        } else {
             color.setFill()
             path.fill()
+        } else {
+            color.setStroke()
+            path.stroke()
         }
     }
 }

@@ -62,7 +62,7 @@ class PopupViewController: UIViewController {
         if let annotation = annotation {
             imageView.image = annotation.image
             contentTextView.text = annotation.title
-            dateLabel.text = annotation.date.toString(format: .withTime)
+            dateLabel.text = annotation.date.toString(with: .full)
             updatePickerView(with: annotation)
         }
     }

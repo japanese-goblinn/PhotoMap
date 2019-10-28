@@ -20,11 +20,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let tabBarController = UITabBarController()
         let mapViewController = MapViewController()
-        mapViewController.tabBarItem = UITabBarItem(title: "Map", image: #imageLiteral(resourceName: "compass"), tag: 0)
-        let timelineViewController = TimelineViewController()
-        timelineViewController.tabBarItem = UITabBarItem(title: "Timeline", image: #imageLiteral(resourceName: "timeline"), tag: 1)
+        let timelineViewController = UINavigationController(
+            rootViewController: TimelineViewController()
+        )
+        timelineViewController.navigationBar.barTintColor = .white
         let moreViewController = MoreViewController()
+        
+        mapViewController.tabBarItem = UITabBarItem(title: "Map", image: #imageLiteral(resourceName: "compass"), tag: 0)
+        timelineViewController.tabBarItem = UITabBarItem(title: "Timeline", image: #imageLiteral(resourceName: "timeline"), tag: 1)
         moreViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 2)
+        
         tabBarController.viewControllers = [
             mapViewController,
             timelineViewController,

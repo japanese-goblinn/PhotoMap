@@ -48,7 +48,7 @@ class PhotoMarkAnnotation: NSObject, MKAnnotation {
     let coordinate: CLLocationCoordinate2D
     
     init(
-        title: String,
+        title: String?,
         date: Date,
         image: UIImage?,
         coordinate: CLLocationCoordinate2D,

@@ -15,22 +15,9 @@ class CategoriesTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        addTapGesterRecognizer()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-    }
-    
-    private func addTapGesterRecognizer() {
-        let checkBoxTouchGester = UITapGestureRecognizer(
-            target: self,
-            action: #selector(checkBoxPressed(_:))
-        )
-        categoryCheckbox.addGestureRecognizer(checkBoxTouchGester)
-    }
-    
-    @objc private func checkBoxPressed(_ sender: UITapGestureRecognizer) {
-        categoryCheckbox.isChecked = !categoryCheckbox.isChecked
     }
 }

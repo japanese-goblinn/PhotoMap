@@ -111,7 +111,7 @@ class PhotoMarkCalloutView: UIView {
         if let annotation = annotation {
             imageView.image = annotation.image
             titleLabel.text = annotation.title
-            dateLabel.text = annotation.date.toString(format: .standart)
+            dateLabel.text = annotation.date.toString(with: .standart)
         }
     }
     

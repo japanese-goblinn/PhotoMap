@@ -32,28 +32,28 @@ class ImageViewController: UIViewController {
         setupNavigationbar()
         setupOutletsData()
         addDoubleTapGesterRecognizer()
-        scrollView.maximumZoomScale = 4
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        navigationController?.isNavigationBarHidden.toggle()
+        navigationController?.navigationBar.barTintColor = .white
+        navigationController?.navigationBar.tintColor = .systemBlue
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        navigationController?.isNavigationBarHidden.toggle()
+        setupNavigationbar()
     }
     
     private func setupNavigationbar() {
-        navigationController?.navigationBar.barTintColor = .black
+        navigationController?.navigationBar.barTintColor = UIColor(hex: "#252525")
         navigationController?.navigationBar.tintColor = .white
     }
     
     private func setupOutletsData() {
         if let annotation = annoation {
             contentLabel.text = annotation.title
-            dateLabel.text = annotation.date.toString(format: .withTime)
+            dateLabel.text = annotation.date.toString(with: .full)
             imageView.image = annotation.image
         }
     }
@@ -72,8 +72,8 @@ class ImageViewController: UIViewController {
             to: CGRect(
                 x: point.x,
                 y: point.y,
-                width: scrollView.maximumZoomScale,
-                height: scrollView.maximumZoomScale
+                width: scrollView.minimumZoomScale,
+                height: scrollView.minimumZoomScale
             ),
             animated: true
         )

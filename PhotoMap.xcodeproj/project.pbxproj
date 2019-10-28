@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		77494AF144EB3BF9A161893B /* Pods_PhotoMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F7238D9AFD2794E5404C2BE /* Pods_PhotoMap.framework */; };
+		CE02E9822366F3D90018B37E /* TimelineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE02E9802366F3D90018B37E /* TimelineTableViewCell.swift */; };
+		CE02E9832366F3D90018B37E /* TimelineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE02E9812366F3D90018B37E /* TimelineTableViewCell.xib */; };
 		CE11CC7D23618BBA007DA712 /* PickerCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE11CC7C23618BBA007DA712 /* PickerCategoryView.swift */; };
 		CE11CC7F23618BDE007DA712 /* PickerCategoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE11CC7E23618BDE007DA712 /* PickerCategoryView.xib */; };
 		CE1E7775236196F0006BAE84 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E7774236196F0006BAE84 /* UIViewExtension.swift */; };
@@ -21,6 +23,8 @@
 		CE72B31A2361D41F00FBDF03 /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE72B3182361D41F00FBDF03 /* PickerViewController.swift */; };
 		CE72B31B2361D41F00FBDF03 /* PickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE72B3192361D41F00FBDF03 /* PickerViewController.xib */; };
 		CE8395142346212B004963EC /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8395132346212B004963EC /* UIColorExtension.swift */; };
+		CE932B6A236758D200163EFA /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE932B69236758D200163EFA /* StringExtension.swift */; };
+		CE932B6C2367824500163EFA /* Filterable .swift in Sources */ = {isa = PBXBuildFile; fileRef = CE932B6B2367824500163EFA /* Filterable .swift */; };
 		CED4A936234F2EAA004C9A22 /* CategoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED4A934234F2EAA004C9A22 /* CategoriesTableViewCell.swift */; };
 		CED4A937234F2EAA004C9A22 /* CategoriesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED4A935234F2EAA004C9A22 /* CategoriesTableViewCell.xib */; };
 		CEEBB4C923604B580033410C /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEBB4C723604B580033410C /* ImageViewController.swift */; };
@@ -48,6 +52,8 @@
 		00C387C8437F2A88271BD3AB /* Pods-PhotoMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoMap.debug.xcconfig"; path = "Target Support Files/Pods-PhotoMap/Pods-PhotoMap.debug.xcconfig"; sourceTree = "<group>"; };
 		020AB289E26B09D225EBC8B0 /* Pods-PhotoMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoMap.release.xcconfig"; path = "Target Support Files/Pods-PhotoMap/Pods-PhotoMap.release.xcconfig"; sourceTree = "<group>"; };
 		7F7238D9AFD2794E5404C2BE /* Pods_PhotoMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE02E9802366F3D90018B37E /* TimelineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineTableViewCell.swift; sourceTree = "<group>"; };
+		CE02E9812366F3D90018B37E /* TimelineTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimelineTableViewCell.xib; sourceTree = "<group>"; };
 		CE11CC7C23618BBA007DA712 /* PickerCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerCategoryView.swift; sourceTree = "<group>"; };
 		CE11CC7E23618BDE007DA712 /* PickerCategoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickerCategoryView.xib; sourceTree = "<group>"; };
 		CE1E7774236196F0006BAE84 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
@@ -61,6 +67,8 @@
 		CE72B3182361D41F00FBDF03 /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
 		CE72B3192361D41F00FBDF03 /* PickerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickerViewController.xib; sourceTree = "<group>"; };
 		CE8395132346212B004963EC /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		CE932B69236758D200163EFA /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		CE932B6B2367824500163EFA /* Filterable .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Filterable .swift"; sourceTree = "<group>"; };
 		CED4A934234F2EAA004C9A22 /* CategoriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewCell.swift; sourceTree = "<group>"; };
 		CED4A935234F2EAA004C9A22 /* CategoriesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesTableViewCell.xib; sourceTree = "<group>"; };
 		CEEBB4C723604B580033410C /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +120,7 @@
 			children = (
 				CE30C712235E0CE500A82CC7 /* PhotoMarkAnnotationDelegate.swift */,
 				CE4C9FFC2362466200BEE776 /* Catigoriable.swift */,
+				CE932B6B2367824500163EFA /* Filterable .swift */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -123,6 +132,7 @@
 				F336FFCC234B5387006D2874 /* DateExtension.swift */,
 				CE1E7774236196F0006BAE84 /* UIViewExtension.swift */,
 				CE4C9FFE2363734F00BEE776 /* CALayerExtension.swift */,
+				CE932B69236758D200163EFA /* StringExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -162,10 +172,11 @@
 				F323D36C2347567400AE7E97 /* CategoriesViewController.swift */,
 				CED4A934234F2EAA004C9A22 /* CategoriesTableViewCell.swift */,
 				F3E22C9D234DCE6E001216CB /* TimelineViewController.swift */,
-				F3E22CA1234DCE8D001216CB /* MoreViewController.swift */,
+				CE02E9802366F3D90018B37E /* TimelineTableViewCell.swift */,
 				CE30C70E235DFC5600A82CC7 /* PopupViewController.swift */,
-				CEEBB4C723604B580033410C /* ImageViewController.swift */,
 				CE72B3182361D41F00FBDF03 /* PickerViewController.swift */,
+				CEEBB4C723604B580033410C /* ImageViewController.swift */,
+				F3E22CA1234DCE8D001216CB /* MoreViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -181,6 +192,7 @@
 				CE11CC7E23618BDE007DA712 /* PickerCategoryView.xib */,
 				CE72B3192361D41F00FBDF03 /* PickerViewController.xib */,
 				F3E22C9E234DCE6E001216CB /* TimelineViewController.xib */,
+				CE02E9812366F3D90018B37E /* TimelineTableViewCell.xib */,
 				F3E22CA2234DCE8D001216CB /* MoreViewController.xib */,
 				CEEBB4C823604B580033410C /* ImageViewController.xib */,
 			);
@@ -293,6 +305,7 @@
 				CE11CC7F23618BDE007DA712 /* PickerCategoryView.xib in Resources */,
 				CE30C711235DFC5600A82CC7 /* PopupViewController.xib in Resources */,
 				F323D36F2347567400AE7E97 /* CategoriesViewController.xib in Resources */,
+				CE02E9832366F3D90018B37E /* TimelineTableViewCell.xib in Resources */,
 				CE72B31B2361D41F00FBDF03 /* PickerViewController.xib in Resources */,
 				F31584AF2344A4E400668288 /* GoogleService-Info.plist in Resources */,
 			);
@@ -355,6 +368,7 @@
 				F3E22CA3234DCE8D001216CB /* MoreViewController.swift in Sources */,
 				CE1E7775236196F0006BAE84 /* UIViewExtension.swift in Sources */,
 				CE30C713235E0CE500A82CC7 /* PhotoMarkAnnotationDelegate.swift in Sources */,
+				CE02E9822366F3D90018B37E /* TimelineTableViewCell.swift in Sources */,
 				CEEBB4C923604B580033410C /* ImageViewController.swift in Sources */,
 				CE30C710235DFC5600A82CC7 /* PopupViewController.swift in Sources */,
 				CE72B31A2361D41F00FBDF03 /* PickerViewController.swift in Sources */,
@@ -363,9 +377,11 @@
 				CE68746C234FC078002C3859 /* CheckboxView.swift in Sources */,
 				F3048D6C23475BC30034E9FC /* PhotoMarkAnnotation.swift in Sources */,
 				F31A06A92345DB8500275231 /* Log.swift in Sources */,
+				CE932B6C2367824500163EFA /* Filterable .swift in Sources */,
 				CE8395142346212B004963EC /* UIColorExtension.swift in Sources */,
 				CE1E777723619E14006BAE84 /* MapPinView.swift in Sources */,
 				F323D36E2347567400AE7E97 /* CategoriesViewController.swift in Sources */,
+				CE932B6A236758D200163EFA /* StringExtension.swift in Sources */,
 				F3E22C9F234DCE6E001216CB /* TimelineViewController.swift in Sources */,
 				CE4C9FFD2362466200BEE776 /* Catigoriable.swift in Sources */,
 				CE4C9FFF2363734F00BEE776 /* CALayerExtension.swift in Sources */,
