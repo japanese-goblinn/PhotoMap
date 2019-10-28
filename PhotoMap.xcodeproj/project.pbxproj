@@ -24,7 +24,7 @@
 		CE72B31B2361D41F00FBDF03 /* PickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE72B3192361D41F00FBDF03 /* PickerViewController.xib */; };
 		CE8395142346212B004963EC /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8395132346212B004963EC /* UIColorExtension.swift */; };
 		CE932B6A236758D200163EFA /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE932B69236758D200163EFA /* StringExtension.swift */; };
-		CE932B6C2367824500163EFA /* Filterable .swift in Sources */ = {isa = PBXBuildFile; fileRef = CE932B6B2367824500163EFA /* Filterable .swift */; };
+		CE932B6C2367824500163EFA /* Filterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE932B6B2367824500163EFA /* Filterable.swift */; };
 		CED4A936234F2EAA004C9A22 /* CategoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED4A934234F2EAA004C9A22 /* CategoriesTableViewCell.swift */; };
 		CED4A937234F2EAA004C9A22 /* CategoriesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED4A935234F2EAA004C9A22 /* CategoriesTableViewCell.xib */; };
 		CEEBB4C923604B580033410C /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEBB4C723604B580033410C /* ImageViewController.swift */; };
@@ -68,7 +68,7 @@
 		CE72B3192361D41F00FBDF03 /* PickerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickerViewController.xib; sourceTree = "<group>"; };
 		CE8395132346212B004963EC /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		CE932B69236758D200163EFA /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
-		CE932B6B2367824500163EFA /* Filterable .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Filterable .swift"; sourceTree = "<group>"; };
+		CE932B6B2367824500163EFA /* Filterable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filterable.swift; sourceTree = "<group>"; };
 		CED4A934234F2EAA004C9A22 /* CategoriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewCell.swift; sourceTree = "<group>"; };
 		CED4A935234F2EAA004C9A22 /* CategoriesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesTableViewCell.xib; sourceTree = "<group>"; };
 		CEEBB4C723604B580033410C /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
@@ -120,7 +120,7 @@
 			children = (
 				CE30C712235E0CE500A82CC7 /* PhotoMarkAnnotationDelegate.swift */,
 				CE4C9FFC2362466200BEE776 /* Catigoriable.swift */,
-				CE932B6B2367824500163EFA /* Filterable .swift */,
+				CE932B6B2367824500163EFA /* Filterable.swift */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -377,7 +377,7 @@
 				CE68746C234FC078002C3859 /* CheckboxView.swift in Sources */,
 				F3048D6C23475BC30034E9FC /* PhotoMarkAnnotation.swift in Sources */,
 				F31A06A92345DB8500275231 /* Log.swift in Sources */,
-				CE932B6C2367824500163EFA /* Filterable .swift in Sources */,
+				CE932B6C2367824500163EFA /* Filterable.swift in Sources */,
 				CE8395142346212B004963EC /* UIColorExtension.swift in Sources */,
 				CE1E777723619E14006BAE84 /* MapPinView.swift in Sources */,
 				F323D36E2347567400AE7E97 /* CategoriesViewController.swift in Sources */,
