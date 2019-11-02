@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 import MapKit
+import Firebase
+import FirebaseStorage
 
 enum Category: CaseIterable {
     
@@ -37,23 +39,38 @@ enum Category: CaseIterable {
             return UIColor(hex: "#368EDF")
         }
     }
+    
+    static func toCategory(from category: String) -> Category? {
+        switch category {
+        case "friends":
+            return .friends
+        case "nature":
+            return .nature
+        case "default":
+            return .uncategorized
+        default:
+            return nil
+        }
+    }
 }
 
 class PhotoMarkAnnotation: NSObject, MKAnnotation {
-    
+    let id: String
     let title: String?
     let date: Date
-    let image: UIImage?
+    let image: UIImage
     var category: Category
     let coordinate: CLLocationCoordinate2D
     
     init(
+        id: String = UUID().uuidString,
         title: String?,
         date: Date,
-        image: UIImage?,
+        image: UIImage,
         coordinate: CLLocationCoordinate2D,
         category: Category
     ) {
+        self.id = id
         self.title = title
         self.date = date
         self.image = image

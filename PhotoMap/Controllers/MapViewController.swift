@@ -10,6 +10,7 @@ import UIKit
 import os
 import MapKit
 import CoreLocation
+import Firebase
 
 enum NavigationMode {
     case discover
@@ -21,6 +22,7 @@ class MapViewController: UIViewController {
     @IBOutlet private weak var mapView: MKMapView!
     @IBOutlet private weak var navigationModeButton: UIButton!
     
+    private let dbRef = Database.database().reference(withPath: "annotations")
     private let locationManager = CLLocationManager()
     private let scale: CLLocationDistance = 5000
     private var navigationMode: NavigationMode = .follow
@@ -33,6 +35,7 @@ class MapViewController: UIViewController {
         mapView.delegate = self
         enableMapCenterOnUserPan()
         checkLocationServices()
+        initData()
     }
     
     @IBAction private func categoriesButtonPressed(_ sender: UIButton) {
@@ -47,6 +50,19 @@ class MapViewController: UIViewController {
             checkNavigationMode()
         case .follow:
             setNavigation(to: .discover)
+        }
+    }
+    
+    private func initData() {
+        dbRef.observeSingleEvent(of: .value) { snapshot in
+            for child in snapshot.children {
+                let snap = child as! DataSnapshot
+                AnnoationDownloader.getAnnotation(from: snap) { annotation in
+                    DispatchQueue.main.async { [weak self] in
+                        self?.mapView.addAnnotation(annotation)
+                    }
+                }
+            }
         }
     }
     
@@ -198,7 +214,14 @@ extension MapViewController: MKMapViewDelegate {
             coordinate: coordinate,
             category: .uncategorized
         )
-        mapView.addAnnotation(mark)
+        self.mapView.addAnnotation(mark)
+        DispatchQueue.global().async { [weak mark] in
+            guard let mark = mark else {
+                print("MARK IS NIL")
+                return
+            }
+            AnnotationUploader.upload(annotation: mark)
+        }
     }
 }
 
