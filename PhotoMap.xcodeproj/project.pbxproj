@@ -19,7 +19,6 @@
 		CE30C713235E0CE500A82CC7 /* PhotoMarkAnnotationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE30C712235E0CE500A82CC7 /* PhotoMarkAnnotationDelegate.swift */; };
 		CE4C9FFD2362466200BEE776 /* Catigoriable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C9FFC2362466200BEE776 /* Catigoriable.swift */; };
 		CE4C9FFF2363734F00BEE776 /* CALayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C9FFE2363734F00BEE776 /* CALayerExtension.swift */; };
-		CE65AC6B23682BDE00F559E5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE65AC6A23682BDE00F559E5 /* GoogleService-Info.plist */; };
 		CE68746C234FC078002C3859 /* CheckboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE68746B234FC077002C3859 /* CheckboxView.swift */; };
 		CE72B31A2361D41F00FBDF03 /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE72B3182361D41F00FBDF03 /* PickerViewController.swift */; };
 		CE72B31B2361D41F00FBDF03 /* PickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE72B3192361D41F00FBDF03 /* PickerViewController.xib */; };
@@ -28,6 +27,7 @@
 		CE932B6C2367824500163EFA /* Filterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE932B6B2367824500163EFA /* Filterable.swift */; };
 		CED4A936234F2EAA004C9A22 /* CategoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED4A934234F2EAA004C9A22 /* CategoriesTableViewCell.swift */; };
 		CED4A937234F2EAA004C9A22 /* CategoriesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED4A935234F2EAA004C9A22 /* CategoriesTableViewCell.xib */; };
+		CEDAB493236C4FCF00FD816D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEDAB492236C4FCF00FD816D /* GoogleService-Info.plist */; };
 		CEEBB4C923604B580033410C /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEBB4C723604B580033410C /* ImageViewController.swift */; };
 		CEEBB4CA23604B580033410C /* ImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEEBB4C823604B580033410C /* ImageViewController.xib */; };
 		CEF048EC234A45B60020900A /* PhotoMarkAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF048EB234A45B60020900A /* PhotoMarkAnnotationView.swift */; };
@@ -63,7 +63,6 @@
 		CE30C712235E0CE500A82CC7 /* PhotoMarkAnnotationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoMarkAnnotationDelegate.swift; sourceTree = "<group>"; };
 		CE4C9FFC2362466200BEE776 /* Catigoriable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Catigoriable.swift; sourceTree = "<group>"; };
 		CE4C9FFE2363734F00BEE776 /* CALayerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayerExtension.swift; sourceTree = "<group>"; };
-		CE65AC6A23682BDE00F559E5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE68746B234FC077002C3859 /* CheckboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxView.swift; sourceTree = "<group>"; };
 		CE72B3182361D41F00FBDF03 /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
 		CE72B3192361D41F00FBDF03 /* PickerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickerViewController.xib; sourceTree = "<group>"; };
@@ -72,6 +71,7 @@
 		CE932B6B2367824500163EFA /* Filterable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filterable.swift; sourceTree = "<group>"; };
 		CED4A934234F2EAA004C9A22 /* CategoriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewCell.swift; sourceTree = "<group>"; };
 		CED4A935234F2EAA004C9A22 /* CategoriesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesTableViewCell.xib; sourceTree = "<group>"; };
+		CEDAB492236C4FCF00FD816D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CEEBB4C723604B580033410C /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		CEEBB4C823604B580033410C /* ImageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageViewController.xib; sourceTree = "<group>"; };
 		CEF048EB234A45B60020900A /* PhotoMarkAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoMarkAnnotationView.swift; sourceTree = "<group>"; };
@@ -229,7 +229,7 @@
 				F3D8F91E2343A17900E0A378 /* Assets.xcassets */,
 				F3D8F9152343A17900E0A378 /* AppDelegate.swift */,
 				F31A06A82345DB8500275231 /* Log.swift */,
-				CE65AC6A23682BDE00F559E5 /* GoogleService-Info.plist */,
+				CEDAB492236C4FCF00FD816D /* GoogleService-Info.plist */,
 				F3D8F9232343A17900E0A378 /* Info.plist */,
 			);
 			path = PhotoMap;
@@ -295,7 +295,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE65AC6B23682BDE00F559E5 /* GoogleService-Info.plist in Resources */,
+				CEDAB493236C4FCF00FD816D /* GoogleService-Info.plist in Resources */,
 				CEEBB4CA23604B580033410C /* ImageViewController.xib in Resources */,
 				F31584AC234486E700668288 /* MapViewController.xib in Resources */,
 				CED4A937234F2EAA004C9A22 /* CategoriesTableViewCell.xib in Resources */,
