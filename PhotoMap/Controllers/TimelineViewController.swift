@@ -125,8 +125,8 @@ extension TimelineViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        guard let dates = allDates else { return }
         guard
+            let dates = allDates,
             let annotation = getAnnotations(for: dates[indexPath.section])?[indexPath.row]
         else {
             return
@@ -147,16 +147,13 @@ extension TimelineViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(
             withIdentifier: "timelineCell", for: indexPath) as! TimelineTableViewCell
         
-        guard let dates = allDates else {
-            return cell
-        }
-        
         let annotation: PhotoMarkAnnotation
         if isFiltering {
             annotation = filteredAnnotations[indexPath.row]
         } else {
             guard
-                let local = getAnnotations(for:dates[indexPath.section])?[indexPath.row]
+                let dates = allDates,
+                let local = getAnnotations(for: dates[indexPath.section])?[indexPath.row]
             else {
                 return cell
             }
