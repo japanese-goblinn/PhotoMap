@@ -53,6 +53,4 @@ extension PickerViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         choosedCategory = Category.allCases[row]
     }
-    
-    
 }

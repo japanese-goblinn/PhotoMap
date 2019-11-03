@@ -11,18 +11,32 @@ import FirebaseStorage
 
 class AnnotationUploader {
     
-    static private let dbRef = Database.database().reference(withPath: "annotations")
+    enum State {
+        case new
+        case updated
+    }
+    
     static private let storageRef = Storage.storage().reference().child("images")
 
-    static func upload(annotation: PhotoMarkAnnotation) {
+    static func upload(annotation: PhotoMarkAnnotation, as newState: State) {
         upload(image: annotation.image, id: annotation.id) { url in
             guard let url = url else {
                 print("BAD URL")
                 return
             }
+            guard let user = Auth.auth().currentUser else { return }
             let annotationData = toDictionary(for: annotation, and: url.absoluteString)
-            let annotationRef = dbRef.child(annotation.id)
-            annotationRef.setValue(annotationData)
+            let annotationRef = Database.database().reference(withPath: "annotations/\(user.uid)").child(annotation.id)
+            switch newState {
+            case .new:
+                annotationRef.setValue(annotationData)
+            case .updated:
+                annotationRef.updateChildValues(annotationData) { error, _ in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    }
+                }
+            }
         }
     }
     

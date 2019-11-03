@@ -40,20 +40,20 @@
                         <constraint firstItem="edl-IP-4j3" firstAttribute="centerY" secondItem="RWX-D7-Vsw" secondAttribute="centerY" id="uDZ-6n-FbG"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Custom " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v1t-hF-gBN">
-                    <rect key="frame" x="97" y="15" width="68" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Some text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v1t-hF-gBN">
+                    <rect key="frame" x="90" y="15" width="83" height="21"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hu8-FK-hsh">
-                    <rect key="frame" x="97" y="42" width="42" height="21"/>
+                    <rect key="frame" x="90" y="42" width="83" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HRI-PT-ube">
-                    <rect key="frame" x="195.5" y="27.5" width="15.5" height="26.5"/>
+                    <rect key="frame" x="181" y="27.5" width="26" height="26.5"/>
                     <state key="normal" image="arrow"/>
                     <connections>
                         <action selector="seeDetailsButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="Gvh-Er-uwg"/>
@@ -63,14 +63,17 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="hu8-FK-hsh" firstAttribute="top" secondItem="v1t-hF-gBN" secondAttribute="bottom" constant="6" id="FRX-h0-fyX"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="HRI-PT-ube" secondAttribute="trailing" constant="9" id="NAr-oJ-A2x"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="HRI-PT-ube" secondAttribute="trailing" constant="13" id="NAr-oJ-A2x"/>
+                <constraint firstItem="hu8-FK-hsh" firstAttribute="leading" secondItem="2iQ-Zd-Xmc" secondAttribute="trailing" constant="10" id="NpJ-Ku-j3x"/>
                 <constraint firstItem="hu8-FK-hsh" firstAttribute="leading" secondItem="v1t-hF-gBN" secondAttribute="leading" id="WGz-u3-qYl"/>
                 <constraint firstItem="RWX-D7-Vsw" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="bvW-1g-MEl"/>
                 <constraint firstItem="RWX-D7-Vsw" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="cdG-Ur-gnT"/>
                 <constraint firstItem="HRI-PT-ube" firstAttribute="centerY" secondItem="edl-IP-4j3" secondAttribute="centerY" id="k2b-Lk-PsS"/>
-                <constraint firstItem="v1t-hF-gBN" firstAttribute="leading" secondItem="edl-IP-4j3" secondAttribute="trailing" constant="17" id="k8a-77-czn"/>
+                <constraint firstItem="v1t-hF-gBN" firstAttribute="leading" secondItem="edl-IP-4j3" secondAttribute="trailing" constant="10" id="k8a-77-czn"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="RWX-D7-Vsw" secondAttribute="bottom" constant="20" id="ntc-m7-f3m"/>
+                <constraint firstItem="HRI-PT-ube" firstAttribute="leading" secondItem="v1t-hF-gBN" secondAttribute="trailing" constant="8" id="qWt-Ib-siU"/>
                 <constraint firstItem="v1t-hF-gBN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="15" id="r3M-Fm-VU8"/>
+                <constraint firstItem="HRI-PT-ube" firstAttribute="leading" secondItem="hu8-FK-hsh" secondAttribute="trailing" constant="8" id="uVZ-Rz-msD"/>
                 <constraint firstItem="RWX-D7-Vsw" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="z10-Oo-JUY"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>

@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MoreViewController" customModule="PhotoMap" customModuleProvider="target">
             <connections>
+                <outlet property="emailLabel" destination="GtA-fw-If0" id="La4-hY-DdN"/>
+                <outlet property="signOutButton" destination="tFg-UW-8MG" id="9RC-S5-zMj"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,20 +20,33 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="More" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7bS-6O-cql">
-                    <rect key="frame" x="187" y="437.5" width="40" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="some_email@gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GtA-fw-If0">
+                    <rect key="frame" x="109" y="380" width="196" height="21"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tFg-UW-8MG">
+                    <rect key="frame" x="70" y="431" width="274" height="34"/>
+                    <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                    <state key="normal" title="Sign Out"/>
+                    <connections>
+                        <action selector="signOutPressed:" destination="-1" eventType="touchUpInside" id="2fP-iP-XPn"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="7bS-6O-cql" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="8qk-7J-jmt"/>
-                <constraint firstItem="7bS-6O-cql" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="GBy-8y-r03"/>
+                <constraint firstItem="tFg-UW-8MG" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="2Db-5t-tJZ"/>
+                <constraint firstItem="tFg-UW-8MG" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="70" id="EAf-FK-TZD"/>
+                <constraint firstItem="GtA-fw-If0" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ZG4-Kk-jAC"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="tFg-UW-8MG" secondAttribute="trailing" constant="70" id="dcQ-Y9-iyn"/>
+                <constraint firstItem="tFg-UW-8MG" firstAttribute="top" secondItem="GtA-fw-If0" secondAttribute="bottom" constant="30" id="sJ6-Yg-A7B"/>
+                <constraint firstItem="GtA-fw-If0" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="336" id="zPg-gK-AYb"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="133" y="135"/>
+            <point key="canvasLocation" x="131.8840579710145" y="134.59821428571428"/>
         </view>
     </objects>
 </document>

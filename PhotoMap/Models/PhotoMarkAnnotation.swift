@@ -56,7 +56,7 @@ enum Category: CaseIterable {
 
 class PhotoMarkAnnotation: NSObject, MKAnnotation {
     let id: String
-    let title: String?
+    var title: String?
     let date: Date
     let image: UIImage
     var category: Category

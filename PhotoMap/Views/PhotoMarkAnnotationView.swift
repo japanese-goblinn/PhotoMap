@@ -42,6 +42,7 @@ class PhotoMarkAnnotationView: MKAnnotationView {
     override var annotation: MKAnnotation? {
         willSet {
             canShowCallout = false
+            setNeedsDisplay()
             customCalloutView?.removeFromSuperview()
         }
     }

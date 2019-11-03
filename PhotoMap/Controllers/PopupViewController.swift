@@ -12,6 +12,8 @@ class PopupViewController: UIViewController {
 
     var annotation: PhotoMarkAnnotation?
     
+    weak var delegate: Updatable?
+    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var imageContainerView: UIView!
@@ -21,6 +23,16 @@ class PopupViewController: UIViewController {
     @IBOutlet weak var contentTextView: UITextView!
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {
+        guard let annotation = annotation else { return }
+        annotation.title = contentTextView.text
+        DispatchQueue.global().async { [weak annotation] in
+            guard let annotation = annotation else {
+                print("MARK IS NIL")
+                return
+            }
+            AnnotationUploader.upload(annotation: annotation, as: .updated)
+        }
+        delegate?.update()
         dismiss(animated: true)
     }
     
@@ -46,16 +58,20 @@ class PopupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         activateKeyboardHandler()
+        setupViews()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    private func setupViews() {
         setOutletsData()
         setupPicker()
         setupTextField()
         contentView.layer.cornerRadius = 6
         view.drawShadow()
         imageContainerView.drawShadow()
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
     }
     
     private func setOutletsData() {

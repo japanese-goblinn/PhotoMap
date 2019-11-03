@@ -7,10 +7,34 @@
 //
 
 import UIKit
+import Firebase
 
 class MoreViewController: UIViewController {
+    
+    var currentUser: User?
 
+    @IBOutlet private weak var emailLabel: UILabel!
+    @IBOutlet private weak var signOutButton: UIButton!
+    
+    @IBAction private func signOutPressed(_ sender: UIButton) {
+        guard let user = currentUser else { return }
+        Database.database().reference(withPath: "online/\(user.uid)").removeValue { error, _ in
+          if let error = error {
+            print("Removing online failed: \(error.localizedDescription)")
+            return
+          }
+          do {
+            try Auth.auth().signOut()
+            self.dismiss(animated: true, completion: nil)
+          } catch (let error) {
+            print("Auth sign out failed: \(error)")
+          }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        emailLabel.text = currentUser?.email
+        signOutButton.layer.cornerRadius = 6
     }
 }

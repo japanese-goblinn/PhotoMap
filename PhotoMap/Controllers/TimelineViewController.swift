@@ -8,14 +8,21 @@
 
 import UIKit
 import CoreLocation
+import Firebase
 
 class TimelineViewController: UIViewController {
     
     private var categories = Category.allCases
-    private var annotations = [PhotoMarkAnnotation]()
+    private var annotations = [PhotoMarkAnnotation]() {
+        didSet {
+            self.groupData()
+            self.tableView.reloadData()
+        }
+    }
     private var filteredAnnotations = [PhotoMarkAnnotation]()
     private var annotationsGropedByDate: [Date: [PhotoMarkAnnotation]]?
     private var allDates: [Date]?
+    private var currentUser: User!
     
     let searchController = UISearchController(searchResultsController: nil)
     
@@ -31,8 +38,9 @@ class TimelineViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        initTestData()
-        getData()
+        guard let user = Auth.auth().currentUser else { return }
+        currentUser = user
+        initData()
         setupTableView()
         configureSearchController()
     }
@@ -56,7 +64,7 @@ class TimelineViewController: UIViewController {
         )
     }
     
-    private func getData() {
+    private func groupData() {
         annotationsGropedByDate = getDataGrouped(
             for: annotations.filter {
                 categories.contains($0.category)
@@ -83,7 +91,7 @@ class TimelineViewController: UIViewController {
 extension TimelineViewController: Filterable {
     func filter(by choosedCategories: [Category]) {
         categories = choosedCategories
-        getData()
+        groupData()
         tableView.reloadData()
     }
 }
@@ -198,85 +206,44 @@ extension TimelineViewController: UISearchResultsUpdating {
 }
 
 extension TimelineViewController {
-    private func initTestData() {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd/MM/yyyy"
-        annotations.append(
-            PhotoMarkAnnotation(
-                title: "Some title #hot",
-                date: formatter.date(from: "28/01/2019") ?? Date(),
-                image: #imageLiteral(resourceName: "test_image"),
-                coordinate: CLLocationCoordinate2D(
-                    latitude: .leastNonzeroMagnitude, longitude: .leastNonzeroMagnitude
-                ),
-                category: .friends
-            )
-        )
-        annotations.append(
-            PhotoMarkAnnotation(
-                title: "Some like very long title that can't fit in label",
-                date: formatter.date(from: "18/01/2019") ?? Date(),
-                image: #imageLiteral(resourceName: "test_image"),
-                coordinate: CLLocationCoordinate2D(
-                    latitude: .leastNonzeroMagnitude, longitude: .leastNonzeroMagnitude
-                ),
-                category: .friends
-            )
-        )
-        annotations.append(
-            PhotoMarkAnnotation(
-                title: "Some title",
-                date: formatter.date(from: "28/02/2019") ?? Date(),
-                image: #imageLiteral(resourceName: "test_image"),
-                coordinate: CLLocationCoordinate2D(
-                    latitude: .leastNonzeroMagnitude, longitude: .leastNonzeroMagnitude
-                ),
-                category: .nature
-            )
-        )
-        annotations.append(
-            PhotoMarkAnnotation(
-                title: "Some title",
-                date: formatter.date(from: "28/10/2018") ?? Date(),
-                image: #imageLiteral(resourceName: "test_image"),
-                coordinate: CLLocationCoordinate2D(
-                    latitude: .leastNonzeroMagnitude, longitude: .leastNonzeroMagnitude
-                ),
-                category: .uncategorized
-            )
-        )
-        annotations.append(
-            PhotoMarkAnnotation(
-                title: "Some title",
-                date: formatter.date(from: "14/01/2020") ?? Date(),
-                image: #imageLiteral(resourceName: "test_image"),
-                coordinate: CLLocationCoordinate2D(
-                    latitude: .leastNonzeroMagnitude, longitude: .leastNonzeroMagnitude
-                ),
-                category: .uncategorized
-            )
-        )
-        annotations.append(
-            PhotoMarkAnnotation(
-                title: "Some title",
-                date: formatter.date(from: "10/10/2019") ?? Date(),
-                image: #imageLiteral(resourceName: "test_image"),
-                coordinate: CLLocationCoordinate2D(
-                    latitude: .leastNonzeroMagnitude, longitude: .leastNonzeroMagnitude
-                ),
-                category: .uncategorized
-            )
-        )
-        annotations.append(
-            PhotoMarkAnnotation(
-                title: nil,
-                date: formatter.date(from: "14/01/2017") ?? Date(),
-                image: #imageLiteral(resourceName: "test_image"),
-                coordinate: CLLocationCoordinate2D(
-                    latitude: .leastNonzeroMagnitude, longitude: .leastNonzeroMagnitude
-                ),
-                category: .uncategorized
-            )
-        )
+    private func initData() {
+        let ref = Database.database().reference(withPath: "annotations/\(currentUser.uid)")
+        ref.observe(.childAdded) { snapshot in
+            DispatchQueue.global().async {
+                AnnoationDownloader.getAnnotation(from: snapshot) { [weak self] annotation in
+                    DispatchQueue.main.async { [weak self] in
+                        let alert = UIAlertController(title: nil, message: "Loading data...", preferredStyle: .alert)
+
+                        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+                        loadingIndicator.hidesWhenStopped = true
+                        loadingIndicator.style = UIActivityIndicatorView.Style.gray
+                        loadingIndicator.startAnimating();
+
+                        alert.view.addSubview(loadingIndicator)
+                        self?.present(alert, animated: true) {
+                            self?.dismiss(animated: true)
+                        }
+                        self?.annotations.append(annotation)
+                    }
+                }
+            }
+        }
+        ref.observe(.childChanged) { snapshot in
+            DispatchQueue.global().async {
+                AnnoationDownloader.getAnnotation(from: snapshot) { [weak self] annotation in
+                    DispatchQueue.main.async {
+                        guard let self = self else { return }
+                        let value = self.annotations.first {
+                            $0.id == annotation.id
+                        }
+                        guard let index = self.annotations.firstIndex(of: value!) else {
+                            return
+                        }
+                        self.annotations.remove(at: index)
+                        self.annotations.append(annotation)
+                    }
+                }
+            }
+        }
     }
 }

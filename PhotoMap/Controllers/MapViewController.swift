@@ -22,15 +22,23 @@ class MapViewController: UIViewController {
     @IBOutlet private weak var mapView: MKMapView!
     @IBOutlet private weak var navigationModeButton: UIButton!
     
-    private let dbRef = Database.database().reference(withPath: "annotations")
+    private var currentUser: User!
+    
+    private var categories = Category.allCases
+    private var annotations = [PhotoMarkAnnotation]()
+    private var filteredAnnotations = [PhotoMarkAnnotation]()
+    
     private let locationManager = CLLocationManager()
     private let scale: CLLocationDistance = 5000
+    
     private var navigationMode: NavigationMode = .follow
     private lazy var discoverColorImage = UIImage(named: "location_discover")
     private lazy var followColorImage = UIImage(named: "location_follow")
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard let user = Auth.auth().currentUser else { return }
+        currentUser = user
         definesPresentationContext = true
         mapView.delegate = self
         enableMapCenterOnUserPan()
@@ -40,6 +48,8 @@ class MapViewController: UIViewController {
     
     @IBAction private func categoriesButtonPressed(_ sender: UIButton) {
         let categoriesVC = CategoriesViewController()
+        categoriesVC.delegate = self
+        categoriesVC.categories = categories
         present(categoriesVC, animated: true)
     }
     
@@ -54,12 +64,13 @@ class MapViewController: UIViewController {
     }
     
     private func initData() {
-        dbRef.observeSingleEvent(of: .value) { snapshot in
-            for child in snapshot.children {
-                let snap = child as! DataSnapshot
-                AnnoationDownloader.getAnnotation(from: snap) { annotation in
+        Database.database().reference(withPath: "annotations/\(currentUser.uid)").observe(.childAdded) { snapshot in
+            DispatchQueue.global().async {
+                AnnoationDownloader.getAnnotation(from: snapshot) { annotation in
                     DispatchQueue.main.async { [weak self] in
+                        self?.annotations.append(annotation)
                         self?.mapView.addAnnotation(annotation)
+                        self?.filterAnnotations()
                     }
                 }
             }
@@ -170,6 +181,9 @@ extension MapViewController: MKMapViewDelegate {
             location.y -= 25
             let coordinate = mapView.convert(location, toCoordinateFrom: mapView)
             addAnnotation(at: coordinate)
+//            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+//                self.showImagePickerController(for: .camera)
+//            }
         }
     }
     
@@ -206,21 +220,21 @@ extension MapViewController: MKMapViewDelegate {
         centerView(on: annotation.coordinate)
     }
     
-    private func addAnnotation(at coordinate: CLLocationCoordinate2D, image: UIImage? = nil) {
-        let mark = PhotoMarkAnnotation(
+    private func addAnnotation(at coordinate: CLLocationCoordinate2D, image: UIImage = #imageLiteral(resourceName: "test_image")) {
+        let pin = PhotoMarkAnnotation(
             title: "Default",
             date: Date(),
-            image: #imageLiteral(resourceName: "test_image"),
+            image: image,
             coordinate: coordinate,
             category: .uncategorized
         )
-        self.mapView.addAnnotation(mark)
-        DispatchQueue.global().async { [weak mark] in
-            guard let mark = mark else {
+        self.mapView.addAnnotation(pin)
+        DispatchQueue.global().async { [weak pin] in
+            guard let annotation = pin else {
                 print("MARK IS NIL")
                 return
             }
-            AnnotationUploader.upload(annotation: mark)
+            AnnotationUploader.upload(annotation: annotation, as: .new)
         }
     }
 }
@@ -292,9 +306,34 @@ extension MapViewController: PhotoMarkAnnotationDelegate {
     func pass(annotation: PhotoMarkAnnotation?) {
         let popup = PopupViewController()
         popup.annotation = annotation
+        popup.delegate = self
         let nav = UINavigationController(rootViewController: popup)
         nav.isNavigationBarHidden = true
         nav.modalPresentationStyle = .overFullScreen
         present(nav, animated: true)
+    }
+}
+
+//MARK: - PopupViewController delegate
+extension MapViewController: Updatable {
+    func update() {
+        mapView.removeAnnotations(mapView.annotations)
+        mapView.addAnnotations(filteredAnnotations)
+    }
+}
+
+//MARK: - Categories delegate
+extension MapViewController: Filterable {
+    func filter(by choosedCategories: [Category]) {
+        categories = choosedCategories
+        filterAnnotations()
+        mapView.removeAnnotations(mapView.annotations)
+        mapView.addAnnotations(filteredAnnotations)
+    }
+    
+    private func filterAnnotations() {
+        filteredAnnotations = annotations.filter {
+            categories.contains($0.category)
+        }
     }
 }

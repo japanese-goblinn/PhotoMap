@@ -63,13 +63,28 @@ class CategoriesViewController: UIViewController {
             target: self,
             action: #selector(checkBoxPressed(_:))
         )
+        let cellTouchGester = UITapGestureRecognizer(
+            target: self,
+            action: #selector(cellPressed(_:)))
         cell.categoryCheckbox.addGestureRecognizer(checkBoxTouchGester)
+        cell.addGestureRecognizer(cellTouchGester)
     }
     
-    @objc func checkBoxPressed(_ sender: UITapGestureRecognizer) {
+    @objc private func cellPressed(_ sender: UITapGestureRecognizer) {
+        guard let cell = sender.view as? CategoriesTableViewCell else {
+            return
+        }
+        changeState(for: cell.categoryCheckbox)
+    }
+    
+    @objc private func checkBoxPressed(_ sender: UITapGestureRecognizer) {
         guard let checkbox = sender.view as? CheckboxView else {
             return
         }
+        changeState(for: checkbox)
+    }
+    
+    private func changeState(for checkbox: CheckboxView) {
         checkbox.isChecked.toggle()
         if !categories.contains(checkbox.categorie) {
             categories.append(checkbox.categorie)
