@@ -27,8 +27,9 @@ class PopupViewController: UIViewController {
     @IBOutlet weak var contentTextView: UITextView!
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {
-        if let annotation = annotation {
+        if let annotation = annotation, let category = thisCategoty {
             annotation.title = contentTextView.text
+            annotation.category = category
             DispatchQueue.global().async { [weak annotation] in
                 guard let annotation = annotation else {
                     print("MARK IS NIL")
@@ -86,8 +87,8 @@ class PopupViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-           super.viewWillAppear(animated)
-           navigationController?.isNavigationBarHidden = true
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = true
     }
     
     deinit {
@@ -180,11 +181,7 @@ extension PopupViewController: UITextViewDelegate {
 
 extension PopupViewController: Categoriable {
     func pass(category: Category) {
-        if let annoation = annotation {
-            annoation.category = category
-        } else {
-            thisCategoty = category
-        }
+        thisCategoty = category
         updatePickerView(with: category)
     }
 }

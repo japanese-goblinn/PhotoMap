@@ -218,17 +218,7 @@ extension MapViewController: MKMapViewDelegate {
         setNavigation(to: .discover)
         centerView(on: annotation.coordinate)
     }
-    
-//    private func addAnnotation(_ annotation: PhotoMarkAnnotation) {
-//        self.mapView.addAnnotation(annotation)
-//        DispatchQueue.global().async { [weak annotation] in
-//            guard let annotation = annotation else {
-//                print("MARK IS NIL")
-//                return
-//            }
-//            AnnotationUploader.upload(annotation: annotation, as: .new)
-//        }
-//    }
+
 }
 
 //MARK: - Camera button related
