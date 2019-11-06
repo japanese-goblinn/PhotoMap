@@ -64,7 +64,7 @@ class AnnotationUploader {
     }
     
     private static func toDictionary(for annotation: PhotoMarkAnnotation, and imageURL: String) -> [String: Any] {
-        [
+        return [
             "id": annotation.id,
             "title": annotation.title as Any,
             "imageURL": imageURL,

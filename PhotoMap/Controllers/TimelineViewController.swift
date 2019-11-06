@@ -49,7 +49,7 @@ class TimelineViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationController?.navigationBar.barTintColor = .white
-        navigationController?.navigationBar.tintColor = .systemBlue
+        navigationController?.navigationBar.tintColor = UIColor.blue
     }
     
     @objc private func showCategories() {
@@ -76,7 +76,7 @@ class TimelineViewController: UIViewController {
     }
     
     private func getDataGrouped(for filteredAnnotations: [PhotoMarkAnnotation]) -> [Date: [PhotoMarkAnnotation]] {
-        Dictionary(grouping: filteredAnnotations) {
+        return Dictionary(grouping: filteredAnnotations) {
             let dateString = $0.date.toString(with: .monthAndYear)
             let finalDate = dateString.toDate(with: .monthAndYear)!
             return finalDate
@@ -84,7 +84,7 @@ class TimelineViewController: UIViewController {
     }
     
     private func getAnnotations(for key: Date) -> [PhotoMarkAnnotation]? {
-        annotationsGropedByDate?[key]?.sorted {
+        return annotationsGropedByDate?[key]?.sorted {
             $0.date > $1.date
         }
     }
@@ -148,8 +148,7 @@ extension TimelineViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        80
+        return 80
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
