@@ -48,6 +48,8 @@ class TimelineViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationItem.hidesSearchBarWhenScrolling = false
+        navigationController?.navigationBar.barTintColor = .white
+        navigationController?.navigationBar.tintColor = .systemBlue
     }
     
     @objc private func showCategories() {

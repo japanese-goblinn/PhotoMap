@@ -9,5 +9,5 @@
 import Foundation
 
 protocol Updatable: AnyObject {
-    func update()
+    func update(with annotation: PhotoMarkAnnotation, state: State)
 }

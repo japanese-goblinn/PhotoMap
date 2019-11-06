@@ -34,12 +34,6 @@ class ImageViewController: UIViewController {
         addDoubleTapGesterRecognizer()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.navigationBar.barTintColor = .white
-        navigationController?.navigationBar.tintColor = .systemBlue
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         setupNavigationbar()
@@ -48,6 +42,7 @@ class ImageViewController: UIViewController {
     private func setupNavigationbar() {
         navigationController?.navigationBar.barTintColor = UIColor(hex: "#252525")
         navigationController?.navigationBar.tintColor = .white
+        navigationController?.isNavigationBarHidden = false
     }
     
     private func setupOutletsData() {

@@ -28,6 +28,8 @@ class MapViewController: UIViewController {
     private var annotations = [PhotoMarkAnnotation]()
     private var filteredAnnotations = [PhotoMarkAnnotation]()
     
+    private var lastLocationTap: CLLocationCoordinate2D?
+    
     private let locationManager = CLLocationManager()
     private let scale: CLLocationDistance = 5000
     
@@ -179,11 +181,8 @@ extension MapViewController: MKMapViewDelegate {
         if sender.state == .began {
             var location = sender.location(in: mapView)
             location.y -= 25
-            let coordinate = mapView.convert(location, toCoordinateFrom: mapView)
-            addAnnotation(at: coordinate)
-//            if UIImagePickerController.isSourceTypeAvailable(.camera) {
-//                self.showImagePickerController(for: .camera)
-//            }
+            lastLocationTap = mapView.convert(location, toCoordinateFrom: mapView)
+            showCameraActionSheet()
         }
     }
     
@@ -220,29 +219,48 @@ extension MapViewController: MKMapViewDelegate {
         centerView(on: annotation.coordinate)
     }
     
-    private func addAnnotation(at coordinate: CLLocationCoordinate2D, image: UIImage = #imageLiteral(resourceName: "test_image")) {
-        let pin = PhotoMarkAnnotation(
-            title: "Default",
-            date: Date(),
-            image: image,
-            coordinate: coordinate,
-            category: .uncategorized
-        )
-        self.mapView.addAnnotation(pin)
-        DispatchQueue.global().async { [weak pin] in
-            guard let annotation = pin else {
-                print("MARK IS NIL")
-                return
-            }
-            AnnotationUploader.upload(annotation: annotation, as: .new)
-        }
-    }
+//    private func addAnnotation(_ annotation: PhotoMarkAnnotation) {
+//        self.mapView.addAnnotation(annotation)
+//        DispatchQueue.global().async { [weak annotation] in
+//            guard let annotation = annotation else {
+//                print("MARK IS NIL")
+//                return
+//            }
+//            AnnotationUploader.upload(annotation: annotation, as: .new)
+//        }
+//    }
 }
 
 //MARK: - Camera button related
 extension MapViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
    
     @IBAction private func cameraButtonPressed(_ sender: UIButton) {
+        showCameraActionSheet()
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard
+            let image = info[.originalImage] as? UIImage,
+            var coordinate = locationManager.location?.coordinate
+        else {
+            return
+        }
+        dismiss(animated: true)
+        if let lastTap = lastLocationTap {
+            coordinate = lastTap;
+            lastLocationTap = nil;
+        }
+        let popupVC = PopupViewController()
+        popupVC.delegate = self
+        popupVC.newImage = image;
+        popupVC.newAnnotationCoordiante = coordinate
+        let nav = UINavigationController(rootViewController: popupVC)
+        nav.isNavigationBarHidden = true
+        nav.modalPresentationStyle = .overFullScreen
+        present(nav, animated: true)
+    }
+    
+    private func showCameraActionSheet() {
         let actionSheet = UIAlertController(
             title: nil,
             message: nil,
@@ -282,22 +300,11 @@ extension MapViewController: UIImagePickerControllerDelegate, UINavigationContro
         present(actionSheet, animated: true)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard
-            let image = info[.originalImage] as? UIImage,
-            let coordinate = locationManager.location?.coordinate
-        else {
-            return
-        }
-        addAnnotation(at: coordinate, image: image)
-        dismiss(animated: true)
-    }
-    
     private func showImagePickerController(for sourceType: UIImagePickerController.SourceType) {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self;
         imagePickerController.sourceType = sourceType
-        self.present(imagePickerController, animated: true)
+        present(imagePickerController, animated: true)
     }
 }
 
@@ -316,8 +323,19 @@ extension MapViewController: PhotoMarkAnnotationDelegate {
 
 //MARK: - PopupViewController delegate
 extension MapViewController: Updatable {
-    func update() {
+    func update(with annotation: PhotoMarkAnnotation, state: State) {
         mapView.removeAnnotations(mapView.annotations)
+        switch state {
+        case .new:
+            annotations.append(annotation)
+        case .updated:
+            let index = annotations.firstIndex { oldAnnotation in
+                oldAnnotation.id == annotation.id
+            }
+            annotations.remove(at: index!)
+            annotations.append(annotation)
+        }
+        filterAnnotations()
         mapView.addAnnotations(filteredAnnotations)
     }
 }

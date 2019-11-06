@@ -9,12 +9,12 @@
 import Firebase
 import FirebaseStorage
 
+enum State {
+    case new
+    case updated
+}
+
 class AnnotationUploader {
-    
-    enum State {
-        case new
-        case updated
-    }
     
     static private let storageRef = Storage.storage().reference().child("images")
 

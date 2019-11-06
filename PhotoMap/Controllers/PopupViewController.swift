@@ -7,10 +7,14 @@
 //
 
 import UIKit
+import CoreLocation
 
 class PopupViewController: UIViewController {
 
     var annotation: PhotoMarkAnnotation?
+    var newAnnotationCoordiante: CLLocationCoordinate2D?
+    var newImage: UIImage?
+    var thisCategoty: Category?
     
     weak var delegate: Updatable?
     
@@ -23,20 +27,40 @@ class PopupViewController: UIViewController {
     @IBOutlet weak var contentTextView: UITextView!
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {
-        guard let annotation = annotation else { return }
-        annotation.title = contentTextView.text
-        DispatchQueue.global().async { [weak annotation] in
-            guard let annotation = annotation else {
-                print("MARK IS NIL")
-                return
+        if let annotation = annotation {
+            annotation.title = contentTextView.text
+            DispatchQueue.global().async { [weak annotation] in
+                guard let annotation = annotation else {
+                    print("MARK IS NIL")
+                    return
+                }
+                AnnotationUploader.upload(annotation: annotation, as: .updated)
             }
-            AnnotationUploader.upload(annotation: annotation, as: .updated)
+            delegate?.update(with: annotation, state: .updated)
+        } else if
+            let coordinate = newAnnotationCoordiante,
+            let category = thisCategoty,
+            let image = newImage
+        {
+            let localAnnotation = PhotoMarkAnnotation(
+                title: contentTextView.text,
+                date: Date(),
+                image: image,
+                coordinate: coordinate,
+                category: category
+            )
+            annotation = localAnnotation
+            DispatchQueue.global().async {
+                AnnotationUploader.upload(annotation: localAnnotation, as: .new)
+            }
+            delegate?.update(with: localAnnotation, state: .new)
         }
-        delegate?.update()
+//        navigationController?.popViewController(animated: true)
         dismiss(animated: true)
     }
     
     @IBAction func cancelButtonPressed(_ sender: UIButton) {
+//        navigationController?.popViewController(animated: true)
         dismiss(animated: true)
     }
     
@@ -61,6 +85,11 @@ class PopupViewController: UIViewController {
         setupViews()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+           super.viewWillAppear(animated)
+           navigationController?.isNavigationBarHidden = true
+    }
+    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
@@ -79,7 +108,14 @@ class PopupViewController: UIViewController {
             imageView.image = annotation.image
             contentTextView.text = annotation.title
             dateLabel.text = annotation.date.toString(with: .full)
-            updatePickerView(with: annotation)
+            updatePickerView(with: annotation.category)
+        } else if
+            let image = newImage
+        {
+            imageView.image = image
+            dateLabel.text = Date().toString(with: .full)
+            thisCategoty = .uncategorized
+            updatePickerView(with: .uncategorized)
         }
     }
     
@@ -94,9 +130,9 @@ class PopupViewController: UIViewController {
         pickerView.layer.addBorder(edge: .bottom, color: .gray, thickness: 1)
     }
     
-    private func updatePickerView(with annotation: PhotoMarkAnnotation) {
-        pickerView.annotationView.fillColor = annotation.category.color
-        pickerView.categorieLabel.text = annotation.category.asString.uppercased()
+    private func updatePickerView(with category: Category) {
+        pickerView.annotationView.fillColor = category.color
+        pickerView.categorieLabel.text = category.asString.uppercased()
     }
 }
 
@@ -144,10 +180,11 @@ extension PopupViewController: UITextViewDelegate {
 
 extension PopupViewController: Categoriable {
     func pass(category: Category) {
-        guard let annoation = annotation else {
-            return
+        if let annoation = annotation {
+            annoation.category = category
+        } else {
+            thisCategoty = category
         }
-        annoation.category = category
-        updatePickerView(with: annoation)
+        updatePickerView(with: category)
     }
 }

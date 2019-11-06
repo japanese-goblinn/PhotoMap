@@ -13,6 +13,7 @@ class PhotoMarkCalloutView: UIView {
         
     weak var delegate: PhotoMarkAnnotationDelegate?
     var annotation: PhotoMarkAnnotation?
+    private var alreadyPressed = false
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -22,7 +23,9 @@ class PhotoMarkCalloutView: UIView {
     @IBOutlet weak var backgroundView: UIView!
     
     @IBAction func seeDetailsButton(_ sender: UIButton) {
-        delegate?.pass(annotation: annotation)
+        if alreadyPressed {
+            delegate?.pass(annotation: annotation)
+        }
     }
     
     override func awakeFromNib() {
@@ -37,6 +40,7 @@ class PhotoMarkCalloutView: UIView {
             with: event
         ) {
             seeDetailsButton(detailsButton)
+            alreadyPressed.toggle()
             return backgroundPressed
         }
         return super.hitTest(point, with: event)
