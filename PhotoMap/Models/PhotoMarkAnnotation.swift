@@ -58,7 +58,7 @@ class PhotoMarkAnnotation: NSObject, MKAnnotation {
     let id: String
     var title: String?
     let date: Date
-    let image: UIImage
+    var imageURL: String?
     var category: Category
     let coordinate: CLLocationCoordinate2D
     
@@ -66,15 +66,26 @@ class PhotoMarkAnnotation: NSObject, MKAnnotation {
         id: String = UUID().uuidString,
         title: String?,
         date: Date,
-        image: UIImage,
+        imageURL: String?,
         coordinate: CLLocationCoordinate2D,
         category: Category
     ) {
         self.id = id
         self.title = title
         self.date = date
-        self.image = image
+        self.imageURL = imageURL
         self.coordinate = coordinate
         self.category = category
+    }
+    
+    var asDictionary: [String: Any] {
+        return [
+            "id": id,
+            "title": title as Any,
+            "imageURL": imageURL as Any,
+            "date": date.toString(with: .full),
+            "coordinate": "\(coordinate.latitude),\(coordinate.longitude)",
+            "category": category.asString
+        ]
     }
 }

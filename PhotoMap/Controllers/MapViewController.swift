@@ -67,13 +67,11 @@ class MapViewController: UIViewController {
     
     private func initData() {
         Database.database().reference(withPath: "annotations/\(currentUser.uid)").observe(.childAdded) { snapshot in
-            DispatchQueue.global().async {
-                AnnoationDownloader.getAnnotation(from: snapshot) { annotation in
-                    DispatchQueue.main.async { [weak self] in
-                        self?.annotations.append(annotation)
-                        self?.mapView.addAnnotation(annotation)
-                        self?.filterAnnotations()
-                    }
+            AnnoationDownloader.getAnnotation(from: snapshot) { annotation in
+                DispatchQueue.main.async { [weak self] in
+                    self?.annotations.append(annotation)
+                    self?.mapView.addAnnotation(annotation)
+                    self?.filterAnnotations()
                 }
             }
         }

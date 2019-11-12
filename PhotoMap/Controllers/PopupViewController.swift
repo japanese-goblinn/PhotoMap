@@ -27,16 +27,18 @@ class PopupViewController: UIViewController {
     @IBOutlet weak var contentTextView: UITextView!
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {
-        if let annotation = annotation, let category = thisCategoty {
+        
+        if
+            let annotation = annotation,
+            let category = thisCategoty
+        {
             annotation.title = contentTextView.text
             annotation.category = category
-            DispatchQueue.global().async { [weak annotation] in
-                guard let annotation = annotation else {
-                    print("MARK IS NIL")
-                    return
-                }
-                AnnotationUploader.upload(annotation: annotation, as: .updated)
-            }
+            AnnotationUploader.upload(
+                annotation: annotation,
+                image: newImage,
+                as: .updated
+            )
             delegate?.update(with: annotation, state: .updated)
         } else if
             let coordinate = newAnnotationCoordiante,
@@ -46,22 +48,22 @@ class PopupViewController: UIViewController {
             let localAnnotation = PhotoMarkAnnotation(
                 title: contentTextView.text,
                 date: Date(),
-                image: image,
+                imageURL: nil,
                 coordinate: coordinate,
                 category: category
             )
             annotation = localAnnotation
-            DispatchQueue.global().async {
-                AnnotationUploader.upload(annotation: localAnnotation, as: .new)
-            }
+            AnnotationUploader.upload(
+                annotation: localAnnotation,
+                image: image,
+                as: .new
+            )
             delegate?.update(with: localAnnotation, state: .new)
         }
-//        navigationController?.popViewController(animated: true)
         dismiss(animated: true)
     }
     
     @IBAction func cancelButtonPressed(_ sender: UIButton) {
-//        navigationController?.popViewController(animated: true)
         dismiss(animated: true)
     }
     
@@ -106,7 +108,11 @@ class PopupViewController: UIViewController {
     
     private func setOutletsData() {
         if let annotation = annotation {
-            imageView.image = annotation.image
+            AnnoationDownloader.getImage(url: annotation.imageURL) { [weak self] image in
+                DispatchQueue.main.async {
+                    self?.imageView.image = image
+                }
+            }
             contentTextView.text = annotation.title
             dateLabel.text = annotation.date.toString(with: .full)
             updatePickerView(with: annotation.category)

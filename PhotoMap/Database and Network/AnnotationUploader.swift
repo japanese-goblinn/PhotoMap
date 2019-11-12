@@ -18,19 +18,35 @@ class AnnotationUploader {
     
     static private let storageRef = Storage.storage().reference().child("images")
 
-    static func upload(annotation: PhotoMarkAnnotation, as newState: State) {
-        upload(image: annotation.image, id: annotation.id) { url in
-            guard let url = url else {
-                print("BAD URL")
-                return
+    static func upload(
+        annotation: PhotoMarkAnnotation, image: UIImage?, as newState: State
+    ) {
+        guard let user = Auth.auth().currentUser else { return }
+        let annotationRef = Database.database().reference(withPath: "annotations/\(user.uid)").child(annotation.id)
+        let annotationData = annotation.asDictionary
+        switch newState {
+        case .new:
+            DispatchQueue.main.async { [weak annotation] in
+                guard let annotation = annotation else {
+                    print("ANNOTATION IS NIL WHEN UPLOADING")
+                    return
+                }
+                upload(image: image, id: annotation.id) { [weak annotation] url in
+                    guard let url = url else {
+                        print("BAD URL")
+                        return
+                    }
+                    guard let annotation = annotation else {
+                        print("ANNOTATION IS NIL WHEN UPLOADING")
+                        return
+                    }
+                    annotation.imageURL = url.absoluteString
+                    let annotationRef = Database.database().reference(withPath: "annotations/\(user.uid)").child(annotation.id)
+                    annotationRef.setValue(annotation.asDictionary)
+                }
             }
-            guard let user = Auth.auth().currentUser else { return }
-            let annotationData = toDictionary(for: annotation, and: url.absoluteString)
-            let annotationRef = Database.database().reference(withPath: "annotations/\(user.uid)").child(annotation.id)
-            switch newState {
-            case .new:
-                annotationRef.setValue(annotationData)
-            case .updated:
+        case .updated:
+            DispatchQueue.main.async { [annotationData] in
                 annotationRef.updateChildValues(annotationData) { error, _ in
                     if let error = error {
                         print(error.localizedDescription)
@@ -40,8 +56,12 @@ class AnnotationUploader {
         }
     }
     
-    private static func upload(image: UIImage, id: String, compelition: @escaping (URL?) -> Void) {
-        guard let imageData = image.jpegData(compressionQuality: 1.0) else {
+    private static func upload(image: UIImage?, id: String, compelition: @escaping (URL?) -> Void) {
+        guard
+            let image = image,
+            let imageData = image.jpegData(compressionQuality: 1.0)
+        else {
+            print("UPLOAD IMAGE IS NIL")
             return
         }
         let imageRef = storageRef.child(id)
@@ -58,19 +78,10 @@ class AnnotationUploader {
                     print(error.localizedDescription)
                     return
                 }
-                compelition(url)
+                DispatchQueue.global().async {
+                    compelition(url)
+                }
             }
         }
-    }
-    
-    private static func toDictionary(for annotation: PhotoMarkAnnotation, and imageURL: String) -> [String: Any] {
-        return [
-            "id": annotation.id,
-            "title": annotation.title as Any,
-            "imageURL": imageURL,
-            "date": annotation.date.toString(with: .full),
-            "coordinate": "\(annotation.coordinate.latitude),\(annotation.coordinate.longitude)",
-            "category": annotation.category.asString
-        ]
     }
 }

@@ -168,8 +168,11 @@ extension TimelineViewController: UITableViewDelegate, UITableViewDataSource {
             }
             annotation = local
         }
-        
-        cell.photoImageView.image = annotation.image
+        AnnoationDownloader.getImage(url: annotation.imageURL) { image in
+            DispatchQueue.main.async { [weak cell] in
+                cell?.photoImageView.image = image
+            }
+        }
         cell.titleLabel.text = annotation.title
         cell.dateLabel.text = "\(annotation.date.toString(with: .standart)) / \(annotation.category.asString.uppercased())"
         cell.accessoryType = .disclosureIndicator
@@ -210,22 +213,9 @@ extension TimelineViewController {
     private func initData() {
         let ref = Database.database().reference(withPath: "annotations/\(currentUser.uid)")
         ref.observe(.childAdded) { snapshot in
-            DispatchQueue.global().async {
-                AnnoationDownloader.getAnnotation(from: snapshot) { [weak self] annotation in
-                    DispatchQueue.main.async { [weak self] in
-                        let alert = UIAlertController(title: nil, message: "Loading data...", preferredStyle: .alert)
-
-                        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
-                        loadingIndicator.hidesWhenStopped = true
-                        loadingIndicator.style = UIActivityIndicatorView.Style.gray
-                        loadingIndicator.startAnimating();
-
-                        alert.view.addSubview(loadingIndicator)
-                        self?.present(alert, animated: true) {
-                            self?.dismiss(animated: true)
-                        }
-                        self?.annotations.append(annotation)
-                    }
+            AnnoationDownloader.getAnnotation(from: snapshot) { [weak self] annotation in
+                DispatchQueue.main.async { [weak self] in
+                    self?.annotations.append(annotation)
                 }
             }
         }
