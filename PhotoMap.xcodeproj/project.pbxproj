@@ -24,7 +24,7 @@
 		CE380850236E02BC0028680D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE38084E236E02BC0028680D /* LoginViewController.swift */; };
 		CE380851236E02BC0028680D /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE38084F236E02BC0028680D /* LoginViewController.xib */; };
 		CE380853236E09FD0028680D /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE380852236E09FD0028680D /* Coordinator.swift */; };
-		CE380855236F05410028680D /* Updatable .swift in Sources */ = {isa = PBXBuildFile; fileRef = CE380854236F05410028680D /* Updatable .swift */; };
+		CE380855236F05410028680D /* Updatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE380854236F05410028680D /* Updatable.swift */; };
 		CE4C9FFD2362466200BEE776 /* Catigoriable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C9FFC2362466200BEE776 /* Catigoriable.swift */; };
 		CE4C9FFF2363734F00BEE776 /* CALayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C9FFE2363734F00BEE776 /* CALayerExtension.swift */; };
 		CE68746C234FC078002C3859 /* CheckboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE68746B234FC077002C3859 /* CheckboxView.swift */; };
@@ -76,7 +76,7 @@
 		CE38084E236E02BC0028680D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		CE38084F236E02BC0028680D /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		CE380852236E09FD0028680D /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
-		CE380854236F05410028680D /* Updatable .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Updatable .swift"; sourceTree = "<group>"; };
+		CE380854236F05410028680D /* Updatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Updatable.swift; sourceTree = "<group>"; };
 		CE4C9FFC2362466200BEE776 /* Catigoriable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Catigoriable.swift; sourceTree = "<group>"; };
 		CE4C9FFE2363734F00BEE776 /* CALayerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayerExtension.swift; sourceTree = "<group>"; };
 		CE68746B234FC077002C3859 /* CheckboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxView.swift; sourceTree = "<group>"; };
@@ -136,7 +136,7 @@
 				CE30C712235E0CE500A82CC7 /* PhotoMarkAnnotationDelegate.swift */,
 				CE4C9FFC2362466200BEE776 /* Catigoriable.swift */,
 				CE932B6B2367824500163EFA /* Filterable.swift */,
-				CE380854236F05410028680D /* Updatable .swift */,
+				CE380854236F05410028680D /* Updatable.swift */,
 			);
 			path = Delegates;
 			sourceTree = "<group>";
@@ -416,7 +416,7 @@
 				CE932B6C2367824500163EFA /* Filterable.swift in Sources */,
 				CE8395142346212B004963EC /* UIColorExtension.swift in Sources */,
 				CE1E777723619E14006BAE84 /* MapPinView.swift in Sources */,
-				CE380855236F05410028680D /* Updatable .swift in Sources */,
+				CE380855236F05410028680D /* Updatable.swift in Sources */,
 				F323D36E2347567400AE7E97 /* CategoriesViewController.swift in Sources */,
 				CE932B6A236758D200163EFA /* StringExtension.swift in Sources */,
 				F3E22C9F234DCE6E001216CB /* TimelineViewController.swift in Sources */,

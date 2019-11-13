@@ -168,6 +168,7 @@ extension TimelineViewController: UITableViewDelegate, UITableViewDataSource {
             }
             annotation = local
         }
+        
         AnnoationDownloader.getImage(url: annotation.imageURL) { image in
             DispatchQueue.main.async { [weak cell] in
                 cell?.photoImageView.image = image
@@ -220,19 +221,17 @@ extension TimelineViewController {
             }
         }
         ref.observe(.childChanged) { snapshot in
-            DispatchQueue.global().async {
-                AnnoationDownloader.getAnnotation(from: snapshot) { [weak self] annotation in
-                    DispatchQueue.main.async {
-                        guard let self = self else { return }
-                        let value = self.annotations.first {
-                            $0.id == annotation.id
-                        }
-                        guard let index = self.annotations.firstIndex(of: value!) else {
-                            return
-                        }
-                        self.annotations.remove(at: index)
-                        self.annotations.append(annotation)
+            AnnoationDownloader.getAnnotation(from: snapshot) { [weak self] annotation in
+                DispatchQueue.main.async {
+                    guard let self = self else { return }
+                    let value = self.annotations.first {
+                        $0.id == annotation.id
                     }
+                    guard let index = self.annotations.firstIndex(of: value!) else {
+                        return
+                    }
+                    self.annotations.remove(at: index)
+                    self.annotations.append(annotation)
                 }
             }
         }

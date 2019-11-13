@@ -14,7 +14,7 @@ class PopupViewController: UIViewController {
     var annotation: PhotoMarkAnnotation?
     var newAnnotationCoordiante: CLLocationCoordinate2D?
     var newImage: UIImage?
-    var thisCategoty: Category?
+    var category: Category?
     
     weak var delegate: Updatable?
     
@@ -28,12 +28,11 @@ class PopupViewController: UIViewController {
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {
         
-        if
-            let annotation = annotation,
-            let category = thisCategoty
-        {
+        if let annotation = annotation {
+            if let category = category {
+                annotation.category = category
+            }
             annotation.title = contentTextView.text
-            annotation.category = category
             AnnotationUploader.upload(
                 annotation: annotation,
                 image: newImage,
@@ -42,7 +41,7 @@ class PopupViewController: UIViewController {
             delegate?.update(with: annotation, state: .updated)
         } else if
             let coordinate = newAnnotationCoordiante,
-            let category = thisCategoty,
+            let category = category,
             let image = newImage
         {
             let localAnnotation = PhotoMarkAnnotation(
@@ -71,7 +70,7 @@ class PopupViewController: UIViewController {
         let picker = PickerViewController()
         picker.modalPresentationStyle = .custom
         picker.modalTransitionStyle = .crossDissolve
-        picker.choosedCategory = annotation?.category ?? .uncategorized
+        picker.choosedCategory = category ?? annotation!.category
         picker.delegate = self
         present(picker, animated: true)
     }
@@ -121,7 +120,7 @@ class PopupViewController: UIViewController {
         {
             imageView.image = image
             dateLabel.text = Date().toString(with: .full)
-            thisCategoty = .uncategorized
+            category = .uncategorized
             updatePickerView(with: .uncategorized)
         }
     }
@@ -187,7 +186,7 @@ extension PopupViewController: UITextViewDelegate {
 
 extension PopupViewController: Categoriable {
     func pass(category: Category) {
-        thisCategoty = category
+        self.category = category
         updatePickerView(with: category)
     }
 }
