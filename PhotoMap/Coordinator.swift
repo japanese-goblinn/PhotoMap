@@ -13,7 +13,10 @@ class Coordinator {
 
     static func showMainApplication(from vc: UIViewController) {
         
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
         let tabBarController = UITabBarController()
+        appDelegate.window?.rootViewController = tabBarController
         
         let mapViewController = MapViewController()
         

@@ -25,6 +25,8 @@ class MoreViewController: UIViewController {
           }
           do {
             try Auth.auth().signOut()
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.window?.rootViewController = LoginViewController()
             self.dismiss(animated: true, completion: nil)
           } catch (let error) {
             print("Auth sign out failed: \(error)")

@@ -194,7 +194,7 @@ extension TimelineViewController: UITableViewDelegate, UITableViewDataSource {
             }
             annotation = local
         }
-        getImage(for: cell, and: annotation)
+        getImage(for: cell, with: annotation)
         cell.titleLabel.text = annotation.title
         cell.dateLabel.text = "\(annotation.date.toString(with: .standart)) / \(annotation.category.asString.uppercased())"
         cell.accessoryType = .disclosureIndicator
@@ -202,7 +202,8 @@ extension TimelineViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    private func getImage(for cell: TimelineTableViewCell, and annotation: PhotoMarkAnnotation) {
+    private func getImage(for cell: TimelineTableViewCell, with annotation: PhotoMarkAnnotation) {
+        
         if appDelegate.imageCache.object(forKey: annotation.id as NSString) == nil {
             if !refreshControl.isRefreshing {
                 refreshControl.beginRefreshing()
