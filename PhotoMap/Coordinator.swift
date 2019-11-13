@@ -15,9 +15,6 @@ class Coordinator {
         
         let tabBarController = UITabBarController()
         
-//        let mapViewController = UINavigationController(
-//            rootViewController: MapViewController()
-//        )
         let mapViewController = MapViewController()
         
         let timelineViewController = UINavigationController(

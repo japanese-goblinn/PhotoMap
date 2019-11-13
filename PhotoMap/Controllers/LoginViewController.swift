@@ -92,8 +92,8 @@ class LoginViewController: UIViewController {
           textPassword.placeholder = "Enter your password"
         }
         
-        alert.addAction(saveAction)
         alert.addAction(cancelAction)
+        alert.addAction(saveAction)
         
         present(alert, animated: true, completion: nil)
     }
