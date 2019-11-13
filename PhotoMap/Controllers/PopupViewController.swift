@@ -52,12 +52,12 @@ class PopupViewController: UIViewController {
                 category: category
             )
             annotation = localAnnotation
+            delegate?.update(with: localAnnotation, state: .new)
             AnnotationUploader.upload(
                 annotation: localAnnotation,
                 image: image,
                 as: .new
             )
-            delegate?.update(with: localAnnotation, state: .new)
         }
         dismiss(animated: true)
     }
@@ -107,7 +107,7 @@ class PopupViewController: UIViewController {
     
     private func setOutletsData() {
         if let annotation = annotation {
-            AnnoationDownloader.getImage(url: annotation.imageURL) { [weak self] image in
+            AnnoationDownloader.getImage(url: annotation.imageURL, or: annotation.id) { [weak self] image in
                 self?.imageView.image = image
             }
             contentTextView.text = annotation.title

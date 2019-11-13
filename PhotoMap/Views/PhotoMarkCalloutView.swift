@@ -113,7 +113,7 @@ class PhotoMarkCalloutView: UIView {
     
     private func setupView() {
         if let annotation = annotation {
-            AnnoationDownloader.getImage(url: annotation.imageURL) { [weak self] image in
+            AnnoationDownloader.getImage(url: annotation.imageURL, or: annotation.id) { [weak self] image in
                 self?.imageView.image = image
             }
             titleLabel.text = annotation.title

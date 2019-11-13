@@ -54,24 +54,20 @@ class AnnoationDownloader {
         }
     }
         
-    static func getImage(url: String?, complition: @escaping (UIImage) -> Void) {
-        guard
-            let downloadString = url,
-            let downloadUrl = URL(string: downloadString)
-        else {
-            return
-        }
-        
+    static func getImage(url: String?, or id: String, complition: @escaping (UIImage) -> Void) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        if let image = appDelegate.imageCache.object(
-            forKey: downloadUrl.absoluteString as NSString
-        ) {
+        if let image = appDelegate.imageCache.object(forKey: id as NSString) {
             print("CACHE USED")
             complition(image)
         } else {
+            guard
+                let downloadString = url,
+                let downloadUrl = URL(string: downloadString)
+            else {
+                return
+            }
             print("DOWNLOADING IMAGE...")
-            URLSession.shared.dataTask(with: downloadUrl) { data, _, error in
+            URLSession.shared.dataTask(with: downloadUrl) { [id] data, _, error in
                 if let error = error {
                     print(error.localizedDescription)
                 } else {
@@ -84,7 +80,7 @@ class AnnoationDownloader {
                     DispatchQueue.main.async {
                         print("DOWNLOAD COMPLETE")
                         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                        appDelegate.imageCache.setObject(image, forKey: downloadUrl.absoluteString as NSString)
+                        appDelegate.imageCache.setObject(image, forKey: id as NSString)
                         complition(image)
                     }
                 }

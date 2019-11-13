@@ -49,7 +49,7 @@ class ImageViewController: UIViewController {
         if let annotation = annoation {
             contentLabel.text = annotation.title
             dateLabel.text = annotation.date.toString(with: .full)
-            AnnoationDownloader.getImage(url: annotation.imageURL) { [weak self] image in
+            AnnoationDownloader.getImage(url: annotation.imageURL, or: annotation.id) { [weak self] image in
                 self?.imageView.image = image
             }
         }

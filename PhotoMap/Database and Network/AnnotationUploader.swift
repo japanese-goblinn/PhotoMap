@@ -26,6 +26,7 @@ class AnnotationUploader {
         let annotationData = annotation.asDictionary
         switch newState {
         case .new:
+            print("UPLOADING ANNOTATION...")
             upload(image: image, id: annotation.id) { [weak annotation] url in
                 guard let url = url else {
                     print("BAD URL")
@@ -38,13 +39,16 @@ class AnnotationUploader {
                 annotation.imageURL = url.absoluteString
                 let annotationRef = Database.database().reference(withPath: "annotations/\(user.uid)").child(annotation.id)
                 annotationRef.setValue(annotation.asDictionary)
+                print("ANNOTATION UPLOAD FINISHED")
             }
         case .updated:
+            print("ANNOTATION UPDATE STARTED...")
             DispatchQueue.global().async { [annotationData] in
                 annotationRef.updateChildValues(annotationData) { error, _ in
                     if let error = error {
                         print(error.localizedDescription)
                     }
+                    print("ANNOTATION UPDATE FINISHED")
                 }
             }
         }
@@ -58,6 +62,9 @@ class AnnotationUploader {
             print("UPLOAD IMAGE IS NIL")
             return
         }
+        print("UPLOADING IMAGE...")
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.imageCache.setObject(image, forKey: id as NSString)
         let imageRef = storageRef.child(id)
         imageRef.putData(imageData, metadata: nil) { _, error in
             if let error = error {
@@ -73,6 +80,7 @@ class AnnotationUploader {
                     return
                 }
                 DispatchQueue.global().async {
+                    print("IMAGE UPLOAD FINISHED")
                     compelition(url)
                 }
             }

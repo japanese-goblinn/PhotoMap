@@ -24,13 +24,13 @@
 		CE380851236E02BC0028680D /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE38084F236E02BC0028680D /* LoginViewController.xib */; };
 		CE380853236E09FD0028680D /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE380852236E09FD0028680D /* Coordinator.swift */; };
 		CE380855236F05410028680D /* Updatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE380854236F05410028680D /* Updatable.swift */; };
+		CE45B97E237CA1200000EA75 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE45B97D237CA1200000EA75 /* GoogleService-Info.plist */; };
 		CE4C9FFD2362466200BEE776 /* Catigoriable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C9FFC2362466200BEE776 /* Catigoriable.swift */; };
 		CE4C9FFF2363734F00BEE776 /* CALayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4C9FFE2363734F00BEE776 /* CALayerExtension.swift */; };
 		CE68746C234FC078002C3859 /* CheckboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE68746B234FC077002C3859 /* CheckboxView.swift */; };
 		CE72B31A2361D41F00FBDF03 /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE72B3182361D41F00FBDF03 /* PickerViewController.swift */; };
 		CE72B31B2361D41F00FBDF03 /* PickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE72B3192361D41F00FBDF03 /* PickerViewController.xib */; };
 		CE8395142346212B004963EC /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8395132346212B004963EC /* UIColorExtension.swift */; };
-		CE92734F237C1B3900D8C543 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE92734E237C1B3900D8C543 /* GoogleService-Info.plist */; };
 		CE932B6A236758D200163EFA /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE932B69236758D200163EFA /* StringExtension.swift */; };
 		CE932B6C2367824500163EFA /* Filterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE932B6B2367824500163EFA /* Filterable.swift */; };
 		CED4A936234F2EAA004C9A22 /* CategoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED4A934234F2EAA004C9A22 /* CategoriesTableViewCell.swift */; };
@@ -76,13 +76,13 @@
 		CE38084F236E02BC0028680D /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		CE380852236E09FD0028680D /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		CE380854236F05410028680D /* Updatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Updatable.swift; sourceTree = "<group>"; };
+		CE45B97D237CA1200000EA75 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE4C9FFC2362466200BEE776 /* Catigoriable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Catigoriable.swift; sourceTree = "<group>"; };
 		CE4C9FFE2363734F00BEE776 /* CALayerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayerExtension.swift; sourceTree = "<group>"; };
 		CE68746B234FC077002C3859 /* CheckboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxView.swift; sourceTree = "<group>"; };
 		CE72B3182361D41F00FBDF03 /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
 		CE72B3192361D41F00FBDF03 /* PickerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickerViewController.xib; sourceTree = "<group>"; };
 		CE8395132346212B004963EC /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
-		CE92734E237C1B3900D8C543 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE932B69236758D200163EFA /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		CE932B6B2367824500163EFA /* Filterable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filterable.swift; sourceTree = "<group>"; };
 		CED4A934234F2EAA004C9A22 /* CategoriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewCell.swift; sourceTree = "<group>"; };
@@ -258,8 +258,8 @@
 				CE839515234622AC004963EC /* Extensions */,
 				F3D8F91E2343A17900E0A378 /* Assets.xcassets */,
 				F3D8F9152343A17900E0A378 /* AppDelegate.swift */,
+				CE45B97D237CA1200000EA75 /* GoogleService-Info.plist */,
 				F31A06A82345DB8500275231 /* Log.swift */,
-				CE92734E237C1B3900D8C543 /* GoogleService-Info.plist */,
 				F3D8F9232343A17900E0A378 /* Info.plist */,
 				CE380852236E09FD0028680D /* Coordinator.swift */,
 			);
@@ -339,7 +339,7 @@
 				CE02E9832366F3D90018B37E /* TimelineTableViewCell.xib in Resources */,
 				CE380851236E02BC0028680D /* LoginViewController.xib in Resources */,
 				CE72B31B2361D41F00FBDF03 /* PickerViewController.xib in Resources */,
-				CE92734F237C1B3900D8C543 /* GoogleService-Info.plist in Resources */,
+				CE45B97E237CA1200000EA75 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

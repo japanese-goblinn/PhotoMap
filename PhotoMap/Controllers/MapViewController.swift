@@ -25,7 +25,7 @@ class MapViewController: UIViewController {
     private var currentUser: User!
     
     private var categories = Category.allCases
-    private var annotations = [PhotoMarkAnnotation]()
+    private let appDelegate = UIApplication.shared.delegate as! AppDelegate
     private var filteredAnnotations = [PhotoMarkAnnotation]()
     
     private var lastLocationTap: CLLocationCoordinate2D?
@@ -67,11 +67,14 @@ class MapViewController: UIViewController {
     
     private func initData() {
         let ref = Database.database().reference(withPath: "annotations/\(currentUser.uid)")
-        ref.observe(.childAdded) { snapshot in
-            AnnoationDownloader.getAnnotation(from: snapshot) { [weak self] annotation in
-                self?.annotations.append(annotation)
-                self?.mapView.addAnnotation(annotation)
-                self?.filterAnnotations()
+        ref.observeSingleEvent(of: .value) { snapshot in
+            for child in snapshot.children {
+                guard let snapshot = child as? DataSnapshot else { return }
+                AnnoationDownloader.getAnnotation(from: snapshot) { [weak self] annotation in
+                    self?.appDelegate.annotations.append(annotation)
+                    self?.mapView.addAnnotation(annotation)
+                    self?.filterAnnotations()
+                }
             }
         }
         ref.keepSynced(true)
@@ -315,13 +318,13 @@ extension MapViewController: Updatable {
         mapView.removeAnnotations(mapView.annotations)
         switch state {
         case .new:
-            annotations.append(annotation)
+            appDelegate.annotations.append(annotation)
         case .updated:
-            let index = annotations.firstIndex { oldAnnotation in
+            let index = appDelegate.annotations.firstIndex { oldAnnotation in
                 oldAnnotation.id == annotation.id
             }
-            annotations.remove(at: index!)
-            annotations.append(annotation)
+            appDelegate.annotations.remove(at: index!)
+            appDelegate.annotations.append(annotation)
         }
         filterAnnotations()
         mapView.addAnnotations(filteredAnnotations)
@@ -338,7 +341,7 @@ extension MapViewController: Filterable {
     }
     
     private func filterAnnotations() {
-        filteredAnnotations = annotations.filter {
+        filteredAnnotations = appDelegate.annotations.filter {
             categories.contains($0.category)
         }
     }

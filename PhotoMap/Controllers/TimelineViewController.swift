@@ -12,23 +12,20 @@ import Firebase
 
 class TimelineViewController: UIViewController {
     
+    @IBOutlet weak var tableView: UITableView!
+    
     private var categories = Category.allCases
-    private var annotations = [PhotoMarkAnnotation]() {
-        didSet {
-            self.groupData()
-            self.tableView.reloadData()
-        }
-    }
+    private let appDelegate = UIApplication.shared.delegate as! AppDelegate
     private var filteredAnnotations = [PhotoMarkAnnotation]()
     private var annotationsGropedByDate: [Date: [PhotoMarkAnnotation]]?
     private var allDates: [Date]?
+    
     private var currentUser: User!
     
-    private var isDownloading: Bool = false
     private let downloadGroup = DispatchGroup()
     private let refreshControl = UIRefreshControl()
     
-    let searchController = UISearchController(searchResultsController: nil)
+    private let searchController = UISearchController(searchResultsController: nil)
     
     private var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
@@ -37,14 +34,11 @@ class TimelineViewController: UIViewController {
     private var isFiltering: Bool {
         return searchController.isActive && !isSearchBarEmpty
     }
-    
-    @IBOutlet weak var tableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let user = Auth.auth().currentUser else { return }
         currentUser = user
-        initData()
         setupTableView()
         setupRefreshControl()
         configureSearchController()
@@ -52,13 +46,14 @@ class TimelineViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        getData()
         setUpNavigationBar()
     }
     
     private func setUpNavigationBar() {
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationController?.navigationBar.barTintColor = .white
-        navigationController?.navigationBar.tintColor = UIColor.blue
+        navigationController?.navigationBar.tintColor = .systemBlue
     }
     
     private func setupRefreshControl() {
@@ -87,7 +82,7 @@ class TimelineViewController: UIViewController {
     
     private func groupData() {
         annotationsGropedByDate = getDataGrouped(
-            for: annotations.filter {
+            for: appDelegate.annotations.filter {
                 categories.contains($0.category)
             }
         )
@@ -112,8 +107,7 @@ class TimelineViewController: UIViewController {
 extension TimelineViewController: Filterable {
     func filter(by choosedCategories: [Category]) {
         categories = choosedCategories
-        groupData()
-        tableView.reloadData()
+        getData()
     }
 }
 
@@ -173,13 +167,11 @@ extension TimelineViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let firstVisibleIndexPath = tableView.indexPathsForVisibleRows?.first {
             if indexPath == firstVisibleIndexPath {
-                isDownloading = true
-                if isDownloading {
-                    refreshControl.beginRefreshing()
-                }
                 downloadGroup.notify(queue: .main) { [weak self] in
-                    self?.refreshControl.endRefreshing()
-                    self?.isDownloading = false
+                    guard let self = self else { return }
+                    if self.refreshControl.isRefreshing {
+                        self.refreshControl.endRefreshing()
+                    }
                     print("ALL TASKS ARE DONE")
                 }
             }
@@ -190,8 +182,6 @@ extension TimelineViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(
             withIdentifier: "timelineCell", for: indexPath) as! TimelineTableViewCell
-        
-        cell.imageView?.image = nil
         let annotation: PhotoMarkAnnotation
         if isFiltering {
             annotation = filteredAnnotations[indexPath.row]
@@ -204,16 +194,25 @@ extension TimelineViewController: UITableViewDelegate, UITableViewDataSource {
             }
             annotation = local
         }
-        downloadGroup.enter()
-        AnnoationDownloader.getImage(url: annotation.imageURL) { [weak self, weak cell] image in
-            cell?.photoImageView.image = image
-            self?.downloadGroup.leave()
-        }
+        getImage(for: cell, and: annotation)
         cell.titleLabel.text = annotation.title
         cell.dateLabel.text = "\(annotation.date.toString(with: .standart)) / \(annotation.category.asString.uppercased())"
         cell.accessoryType = .disclosureIndicator
         cell.selectionStyle = .none
         return cell
+    }
+    
+    private func getImage(for cell: TimelineTableViewCell, and annotation: PhotoMarkAnnotation) {
+        if appDelegate.imageCache.object(forKey: annotation.id as NSString) == nil {
+            if !refreshControl.isRefreshing {
+                refreshControl.beginRefreshing()
+            }
+        }
+        downloadGroup.enter()
+        AnnoationDownloader.getImage(url: annotation.imageURL, or: annotation.id) { [weak self, weak cell] image in
+            cell?.photoImageView.image = image
+            self?.downloadGroup.leave()
+        }
     }
 }
 
@@ -227,7 +226,7 @@ extension TimelineViewController: UISearchResultsUpdating {
     
     func filterContentForSearchText(_ searchText: String, category: Category? = nil) {
       
-        filteredAnnotations = annotations.filter { (annotation: PhotoMarkAnnotation) -> Bool in
+        filteredAnnotations = appDelegate.annotations.filter { (annotation: PhotoMarkAnnotation) -> Bool in
             annotation.title?.lowercased().contains(searchText.lowercased()) ?? false && categories.contains(annotation.category)
         }
         tableView.reloadData()
@@ -248,26 +247,8 @@ extension TimelineViewController: UISearchResultsUpdating {
 
 extension TimelineViewController {
     
-    private func initData() {
-        let ref = Database.database().reference(withPath: "annotations/\(currentUser.uid)")
-        ref.observe(.childAdded) { snapshot in
-            AnnoationDownloader.getAnnotation(from: snapshot) { [weak self] annotation in
-                self?.annotations.append(annotation)
-            }
-        }
-        ref.observe(.childChanged) { snapshot in
-            AnnoationDownloader.getAnnotation(from: snapshot) { [weak self] annotation in
-                guard let self = self else { return }
-                let value = self.annotations.first {
-                    $0.id == annotation.id
-                }
-                guard let index = self.annotations.firstIndex(of: value!) else {
-                    return
-                }
-                self.annotations.remove(at: index)
-                self.annotations.append(annotation)
-            }
-        }
-        ref.keepSynced(true)
+    private func getData() {
+        self.groupData()
+        self.tableView.reloadData()
     }
 }
