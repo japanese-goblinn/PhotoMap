@@ -108,9 +108,7 @@ class PopupViewController: UIViewController {
     private func setOutletsData() {
         if let annotation = annotation {
             AnnoationDownloader.getImage(url: annotation.imageURL) { [weak self] image in
-                DispatchQueue.main.async {
-                    self?.imageView.image = image
-                }
+                self?.imageView.image = image
             }
             contentTextView.text = annotation.title
             dateLabel.text = annotation.date.toString(with: .full)

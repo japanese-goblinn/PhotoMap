@@ -66,15 +66,15 @@ class MapViewController: UIViewController {
     }
     
     private func initData() {
-        Database.database().reference(withPath: "annotations/\(currentUser.uid)").observe(.childAdded) { snapshot in
-            AnnoationDownloader.getAnnotation(from: snapshot) { annotation in
-                DispatchQueue.main.async { [weak self] in
-                    self?.annotations.append(annotation)
-                    self?.mapView.addAnnotation(annotation)
-                    self?.filterAnnotations()
-                }
+        let ref = Database.database().reference(withPath: "annotations/\(currentUser.uid)")
+        ref.observe(.childAdded) { snapshot in
+            AnnoationDownloader.getAnnotation(from: snapshot) { [weak self] annotation in
+                self?.annotations.append(annotation)
+                self?.mapView.addAnnotation(annotation)
+                self?.filterAnnotations()
             }
         }
+        ref.keepSynced(true)
     }
     
     private func checkNavigationMode() {

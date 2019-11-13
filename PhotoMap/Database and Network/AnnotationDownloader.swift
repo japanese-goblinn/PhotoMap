@@ -42,15 +42,16 @@ class AnnoationDownloader {
             print("CATEGORY PARSING ERROR")
             return
         }
-        
-        complition(PhotoMarkAnnotation(
-            id: id,
-            title: title,
-            date: date,
-            imageURL: imageURL,
-            coordinate: coordinate,
-            category: category
-        ))
+        DispatchQueue.main.async {
+            complition(PhotoMarkAnnotation(
+                id: id,
+                title: title,
+                date: date,
+                imageURL: imageURL,
+                coordinate: coordinate,
+                category: category
+            ))
+        }
     }
         
     static func getImage(url: String?, complition: @escaping (UIImage) -> Void) {

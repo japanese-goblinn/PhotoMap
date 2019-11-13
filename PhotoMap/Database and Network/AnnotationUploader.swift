@@ -26,27 +26,21 @@ class AnnotationUploader {
         let annotationData = annotation.asDictionary
         switch newState {
         case .new:
-            DispatchQueue.main.async { [weak annotation] in
+            upload(image: image, id: annotation.id) { [weak annotation] url in
+                guard let url = url else {
+                    print("BAD URL")
+                    return
+                }
                 guard let annotation = annotation else {
                     print("ANNOTATION IS NIL WHEN UPLOADING")
                     return
                 }
-                upload(image: image, id: annotation.id) { [weak annotation] url in
-                    guard let url = url else {
-                        print("BAD URL")
-                        return
-                    }
-                    guard let annotation = annotation else {
-                        print("ANNOTATION IS NIL WHEN UPLOADING")
-                        return
-                    }
-                    annotation.imageURL = url.absoluteString
-                    let annotationRef = Database.database().reference(withPath: "annotations/\(user.uid)").child(annotation.id)
-                    annotationRef.setValue(annotation.asDictionary)
-                }
+                annotation.imageURL = url.absoluteString
+                let annotationRef = Database.database().reference(withPath: "annotations/\(user.uid)").child(annotation.id)
+                annotationRef.setValue(annotation.asDictionary)
             }
         case .updated:
-            DispatchQueue.main.async { [annotationData] in
+            DispatchQueue.global().async { [annotationData] in
                 annotationRef.updateChildValues(annotationData) { error, _ in
                     if let error = error {
                         print(error.localizedDescription)

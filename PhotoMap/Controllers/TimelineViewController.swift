@@ -24,6 +24,10 @@ class TimelineViewController: UIViewController {
     private var allDates: [Date]?
     private var currentUser: User!
     
+    private var isDownloading: Bool = false
+    private let downloadGroup = DispatchGroup()
+    private let refreshControl = UIRefreshControl()
+    
     let searchController = UISearchController(searchResultsController: nil)
     
     private var isSearchBarEmpty: Bool {
@@ -42,14 +46,29 @@ class TimelineViewController: UIViewController {
         currentUser = user
         initData()
         setupTableView()
+        setupRefreshControl()
         configureSearchController()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setUpNavigationBar()
+    }
+    
+    private func setUpNavigationBar() {
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationController?.navigationBar.barTintColor = .white
         navigationController?.navigationBar.tintColor = UIColor.blue
+    }
+    
+    private func setupRefreshControl() {
+        refreshControl.attributedTitle = NSAttributedString(string: "Loading images...")
+        refreshControl.addTarget(self, action: #selector(refresh(_:)), for: UIControl.Event.valueChanged)
+        tableView.insertSubview(refreshControl, at: 0)
+    }
+    
+    @objc private func refresh(_ sender: AnyObject) {
+        tableView.reloadData()
     }
     
     @objc private func showCategories() {
@@ -151,11 +170,28 @@ extension TimelineViewController: UITableViewDelegate, UITableViewDataSource {
         return 80
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let firstVisibleIndexPath = tableView.indexPathsForVisibleRows?.first {
+            if indexPath == firstVisibleIndexPath {
+                isDownloading = true
+                if isDownloading {
+                    refreshControl.beginRefreshing()
+                }
+                downloadGroup.notify(queue: .main) { [weak self] in
+                    self?.refreshControl.endRefreshing()
+                    self?.isDownloading = false
+                    print("ALL TASKS ARE DONE")
+                }
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(
             withIdentifier: "timelineCell", for: indexPath) as! TimelineTableViewCell
         
+        cell.imageView?.image = nil
         let annotation: PhotoMarkAnnotation
         if isFiltering {
             annotation = filteredAnnotations[indexPath.row]
@@ -168,11 +204,10 @@ extension TimelineViewController: UITableViewDelegate, UITableViewDataSource {
             }
             annotation = local
         }
-        
-        AnnoationDownloader.getImage(url: annotation.imageURL) { image in
-            DispatchQueue.main.async { [weak cell] in
-                cell?.photoImageView.image = image
-            }
+        downloadGroup.enter()
+        AnnoationDownloader.getImage(url: annotation.imageURL) { [weak self, weak cell] image in
+            cell?.photoImageView.image = image
+            self?.downloadGroup.leave()
         }
         cell.titleLabel.text = annotation.title
         cell.dateLabel.text = "\(annotation.date.toString(with: .standart)) / \(annotation.category.asString.uppercased())"
@@ -199,6 +234,7 @@ extension TimelineViewController: UISearchResultsUpdating {
     }
     
     private func configureSearchController() {
+        
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search"
@@ -211,29 +247,27 @@ extension TimelineViewController: UISearchResultsUpdating {
 }
 
 extension TimelineViewController {
+    
     private func initData() {
         let ref = Database.database().reference(withPath: "annotations/\(currentUser.uid)")
         ref.observe(.childAdded) { snapshot in
             AnnoationDownloader.getAnnotation(from: snapshot) { [weak self] annotation in
-                DispatchQueue.main.async { [weak self] in
-                    self?.annotations.append(annotation)
-                }
+                self?.annotations.append(annotation)
             }
         }
         ref.observe(.childChanged) { snapshot in
             AnnoationDownloader.getAnnotation(from: snapshot) { [weak self] annotation in
-                DispatchQueue.main.async {
-                    guard let self = self else { return }
-                    let value = self.annotations.first {
-                        $0.id == annotation.id
-                    }
-                    guard let index = self.annotations.firstIndex(of: value!) else {
-                        return
-                    }
-                    self.annotations.remove(at: index)
-                    self.annotations.append(annotation)
+                guard let self = self else { return }
+                let value = self.annotations.first {
+                    $0.id == annotation.id
                 }
+                guard let index = self.annotations.firstIndex(of: value!) else {
+                    return
+                }
+                self.annotations.remove(at: index)
+                self.annotations.append(annotation)
             }
         }
+        ref.keepSynced(true)
     }
 }

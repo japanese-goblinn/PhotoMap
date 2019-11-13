@@ -50,9 +50,7 @@ class ImageViewController: UIViewController {
             contentLabel.text = annotation.title
             dateLabel.text = annotation.date.toString(with: .full)
             AnnoationDownloader.getImage(url: annotation.imageURL) { [weak self] image in
-                DispatchQueue.main.async {
-                    self?.imageView.image = image
-                }
+                self?.imageView.image = image
             }
         }
     }
