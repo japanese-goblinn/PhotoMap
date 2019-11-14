@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PickerCategoryView: UIView {
+class PickerCategoryView: UITextField {
 
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var annotationView: MapPinView!
@@ -22,6 +22,10 @@ class PickerCategoryView: UIView {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         initAll()
+    }
+    
+    override func caretRect(for position: UITextPosition) -> CGRect {
+        return .zero
     }
     
     private func initAll() {

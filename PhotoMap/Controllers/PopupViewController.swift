@@ -14,9 +14,15 @@ class PopupViewController: UIViewController {
     var annotation: PhotoMarkAnnotation?
     var newAnnotationCoordiante: CLLocationCoordinate2D?
     var newImage: UIImage?
-    var category: Category?
+    var category: Category! {
+        willSet {
+            updatePickerView(with: newValue!)
+        }
+    }
     
     weak var delegate: Updatable?
+    
+    private let picker = UIPickerView()
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
@@ -67,12 +73,7 @@ class PopupViewController: UIViewController {
     }
     
     @IBAction func pickerPressed(_ sender: UITapGestureRecognizer) {
-        let picker = PickerViewController()
-        picker.modalPresentationStyle = .custom
-        picker.modalTransitionStyle = .crossDissolve
-        picker.choosedCategory = category ?? annotation!.category
-        picker.delegate = self
-        present(picker, animated: true)
+        pickerView.becomeFirstResponder()
     }
     
     @IBAction func imagePressed(_ sender: UITapGestureRecognizer) {
@@ -98,11 +99,21 @@ class PopupViewController: UIViewController {
     
     private func setupViews() {
         setOutletsData()
+        setupPickerView()
         setupPicker()
         setupTextField()
         contentView.layer.cornerRadius = 6
         view.drawShadow()
         imageContainerView.drawShadow()
+    }
+    
+    private func setupPicker() {
+        picker.delegate = self
+        picker.dataSource = self
+        picker.selectRow(Category.allCases.firstIndex(of: category)!, inComponent: 0, animated: true)
+        pickerView.delegate = self
+        pickerView.inputView = picker
+        
     }
     
     private func setOutletsData() {
@@ -112,14 +123,13 @@ class PopupViewController: UIViewController {
             }
             contentTextView.text = annotation.title
             dateLabel.text = annotation.date.toString(with: .full)
-            updatePickerView(with: annotation.category)
+            category = annotation.category
         } else if
             let image = newImage
         {
             imageView.image = image
             dateLabel.text = Date().toString(with: .full)
             category = .uncategorized
-            updatePickerView(with: .uncategorized)
         }
     }
     
@@ -128,7 +138,8 @@ class PopupViewController: UIViewController {
         contentTextView.layer.borderColor = UIColor.gray.cgColor
     }
     
-    private func setupPicker() {
+    private func setupPickerView() {
+        pickerView.isUserInteractionEnabled = true
         pickerView.contentView.backgroundColor = .clear
         pickerView.layer.addBorder(edge: .top, color: .gray, thickness: 1)
         pickerView.layer.addBorder(edge: .bottom, color: .gray, thickness: 1)
@@ -143,10 +154,11 @@ class PopupViewController: UIViewController {
 extension PopupViewController: UITextViewDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-           return false
-       }
+        return false
+    }
     
     @IBAction private func hideKeyboard(_ sender: UITapGestureRecognizer) {
+        pickerView.endEditing(true)
         contentTextView.endEditing(true)
     }
     
@@ -185,9 +197,24 @@ extension PopupViewController: UITextViewDelegate {
     }
 }
 
-extension PopupViewController: Categoriable {
-    func pass(category: Category) {
-        self.category = category
-        updatePickerView(with: category)
+extension PopupViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
     }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return Category.allCases.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return Category.allCases[row].asString.uppercased()
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        category = Category.allCases[row]
+    }
+    
 }
+
+extension PopupViewController: UITextFieldDelegate {}
