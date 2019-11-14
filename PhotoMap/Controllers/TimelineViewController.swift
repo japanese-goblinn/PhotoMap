@@ -48,6 +48,10 @@ class TimelineViewController: UIViewController {
         super.viewWillAppear(animated)
         getData()
         setUpNavigationBar()
+        if refreshControl.isRefreshing {
+            refreshControl.endRefreshing()
+            refreshControl.beginRefreshing()
+        }
     }
     
     private func setUpNavigationBar() {
