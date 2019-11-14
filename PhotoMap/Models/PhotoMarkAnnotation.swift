@@ -78,6 +78,17 @@ class PhotoMarkAnnotation: NSObject, MKAnnotation {
         self.category = category
     }
     
+    var formattedTitle: String? {
+        if let title = title {
+            return title
+                .components(separatedBy: .whitespacesAndNewlines)
+                .filter {
+                    !$0.isEmpty
+                }.joined(separator: " ")
+        }
+        return nil
+    }
+    
     var asDictionary: [String: Any] {
         return [
             "id": id,

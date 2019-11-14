@@ -47,7 +47,7 @@ class ImageViewController: UIViewController {
     
     private func setupOutletsData() {
         if let annotation = annoation {
-            contentLabel.text = annotation.title
+            contentLabel.text = annotation.formattedTitle
             dateLabel.text = annotation.date.toString(with: .full)
             AnnoationDownloader.getImage(url: annotation.imageURL, or: annotation.id) { [weak self] image in
                 self?.imageView.image = image

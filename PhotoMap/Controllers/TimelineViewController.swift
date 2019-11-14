@@ -195,7 +195,7 @@ extension TimelineViewController: UITableViewDelegate, UITableViewDataSource {
             annotation = local
         }
         getImage(for: cell, with: annotation)
-        cell.titleLabel.text = annotation.title
+        cell.titleLabel.text = annotation.formattedTitle
         cell.dateLabel.text = "\(annotation.date.toString(with: .standart)) / \(annotation.category.asString.uppercased())"
         cell.accessoryType = .disclosureIndicator
         cell.selectionStyle = .none

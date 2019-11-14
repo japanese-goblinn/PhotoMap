@@ -116,7 +116,7 @@ class PhotoMarkCalloutView: UIView {
             AnnoationDownloader.getImage(url: annotation.imageURL, or: annotation.id) { [weak self] image in
                 self?.imageView.image = image
             }
-            titleLabel.text = annotation.title
+            titleLabel.text = annotation.formattedTitle
             dateLabel.text = annotation.date.toString(with: .standart)
         }
     }
