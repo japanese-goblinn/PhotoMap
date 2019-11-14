@@ -143,9 +143,12 @@ class PopupViewController: UIViewController {
 extension PopupViewController: UITextViewDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-           contentTextView.endEditing(true)
            return false
        }
+    
+    @IBAction private func hideKeyboard(_ sender: UITapGestureRecognizer) {
+        contentTextView.endEditing(true)
+    }
     
     private func activateKeyboardHandler() {
         contentTextView.delegate = self

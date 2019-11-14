@@ -64,6 +64,7 @@
                 </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <gestureRecognizers/>
             <constraints>
                 <constraint firstItem="v35-Yh-Oy1" firstAttribute="width" secondItem="Plo-GT-P5v" secondAttribute="width" multiplier="0.996324" id="0st-Rc-hlj"/>
                 <constraint firstItem="tyw-LM-7ZZ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="125" id="Abc-Pa-RdK"/>
@@ -82,7 +83,15 @@
                 <constraint firstItem="v35-Yh-Oy1" firstAttribute="leading" secondItem="tyw-LM-7ZZ" secondAttribute="leading" id="tqV-Od-fz0"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="dco-vO-arf" appends="YES" id="qDs-Hd-XGr"/>
+            </connections>
             <point key="canvasLocation" x="137.68115942028987" y="105.80357142857143"/>
         </view>
+        <tapGestureRecognizer id="dco-vO-arf">
+            <connections>
+                <action selector="hideKeyboard:" destination="-1" id="EMl-uN-IoD"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
 </document>

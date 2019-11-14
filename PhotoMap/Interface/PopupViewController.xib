@@ -129,10 +129,14 @@
                                     </constraints>
                                 </view>
                             </subviews>
+                            <gestureRecognizers/>
                             <constraints>
                                 <constraint firstItem="Z7m-ET-opy" firstAttribute="centerX" secondItem="e4m-kX-Qik" secondAttribute="centerX" id="Pg3-BU-LyU"/>
                                 <constraint firstItem="Z7m-ET-opy" firstAttribute="centerY" secondItem="e4m-kX-Qik" secondAttribute="centerY" id="uOF-ZO-pi6"/>
                             </constraints>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="FiH-gk-4tH" appends="YES" id="msH-S8-BtS"/>
+                            </connections>
                         </view>
                     </subviews>
                     <constraints>
@@ -165,6 +169,11 @@
         <tapGestureRecognizer id="TW1-4d-Nab">
             <connections>
                 <action selector="imagePressed:" destination="-1" id="JuT-mC-mUv"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="FiH-gk-4tH">
+            <connections>
+                <action selector="hideKeyboard:" destination="-1" id="p4o-Kd-9hu"/>
             </connections>
         </tapGestureRecognizer>
     </objects>

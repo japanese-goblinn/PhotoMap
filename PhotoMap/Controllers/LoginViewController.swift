@@ -116,3 +116,14 @@ class LoginViewController: UIViewController {
         }
     }
 }
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return false
+    }
+    
+    @IBAction private func hideKeyboard(_ sender: Any) {
+        emailTextField.endEditing(true)
+        passwordTextField.endEditing(true)
+    }
+}
