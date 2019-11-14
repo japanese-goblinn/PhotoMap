@@ -28,6 +28,7 @@ class ImageViewController: UIViewController {
         setupNavigationbar()
         setupOutletsData()
         addTapGesterRecognizers()
+        scrollView.contentInsetAdjustmentBehavior = .never
         scrollView.delegate = self
         updateMinZoomScaleForSize(view.bounds.size)
     }
