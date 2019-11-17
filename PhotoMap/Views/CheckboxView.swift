@@ -12,7 +12,7 @@ import CoreGraphics
 @IBDesignable
 class CheckboxView: UIView {
     
-    var categorie: Category = .uncategorized {
+    var category: Category = .uncategorized {
         willSet {
             color = newValue.color
             setNeedsDisplay()

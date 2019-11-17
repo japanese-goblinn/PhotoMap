@@ -31,8 +31,8 @@
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NGd-aM-IMY">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test_image" translatesAutoresizingMaskIntoConstraints="NO" id="4CT-bk-Dbm">
-                            <rect key="frame" x="0.0" y="0.0" width="1313" height="1313"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_error" translatesAutoresizingMaskIntoConstraints="NO" id="4CT-bk-Dbm">
+                            <rect key="frame" x="0.0" y="0.0" width="800" height="500"/>
                             <gestureRecognizers/>
                         </imageView>
                     </subviews>
@@ -86,6 +86,6 @@
         </view>
     </objects>
     <resources>
-        <image name="test_image" width="1313" height="1313"/>
+        <image name="image_error" width="800" height="500"/>
     </resources>
 </document>

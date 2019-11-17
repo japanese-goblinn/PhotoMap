@@ -19,7 +19,9 @@ class AnnotationUploader {
     static private let storageRef = Storage.storage().reference().child("images")
 
     static func upload(
-        annotation: PhotoMarkAnnotation, image: UIImage?, as newState: State
+        annotation: PhotoMarkAnnotation,
+        image: UIImage?,
+        as newState: State
     ) {
         guard let user = Auth.auth().currentUser else { return }
         let annotationRef = Database.database().reference(withPath: "annotations/\(user.uid)").child(annotation.id)
@@ -27,7 +29,8 @@ class AnnotationUploader {
         switch newState {
         case .new:
             print("UPLOADING ANNOTATION...")
-            upload(image: image, id: annotation.id) { [weak annotation] url in
+            upload(image: image, id: annotation.id) {
+                [weak annotation] url in
                 guard let url = url else {
                     print("BAD URL")
                     return
@@ -54,12 +57,17 @@ class AnnotationUploader {
         }
     }
     
-    private static func upload(image: UIImage?, id: String, compelition: @escaping (URL?) -> Void) {
+    private static func upload(
+        image: UIImage?,
+        id: String,
+        completion: @escaping (URL?) -> Void
+    ) {
         guard
             let image = image,
             let imageData = image.jpegData(compressionQuality: 1.0)
         else {
             print("UPLOAD IMAGE IS NIL")
+            completion(nil)
             return
         }
         print("UPLOADING IMAGE...")
@@ -70,6 +78,7 @@ class AnnotationUploader {
             if let error = error {
                 print("PUT DATA ERROR")
                 print(error.localizedDescription)
+                completion(nil)
                 return
             }
             
@@ -77,11 +86,12 @@ class AnnotationUploader {
                 if let error = error {
                     print("DOWNLOAD URL ERROR")
                     print(error.localizedDescription)
+                    completion(nil)
                     return
                 }
                 DispatchQueue.global().async {
                     print("IMAGE UPLOAD FINISHED")
-                    compelition(url)
+                    completion(url)
                 }
             }
         }

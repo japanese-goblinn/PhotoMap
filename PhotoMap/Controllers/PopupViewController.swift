@@ -118,8 +118,15 @@ class PopupViewController: UIViewController {
     
     private func setOutletsData() {
         if let annotation = annotation {
-            AnnoationDownloader.getImage(url: annotation.imageURL, or: annotation.id) { [weak self] image in
-                self?.imageView.image = image
+            imageView.image = .gifImageWithName("image_load")
+            AnnoationDownloader.getImage(url: annotation.imageURL, or: annotation.id) {
+                [weak self] image in
+                
+                if let image = image {
+                    self?.imageView.image = image
+                } else {
+                    self?.imageView.image = #imageLiteral(resourceName: "image_error")
+                }
             }
             contentTextView.text = annotation.title
             dateLabel.text = annotation.date.toString(with: .full)
@@ -147,7 +154,7 @@ class PopupViewController: UIViewController {
     
     private func updatePickerView(with category: Category) {
         pickerView.annotationView.fillColor = category.color
-        pickerView.categorieLabel.text = category.asString.uppercased()
+        pickerView.categoryLabel.text = category.asString.uppercased()
     }
 }
 

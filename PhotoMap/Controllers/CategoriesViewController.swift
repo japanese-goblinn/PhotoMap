@@ -86,10 +86,10 @@ class CategoriesViewController: UIViewController {
     
     private func changeState(for checkbox: CheckboxView) {
         checkbox.isChecked.toggle()
-        if !categories.contains(checkbox.categorie) {
-            categories.append(checkbox.categorie)
+        if !categories.contains(checkbox.category) {
+            categories.append(checkbox.category)
         } else {
-            let index = categories.firstIndex(of: checkbox.categorie)!
+            let index = categories.firstIndex(of: checkbox.category)!
             categories.remove(at: index)
         }
     }
@@ -100,11 +100,7 @@ extension CategoriesViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Category.allCases.count
     }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 62
-    }
-    
+        
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(
@@ -116,12 +112,8 @@ extension CategoriesViewController: UITableViewDataSource, UITableViewDelegate {
         let category = Category.allCases[indexPath.row]
         cell.categoryLabel.text = category.asString.uppercased()
         cell.categoryLabel.textColor = category.color
-        cell.categoryCheckbox.categorie = category
-        if categories.contains(category) {
-            cell.categoryCheckbox.isChecked = true
-        } else {
-            cell.categoryCheckbox.isChecked = false
-        }
+        cell.categoryCheckbox.category = category
+        cell.categoryCheckbox.isChecked = categories.contains(category)
         return cell
     }
 }

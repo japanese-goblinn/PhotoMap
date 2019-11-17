@@ -18,19 +18,20 @@ class MoreViewController: UIViewController {
     
     @IBAction private func signOutPressed(_ sender: UIButton) {
         guard let user = currentUser else { return }
-        Database.database().reference(withPath: "online/\(user.uid)").removeValue { error, _ in
-          if let error = error {
-            print("Removing online failed: \(error.localizedDescription)")
-            return
-          }
-          do {
-            try Auth.auth().signOut()
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            appDelegate.window?.rootViewController = LoginViewController()
-            self.dismiss(animated: true, completion: nil)
-          } catch (let error) {
-            print("Auth sign out failed: \(error)")
-          }
+        Database.database().reference(withPath: "online/\(user.uid)").removeValue {
+            error, _ in
+            if let error = error {
+                self.presentErrorAlert(with: "Removing online failed", and: error)
+                return
+            }
+            do {
+                try Auth.auth().signOut()
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                appDelegate.window?.rootViewController = LoginViewController()
+                self.dismiss(animated: true, completion: nil)
+            } catch (let error) {
+                self.presentErrorAlert(with: "Auth sign out failed", and: error)
+            }
         }
     }
     
@@ -38,5 +39,20 @@ class MoreViewController: UIViewController {
         super.viewDidLoad()
         emailLabel.text = currentUser?.email
         signOutButton.layer.cornerRadius = 6
+    }
+    
+    private func presentErrorAlert(with title: String, and error: Error) {
+        let alert = UIAlertController(
+            title: title,
+            message: error.localizedDescription,
+            preferredStyle: .alert
+        )
+        alert.addAction(
+            UIAlertAction(
+                title: "OK",
+                style: .cancel
+            )
+        )
+        present(alert, animated: true)
     }
 }

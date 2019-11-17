@@ -113,8 +113,14 @@ class PhotoMarkCalloutView: UIView {
     
     private func setupView() {
         if let annotation = annotation {
-            AnnoationDownloader.getImage(url: annotation.imageURL, or: annotation.id) { [weak self] image in
-                self?.imageView.image = image
+            imageView.image = .gifImageWithName("image_load")
+            AnnoationDownloader.getImage(url: annotation.imageURL, or: annotation.id) {
+                [weak self] image in
+                if let image = image {
+                    self?.imageView.image = image
+                } else {
+                    self?.imageView.image = #imageLiteral(resourceName: "image_error")
+                }
             }
             titleLabel.text = annotation.formattedTitle
             dateLabel.text = annotation.date.toString(with: .standart)

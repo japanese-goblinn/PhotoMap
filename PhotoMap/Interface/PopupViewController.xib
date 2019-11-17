@@ -85,7 +85,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y2K-IG-f4q">
                                             <rect key="frame" x="8" y="8" width="315" height="139"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test_image" translatesAutoresizingMaskIntoConstraints="NO" id="nyQ-XE-sGi">
+                                                <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_error" translatesAutoresizingMaskIntoConstraints="NO" id="nyQ-XE-sGi">
                                                     <rect key="frame" x="0.0" y="0.0" width="315" height="139"/>
                                                     <gestureRecognizers/>
                                                     <connections>
@@ -178,6 +178,6 @@
         </tapGestureRecognizer>
     </objects>
     <resources>
-        <image name="test_image" width="1313" height="1313"/>
+        <image name="image_error" width="800" height="500"/>
     </resources>
 </document>

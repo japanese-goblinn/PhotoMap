@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -43,11 +42,11 @@
                     <constraint firstItem="8p2-VL-KFy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="GjC-US-hmz"/>
                     <constraint firstItem="8p2-VL-KFy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="YIK-p8-QOa"/>
                     <constraint firstItem="ajU-E3-81c" firstAttribute="centerY" secondItem="8p2-VL-KFy" secondAttribute="centerY" id="cfw-fd-g2b"/>
+                    <constraint firstAttribute="bottom" secondItem="8p2-VL-KFy" secondAttribute="bottom" constant="13" id="gmV-Hr-Nsr"/>
                     <constraint firstAttribute="trailing" secondItem="ajU-E3-81c" secondAttribute="trailing" constant="16" id="kER-Rq-VKe"/>
                     <constraint firstItem="ajU-E3-81c" firstAttribute="leading" secondItem="8p2-VL-KFy" secondAttribute="trailing" constant="12" id="mmT-6M-f7V"/>
                 </constraints>
             </tableViewCellContentView>
-            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="categoryCheckbox" destination="8p2-VL-KFy" id="GKL-ry-Zre"/>
                 <outlet property="categoryLabel" destination="ajU-E3-81c" id="Oly-4j-c0g"/>

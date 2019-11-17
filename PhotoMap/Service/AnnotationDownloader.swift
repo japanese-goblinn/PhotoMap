@@ -13,8 +13,14 @@ class AnnoationDownloader {
     
     static func getAnnotation(
         from snapshot: DataSnapshot,
-        complition: @escaping (PhotoMarkAnnotation) -> Void
+        completion: @escaping (PhotoMarkAnnotation?) -> Void
     ) {
+        var annotation: PhotoMarkAnnotation? = nil
+        defer {
+            DispatchQueue.main.async {
+                completion(annotation)
+            }
+        }
         guard
             let annotationData = snapshot.value as? [String: Any],
             let id = annotationData["id"] as? String,
@@ -42,47 +48,62 @@ class AnnoationDownloader {
             print("CATEGORY PARSING ERROR")
             return
         }
-        DispatchQueue.main.async {
-            complition(PhotoMarkAnnotation(
-                id: id,
-                title: title,
-                date: date,
-                imageURL: imageURL,
-                coordinate: coordinate,
-                category: category
-            ))
-        }
+        annotation = PhotoMarkAnnotation(
+            id: id,
+            title: title,
+            date: date,
+            imageURL: imageURL,
+            coordinate: coordinate,
+            category: category
+        )
     }
         
-    static func getImage(url: String?, or id: String, complition: @escaping (UIImage) -> Void) {
+    static func getImage(url: String?, or id: String, completion: @escaping (UIImage?) -> Void) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         if let image = appDelegate.imageCache.object(forKey: id as NSString) {
             print("CACHE USED")
-            complition(image)
+            completion(image)
         } else {
             guard
                 let downloadString = url,
                 let downloadUrl = URL(string: downloadString)
             else {
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
                 return
             }
             print("DOWNLOADING IMAGE...")
-            URLSession.shared.dataTask(with: downloadUrl) { [id] data, _, error in
+            URLSession.shared.dataTask(with: downloadUrl) {
+                [id] data, response, error in
+                guard
+                    let imageData = data,
+                    let image = UIImage(data: imageData),
+                    let response = response as? HTTPURLResponse
+                else {
+                    DispatchQueue.main.async {
+                        completion(nil)
+                    }
+                    return
+                }
+                switch response.statusCode {
+                case 200..<300:
+                    print("STATUS CODE \(response.statusCode)")
+                default:
+                    print("BAD STATUS CODE \(response.statusCode)")
+                    completion(nil)
+                    return
+                }
                 if let error = error {
                     print(error.localizedDescription)
-                } else {
-                    guard
-                        let imageData = data,
-                        let image = UIImage(data: imageData)
-                    else {
-                        return
-                    }
-                    DispatchQueue.main.async {
-                        print("DOWNLOAD COMPLETE")
-                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                        appDelegate.imageCache.setObject(image, forKey: id as NSString)
-                        complition(image)
-                    }
+                    completion(nil)
+                    return
+                }
+                DispatchQueue.main.async {
+                    print("DOWNLOAD COMPLETE")
+                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                    appDelegate.imageCache.setObject(image, forKey: id as NSString)
+                    completion(image)
                 }
             }
             .resume()

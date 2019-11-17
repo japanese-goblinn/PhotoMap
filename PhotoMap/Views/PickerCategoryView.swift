@@ -12,7 +12,7 @@ class PickerCategoryView: UITextField {
 
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var annotationView: MapPinView!
-    @IBOutlet weak var categorieLabel: UILabel!
+    @IBOutlet weak var categoryLabel: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)

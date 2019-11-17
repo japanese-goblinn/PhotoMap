@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>679469589129-p7f6se5ugq2nd7k3o8rq5ovpjaeq94rc.apps.googleusercontent.com</string>
+	<string>454966619956-lshgi3mnml5hhugudfsj7qiplvjcce4j.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.679469589129-p7f6se5ugq2nd7k3o8rq5ovpjaeq94rc</string>
+	<string>com.googleusercontent.apps.454966619956-lshgi3mnml5hhugudfsj7qiplvjcce4j</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBZ4wPXani_1QyNh-MU2i_aQN5XZt_QUFw</string>
+	<string>AIzaSyB87cInw7BaUzyr5uy0ERaBMm5DmriUtxI</string>
 	<key>GCM_SENDER_ID</key>
-	<string>679469589129</string>
+	<string>454966619956</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.saisuicied.PhotoMap</string>
 	<key>PROJECT_ID</key>
-	<string>photomap-9a0d2</string>
+	<string>photomap-d787b</string>
 	<key>STORAGE_BUCKET</key>
-	<string>photomap-9a0d2.appspot.com</string>
+	<string>photomap-d787b.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:679469589129:ios:80216017779d81a7935c58</string>
+	<string>1:454966619956:ios:2b5a683c268d4ec6f5bf61</string>
 	<key>DATABASE_URL</key>
-	<string>https://photomap-9a0d2.firebaseio.com</string>
+	<string>https://photomap-d787b.firebaseio.com</string>
 </dict>
 </plist>

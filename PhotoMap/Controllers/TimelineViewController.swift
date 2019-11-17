@@ -61,8 +61,10 @@ class TimelineViewController: UIViewController {
     }
     
     private func setupRefreshControl() {
-        refreshControl.attributedTitle = NSAttributedString(string: "Loading images...")
-        refreshControl.addTarget(self, action: #selector(refresh(_:)), for: UIControl.Event.valueChanged)
+        refreshControl.attributedTitle = NSAttributedString(string: "Update images")
+        refreshControl.addTarget(
+            self, action: #selector(refresh(_:)), for: UIControl.Event.valueChanged
+        )
         tableView.insertSubview(refreshControl, at: 0)
     }
     
@@ -94,6 +96,7 @@ class TimelineViewController: UIViewController {
     }
     
     private func getDataGrouped(for filteredAnnotations: [PhotoMarkAnnotation]) -> [Date: [PhotoMarkAnnotation]] {
+        
         return Dictionary(grouping: filteredAnnotations) {
             let dateString = $0.date.toString(with: .monthAndYear)
             let finalDate = dateString.toDate(with: .monthAndYear)!
@@ -122,10 +125,7 @@ extension TimelineViewController: UITableViewDelegate, UITableViewDataSource {
         if isFiltering {
             return 1
         }
-        guard let dates = allDates else {
-            return 1
-        }
-        return dates.count
+        return allDates?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -164,20 +164,21 @@ extension TimelineViewController: UITableViewDelegate, UITableViewDataSource {
         navigationController?.pushViewController(imageVC, animated: true)
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
-    }
-    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
         if let firstVisibleIndexPath = tableView.indexPathsForVisibleRows?.first {
             if indexPath == firstVisibleIndexPath {
-                downloadGroup.notify(queue: .main) { [weak self] in
+                let completion: () -> Void = {
+                    [weak self] in
+                    
                     guard let self = self else { return }
                     if self.refreshControl.isRefreshing {
                         self.refreshControl.endRefreshing()
                     }
-                    print("ALL TASKS ARE DONE")
+                    print("TASKS FINISHED")
                 }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 60, execute: completion)
+                downloadGroup.notify(queue: .main, execute: completion)
             }
         }
     }
@@ -185,7 +186,8 @@ extension TimelineViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(
-            withIdentifier: "timelineCell", for: indexPath) as! TimelineTableViewCell
+            withIdentifier: "timelineCell", for: indexPath
+        ) as! TimelineTableViewCell
         let annotation: PhotoMarkAnnotation
         if isFiltering {
             annotation = filteredAnnotations[indexPath.row]
@@ -198,6 +200,7 @@ extension TimelineViewController: UITableViewDelegate, UITableViewDataSource {
             }
             annotation = local
         }
+        cell.photoImageView.image = .gifImageWithName("image_load")
         getImage(for: cell, with: annotation)
         cell.titleLabel.text = annotation.formattedTitle
         cell.dateLabel.text = "\(annotation.date.toString(with: .standart)) / \(annotation.category.asString.uppercased())"
@@ -207,15 +210,15 @@ extension TimelineViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     private func getImage(for cell: TimelineTableViewCell, with annotation: PhotoMarkAnnotation) {
-        
-        if appDelegate.imageCache.object(forKey: annotation.id as NSString) == nil {
-            if !refreshControl.isRefreshing {
-                refreshControl.beginRefreshing()
-            }
-        }
         downloadGroup.enter()
-        AnnoationDownloader.getImage(url: annotation.imageURL, or: annotation.id) { [weak self, weak cell] image in
-            cell?.photoImageView.image = image
+        AnnoationDownloader.getImage(url: annotation.imageURL, or: annotation.id) {
+            [weak cell, weak self] image in
+            
+            if let image = image {
+                cell?.photoImageView.image = image
+            } else {
+                cell?.photoImageView.image = #imageLiteral(resourceName: "image_error")
+            }
             self?.downloadGroup.leave()
         }
     }
@@ -224,14 +227,14 @@ extension TimelineViewController: UITableViewDelegate, UITableViewDataSource {
 extension TimelineViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-      
         let searchBar = searchController.searchBar
         filterContentForSearchText(searchBar.text!)
     }
     
     func filterContentForSearchText(_ searchText: String, category: Category? = nil) {
       
-        filteredAnnotations = appDelegate.annotations.filter { (annotation: PhotoMarkAnnotation) -> Bool in
+        filteredAnnotations = appDelegate.annotations.filter {
+            (annotation: PhotoMarkAnnotation) -> Bool in
             annotation.title?.lowercased().contains(searchText.lowercased()) ?? false && categories.contains(annotation.category)
         }
         tableView.reloadData()

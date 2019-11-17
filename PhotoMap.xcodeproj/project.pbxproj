@@ -12,7 +12,6 @@
 		CE02E9832366F3D90018B37E /* TimelineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE02E9812366F3D90018B37E /* TimelineTableViewCell.xib */; };
 		CE11CC7D23618BBA007DA712 /* PickerCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE11CC7C23618BBA007DA712 /* PickerCategoryView.swift */; };
 		CE11CC7F23618BDE007DA712 /* PickerCategoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE11CC7E23618BDE007DA712 /* PickerCategoryView.xib */; };
-		CE1B5C94237DD64900C8296A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE1B5C93237DD64900C8296A /* GoogleService-Info.plist */; };
 		CE1E7775236196F0006BAE84 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E7774236196F0006BAE84 /* UIViewExtension.swift */; };
 		CE1E777723619E14006BAE84 /* MapPinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1E777623619E14006BAE84 /* MapPinView.swift */; };
 		CE30C710235DFC5600A82CC7 /* PopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE30C70E235DFC5600A82CC7 /* PopupViewController.swift */; };
@@ -32,6 +31,9 @@
 		CE932B6C2367824500163EFA /* Filterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE932B6B2367824500163EFA /* Filterable.swift */; };
 		CED4A936234F2EAA004C9A22 /* CategoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED4A934234F2EAA004C9A22 /* CategoriesTableViewCell.swift */; };
 		CED4A937234F2EAA004C9A22 /* CategoriesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED4A935234F2EAA004C9A22 /* CategoriesTableViewCell.xib */; };
+		CED8F2B22381BED70037044B /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED8F2B12381BED70037044B /* UIImageExtension.swift */; };
+		CED8F2B42381C00A0037044B /* image_load.gif in Resources */ = {isa = PBXBuildFile; fileRef = CED8F2B32381C00A0037044B /* image_load.gif */; };
+		CED8F2B72381E2BC0037044B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CED8F2B62381E2BC0037044B /* GoogleService-Info.plist */; };
 		CEEBB4C923604B580033410C /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEBB4C723604B580033410C /* ImageViewController.swift */; };
 		CEEBB4CA23604B580033410C /* ImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEEBB4C823604B580033410C /* ImageViewController.xib */; };
 		CEF048EC234A45B60020900A /* PhotoMarkAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF048EB234A45B60020900A /* PhotoMarkAnnotationView.swift */; };
@@ -60,7 +62,6 @@
 		CE02E9812366F3D90018B37E /* TimelineTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimelineTableViewCell.xib; sourceTree = "<group>"; };
 		CE11CC7C23618BBA007DA712 /* PickerCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerCategoryView.swift; sourceTree = "<group>"; };
 		CE11CC7E23618BDE007DA712 /* PickerCategoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickerCategoryView.xib; sourceTree = "<group>"; };
-		CE1B5C93237DD64900C8296A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE1E7774236196F0006BAE84 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		CE1E777623619E14006BAE84 /* MapPinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPinView.swift; sourceTree = "<group>"; };
 		CE30C70E235DFC5600A82CC7 /* PopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +82,9 @@
 		CE932B6B2367824500163EFA /* Filterable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filterable.swift; sourceTree = "<group>"; };
 		CED4A934234F2EAA004C9A22 /* CategoriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewCell.swift; sourceTree = "<group>"; };
 		CED4A935234F2EAA004C9A22 /* CategoriesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesTableViewCell.xib; sourceTree = "<group>"; };
+		CED8F2B12381BED70037044B /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		CED8F2B32381C00A0037044B /* image_load.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = image_load.gif; sourceTree = "<group>"; };
+		CED8F2B62381E2BC0037044B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CEEBB4C723604B580033410C /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		CEEBB4C823604B580033410C /* ImageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageViewController.xib; sourceTree = "<group>"; };
 		CEF048EB234A45B60020900A /* PhotoMarkAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoMarkAnnotationView.swift; sourceTree = "<group>"; };
@@ -154,8 +158,17 @@
 				CE4C9FFE2363734F00BEE776 /* CALayerExtension.swift */,
 				CE932B69236758D200163EFA /* StringExtension.swift */,
 				CE38084B236DEEB10028680D /* CLLocationCoordinate2DExtension.swift */,
+				CED8F2B12381BED70037044B /* UIImageExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CED8F2B52381D0450037044B /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				CED8F2B32381C00A0037044B /* image_load.gif */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 		CEF048ED234A45BE0020900A /* Views */ = {
@@ -245,13 +258,14 @@
 				F3048D6D23475BCB0034E9FC /* Models */,
 				CE38084A236DEE2D0028680D /* Service */,
 				CE30C714235E0CEA00A82CC7 /* Delegates */,
+				CE839515234622AC004963EC /* Extensions */,
 				F31584AA2344866100668288 /* Controllers */,
 				CEF048ED234A45BE0020900A /* Views */,
 				F31584AD2344872400668288 /* Interface */,
-				CE839515234622AC004963EC /* Extensions */,
 				F3D8F91E2343A17900E0A378 /* Assets.xcassets */,
+				CED8F2B52381D0450037044B /* Images */,
 				F3D8F9152343A17900E0A378 /* AppDelegate.swift */,
-				CE1B5C93237DD64900C8296A /* GoogleService-Info.plist */,
+				CED8F2B62381E2BC0037044B /* GoogleService-Info.plist */,
 				F3D8F9232343A17900E0A378 /* Info.plist */,
 			);
 			path = PhotoMap;
@@ -317,12 +331,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE1B5C94237DD64900C8296A /* GoogleService-Info.plist in Resources */,
 				CEEBB4CA23604B580033410C /* ImageViewController.xib in Resources */,
 				F31584AC234486E700668288 /* MapViewController.xib in Resources */,
 				CED4A937234F2EAA004C9A22 /* CategoriesTableViewCell.xib in Resources */,
 				F3E22CA4234DCE8D001216CB /* MoreViewController.xib in Resources */,
 				F3D8F91F2343A17900E0A378 /* Assets.xcassets in Resources */,
+				CED8F2B42381C00A0037044B /* image_load.gif in Resources */,
 				F3E22CA0234DCE6E001216CB /* TimelineViewController.xib in Resources */,
 				F33377AF2354A105002D01D7 /* PhotoMarkCalloutView.xib in Resources */,
 				CE11CC7F23618BDE007DA712 /* PickerCategoryView.xib in Resources */,
@@ -330,6 +344,7 @@
 				F323D36F2347567400AE7E97 /* CategoriesViewController.xib in Resources */,
 				CE02E9832366F3D90018B37E /* TimelineTableViewCell.xib in Resources */,
 				CE380851236E02BC0028680D /* LoginViewController.xib in Resources */,
+				CED8F2B72381E2BC0037044B /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +420,7 @@
 				CE932B6C2367824500163EFA /* Filterable.swift in Sources */,
 				CE8395142346212B004963EC /* UIColorExtension.swift in Sources */,
 				CE1E777723619E14006BAE84 /* MapPinView.swift in Sources */,
+				CED8F2B22381BED70037044B /* UIImageExtension.swift in Sources */,
 				CE380855236F05410028680D /* Updatable.swift in Sources */,
 				F323D36E2347567400AE7E97 /* CategoriesViewController.swift in Sources */,
 				CE932B6A236758D200163EFA /* StringExtension.swift in Sources */,

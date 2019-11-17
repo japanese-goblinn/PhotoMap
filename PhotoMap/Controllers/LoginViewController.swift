@@ -38,7 +38,8 @@ class LoginViewController: UIViewController {
             present(errorAction, animated: true)
             return
         }
-        Auth.auth().signIn(withEmail: email, password: password) { [weak self] user, error in
+        Auth.auth().signIn(withEmail: email, password: password) {
+            [weak self] user, error in
             if let error = error, user == nil {
                 let alert = UIAlertController(
                     title: "Sign In Failed",
@@ -62,7 +63,8 @@ class LoginViewController: UIViewController {
             let email = alert.textFields![0].text!
             let password = alert.textFields![1].text!
             
-            Auth.auth().createUser(withEmail: email, password: password) { [weak self] user, error in
+            Auth.auth().createUser(withEmail: email, password: password) {
+                [weak self] user, error in
                 if error != nil {
                     let registrationFailedAlert = UIAlertController(
                         title: "Error",
@@ -108,7 +110,8 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         signInButton.layer.cornerRadius = 6
         passwordTextField.isSecureTextEntry = true
-        Auth.auth().addStateDidChangeListener { [weak self] auth, user in
+        Auth.auth().addStateDidChangeListener {
+            [weak self] auth, user in
             if user != nil {
                 guard let self = self else { return }
                 Coordinator.showMainApplication(from: self)

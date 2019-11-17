@@ -70,7 +70,9 @@ class MapViewController: UIViewController {
         ref.observeSingleEvent(of: .value) { snapshot in
             for child in snapshot.children {
                 guard let snapshot = child as? DataSnapshot else { return }
-                AnnoationDownloader.getAnnotation(from: snapshot) { [weak self] annotation in
+                AnnoationDownloader.getAnnotation(from: snapshot) {
+                    [weak self] annotation in
+                    guard let annotation = annotation else { return }
                     self?.appDelegate.annotations.append(annotation)
                     self?.mapView.addAnnotation(annotation)
                     self?.filterAnnotations()
@@ -261,7 +263,8 @@ extension MapViewController: UIImagePickerControllerDelegate, UINavigationContro
             UIAlertAction(
                 title: "Take a Picture",
                 style: .default,
-                handler: { [weak self] _ in
+                handler: {
+                    [weak self] _ in
                     if UIImagePickerController.isSourceTypeAvailable(.camera) {
                         self?.showImagePickerController(for: .camera)
                     }
@@ -272,7 +275,8 @@ extension MapViewController: UIImagePickerControllerDelegate, UINavigationContro
             UIAlertAction(
                 title: "Choose From Library",
                 style: .default,
-                handler: { [weak self] _ in
+                handler: {
+                    [weak self] _ in
                     if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
                         self?.showImagePickerController(for: .photoLibrary)
                     }
@@ -283,7 +287,8 @@ extension MapViewController: UIImagePickerControllerDelegate, UINavigationContro
             UIAlertAction(
                 title: "Cancel",
                 style: .cancel,
-                handler: { [weak self] _ in
+                handler: {
+                    [weak self] _ in
                     self?.dismiss(animated: true)
                 }
             )
@@ -320,10 +325,12 @@ extension MapViewController: Updatable {
         case .new:
             appDelegate.annotations.append(annotation)
         case .updated:
-            let index = appDelegate.annotations.firstIndex { oldAnnotation in
+            guard let index = appDelegate.annotations.firstIndex(where: { oldAnnotation in
                 oldAnnotation.id == annotation.id
+            }) else {
+                return
             }
-            appDelegate.annotations.remove(at: index!)
+            appDelegate.annotations.remove(at: index)
             appDelegate.annotations.append(annotation)
         }
         filterAnnotations()
