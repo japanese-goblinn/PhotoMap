@@ -99,7 +99,9 @@ class TimelineViewController: UIViewController {
         
         return Dictionary(grouping: filteredAnnotations) {
             let dateString = $0.date.toString(with: .monthAndYear)
-            let finalDate = dateString.toDate(with: .monthAndYear)!
+            guard let finalDate = dateString.toDate(with: .monthAndYear) else {
+                return Date()
+            }
             return finalDate
         }
     }

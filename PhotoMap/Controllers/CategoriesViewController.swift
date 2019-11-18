@@ -89,7 +89,7 @@ class CategoriesViewController: UIViewController {
         if !categories.contains(checkbox.category) {
             categories.append(checkbox.category)
         } else {
-            let index = categories.firstIndex(of: checkbox.category)!
+            guard let index = categories.firstIndex(of: checkbox.category) else { return }
             categories.remove(at: index)
         }
     }

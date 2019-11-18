@@ -16,7 +16,7 @@ class PopupViewController: UIViewController {
     var newImage: UIImage?
     var category: Category! {
         willSet {
-            updatePickerView(with: newValue!)
+            updatePickerView(with: newValue)
         }
     }
     
@@ -110,7 +110,9 @@ class PopupViewController: UIViewController {
     private func setupPicker() {
         picker.delegate = self
         picker.dataSource = self
-        picker.selectRow(Category.allCases.firstIndex(of: category)!, inComponent: 0, animated: true)
+        if let index = Category.allCases.firstIndex(of: category) {
+            picker.selectRow(index, inComponent: 0, animated: true)
+        }
         pickerView.delegate = self
         pickerView.inputView = picker
         
